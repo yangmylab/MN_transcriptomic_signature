@@ -3,8 +3,8 @@
 **Project:** Paper 1 — Machine-learning biomarker discovery & molecular subtyping of membranous nephropathy (MN) from multi-cohort bulk transcriptomics
 **Workspace (project root):** `/run/media/meng/MY_Data/MN/Paper_1` (moved 2026-10-19 from the old `/home/yang/Documents/MN/Paper_1`; every script resolves the root from `R/_lib.R`, so no path edits were needed)
 **Data root (shared):** `/run/media/meng/MY_Data/MN/Datasets` — the GEO inputs live **outside** the project here, shared with Paper_2/Paper_3. `R/_lib.R` sets `DATA` to it and `scrna/manifest.tsv` points its archives at `../Datasets/<GSE>_RAW.tar`.
-**Last updated:** 2026-11-18 12:15 — **checkpoint refresh.** Three blocks of work today, all verified: (i) **F62** corrected the gate's cross-platform transfer (§2.20) — 05a/05b now quantile-map each validation cohort onto the discovery reference (label-blind) before applying training statistics, giving ERCB **0.861–0.922** with no per-diagnosis inversions; (ii) a **`bioanalyst` BAP audit** (§2.21) — verdict *reliable with important limitations*, one Major metadata defect fixed (`gsm` mixed 1,623 real accessions with 473 local indices, 134 colliding; provenance columns + 3 assertions), plus **P0 gate-stability** (§2.23: 10 partitions, ERCB 0.912–0.928 at K=all, range 0.016) and its own Fig S6; (iii) the **figure set re-laid-out** (§2.22) — Fig 3 is now the separability gate, functional profiling moved to S4, new S5/S6, and four two-page plates fixed. Six verifiers pass **54 / 86 / 42 / 117 / 106 / 32**. Deliverables: `Docs/{BAP_AUDIT_2026-11-18.md, Findings_Ledger.csv, CONSOLIDATED_RESULTS.md}`, `Manuscript/SUBMISSION_CHECKLIST.md`, **12 plates**.
-**Status:** Phases 0, 1, A, B, C, D and E complete, **re-derived under the audited pipeline and fully re-verified**; the figure set and the evidence ledger are submission-ready from the computational side. Locked panel = **4 genes** with ERCB AUC **0.816 (0.721–0.910)**, RNA-seq 0.901, LCM 0.929, other-CDF 0.848, tubulointerstitial 0.449/0.539 (compartment-specific); label-permutation p = 0.005, refit null p = 0.11 (**not** significant — reported as such). The gate's external ERCB AUC is **0.861–0.922** (harmonised transfer, F07 + F62) and is **partition-stable** (0.912–0.928 across 10 draws); the whole-transcriptome model beats the four-gene panel in ERCB (0.922 vs 0.816), so the panel's claim is interpretability and transportability, not superiority. Manuscript is in EBioMedicine format with 44 verified references, a **377-word** Summary and a **4,336-word** main text (which now reports the pathway result), 12 plates (Fig 1–6, S1–S6), and rebuilt `.docx` files. Remaining work is external: clinical variables (B2), participant map (B7), and IF validation of the panel proteins (E4).
+**Last updated:** 2026-11-18 17:10 — **checkpoint refresh after the Track B session.** Paper 1 is frozen and submission-ready; the new work is **Track B**, a leakage-audited benchmark of published MN panels (§2.25–§2.26). Three things were established today beyond Paper 1: (i) **F62** — the gate's cross-platform transfer needed harmonisation, not just removal of the transductive z-score (§2.20); (ii) the **`bioanalyst` BAP audit** plus figure re-layout and gate-stability work (§2.21–§2.23); (iii) **Track B** — 6 published panels carried down a 7-rung attrition ladder, where the pre-registered hypothesis was **falsified** and replaced by a stronger claim: panels transfer (R5 AUC 0.67–0.89) but **0/6 beats its own refit permutation null**, and the panel-size frontier shows external AUC is flat from K = 2 to 20 and collapses at K = 50. Seven verifiers pass: **54 / 86 / 42 / 117 / 106 / 27 / 37**.
+**Status:** Paper 1 (Phases 0, 1, A–E) is **complete, re-verified and frozen** — do not add methods to it. Locked panel = **4 genes** (SLAMF8, TRPC6, MYOZ2, PPP1R3C), ERCB AUC **0.816 (0.721–0.910)**, RNA-seq 0.901, LCM 0.929, other-CDF 0.848, tubulointerstitial 0.449/0.539; label-permutation p = 0.005, refit null p = 0.11 (**not** significant). Gate: ERCB **0.861–0.922**, partition-stable (0.912–0.928 over 10 draws, Fig S6). 12 plates (Fig 1–6, S1–S6), 221 tables, 48 R scripts, `Docs/` audit + graded ledger + consolidated results. **Track B** now has 6 registered panels, a 42-row attrition table, a panel-size frontier and its own 37-assertion verifier; it needs ≥10 panels before submission and the two-method deconvolution (BayesPrism/MuSiC are installed; decoupleR/InstaPrism/tabpfn are not).
 **Version control:** **git, initialised 2026-11-18** (**326** tracked files, 24.5 MB of content). `git log` is authoritative (do not trust a commit count written here): `6f8cebe` initial import, `c7ba326` ignore `Rplots.pdf`, then handoff corrections. `core.fileMode` and `core.autocrlf` are both `false` (exfat). `work/`, `.Rlib/`, `scrna/extracted/`, `logs/` and five bulk CSVs >3 MB are ignored as regenerable; see `.gitignore` for the exact rules.
 
 ---
@@ -1179,11 +1179,17 @@ guards — not transcribed (a first draft hard-coded them from memory; that was 
 | internal CV | 0.791 | 0.829 | 0.838 | 0.856 | 0.873 | **0.875** | 0.825 | 0.785 |
 | external ERCB | **0.858** | 0.826 | 0.821 | 0.802 | 0.767 | 0.827 | 0.843 | 0.690 |
 
-**Findings.** External discrimination is flat from K = 2 to K = 20 and **collapses at K = 50** (0.690),
-while internal CV peaks at K ≈ 12 and then overfits — so four genes sits inside the external plateau and
-adding genes buys nothing externally. The three-method locked panel matches a purely statistical top-4
-at the same K (CV 0.846 vs 0.838; ERCB 0.816 vs 0.821), i.e. the biological selection did not degrade
-the model. This is the figure that answers a reviewer's "why four when your 19k model scores 0.922?".
+**Findings.** External discrimination shows **no trend** from K = 2 to K = 20 (0.767–0.858, and
+non-monotone: a dip at K = 8) and **collapses at K = 50** (0.690), while internal CV peaks at K ≈ 12 and
+then overfits — so four genes sits inside the external noise band and adding genes buys nothing
+externally. This is the figure that answers "why four when your 19k model scores 0.922?".
+
+**Careful reading of the gene identities.** The top-4 by moderated *t* is **SULF2, MYOZ2, TRPC6,
+ARHGAP20** — it shares only MYOZ2 and TRPC6 with the locked panel — and the best external AUC in the
+whole sweep belongs to a **2-gene pair (SULF2 + MYOZ2, 0.858)**. So the locked panel is vindicated on
+**performance, not on identity** (CV 0.846 vs 0.838; ERCB 0.816 vs 0.821 with different genes). That is
+a second, independent line of evidence for the Track B thesis: the AUC measures the MN-versus-other
+axis, not the gene list.
 
 **Verifier:** `99_verify_trackb.R` extended to **37 assertions**, green — including that the locked-panel
 row reproduces 09a/09b exactly, that CV peaks before K = 50, that ERCB degrades from K = 4 to K = 50, and
@@ -1262,6 +1268,19 @@ user to install packages first.
 - **Impact:** style/protocol compliance only (BAP R4); no numerical consequence.
 - **Not fixed on purpose:** adding waivers is trivial but rewriting settled, verified pipeline steps to parallelise them risks changing summation order for no scientific gain.
 
+### B15 — Track B needs ≥10 panels before it can be submitted (open)
+- **Symptom:** the register holds **6** panels (P01–P06); the strategy's bar is ≥10.
+- **Impact:** the flagship claim ("0/6 panels beat their refit null") is directionally solid but rests on a small panel sample; a reviewer can ask for more.
+- **Already tried:** two literature-harvesting passes (5 → 6 panels). Blocked not by effort but by source format — many candidate papers state gene lists only in paywalled supplements, report a single gene, or exist only as preprints with no retrievable identifier (both such cases are logged in `metadata/trackB_exclusions.csv`).
+- **Route:** PMC/publisher full-text or supplementary-table retrieval. 【To be confirmed with the user: whether to spend a session on full-text retrieval or submit with 6 panels plus a stated limitation】
+
+### B16 — Adoption-test packages are not installed (open, minor)
+- **Symptom:** `decoupleR`, `InstaPrism` and Python `tabpfn` are absent from every `~/envs/*`; `BayesPrism`, `MuSiC` and `hdWGCNA` ARE installed.
+- **Impact:** the TabPFN benchmark (N6) and decoupleR regulator-activity analysis cannot start; the two-method deconvolution (G6) *can*, using BayesPrism or MuSiC.
+- **Route:** user installs (`install.packages("decoupleR")`, `remotes::install_github("mengying0907/InstaPrism")`, `pip install tabpfn`). 【Owner: user, per the standing manual-provisioning rule】
+
+---
+
 ---
 
 ## 4. Next Steps (What to do next)
@@ -1328,7 +1347,7 @@ future session does not re-derive the reasoning:
 
 | Priority | Analysis | Why it would consolidate | Cost |
 |---|---|---|---|
-| P1 | **Panel-size sweep** (2, 3, 4, 6, 8, 12, 20 genes, nested CV → ERCB AUC) | answers "why four genes when your 19k model scores 0.922?"; turns the panel into a documented parsimony frontier | moderate — `09a_panel_selection_frequency.csv` already holds per-gene frequencies, so it is a re-fit per size, not a re-selection |
+| ~~P1~~ **DONE** | ~~Panel-size sweep~~ → **executed as §2.26** (`R/10d_panel_size_frontier.R`, K = 2…50, genes ranked inside every fold) | answers "why four genes when your 19k model scores 0.922?"; now a documented parsimony frontier | done 2026-11-18 |
 | P1 | **MYOZ2 provenance test** (correlate with VSMC/mesangial markers ACTA2/MYH11/TAGLN/PDGFRB across the four cohorts; test in the snRNA subset) | converts "cellular source unresolved" from an admission into a *tested* statement — the obvious reviewer objection | cheap, all data in hand |
 | P1 | **Third deconvolution method** (nu-SVR/CIBERSORT-style, or a top-500 specific-gene signature) | the BAP protocol requires two methods for deconvolution claims; the paper currently has two signature variants of one method, and the two disagree on the dominant cell type in 1,314/1,328 samples | moderate |
 | P2 | Leave-one-cohort-out meta on the 584 meta-DEGs | shows no single cohort drives the signature | cheap |
@@ -1692,6 +1711,31 @@ value before reporting it (BAP §11.2), and parse CSVs with a real reader — a 
 calibrated is a random number generator.
 
 
+
+### P-68 — Never type a published number into a figure script
+When building the panel-size frontier I hard-coded the locked panel's CV (0.8463) and external (0.8156)
+AUCs from memory into `10d_panel_size_frontier.R`. They happened to be right, which is exactly why the
+habit is dangerous: a slightly stale number would have been plotted and shipped. **Practice:** any
+number that reaches a figure or table must be READ from the artefact that produced it, with a
+`stopifnot()` guard on the shape, and the verifier should assert the reproduction (`abs(x - source) <
+1e-6`). The frontier script now reads `09a_panel_cv_summary.csv` and `09b_panel_external.csv`, and
+`99_verify_trackb.R` checks both values against those files.
+
+### P-69 — `check(isTRUE(x))` silently fails on a vector predicate
+The Track B verifier's identifier assertion was written `check(nzchar(reg$pmid) | nzchar(reg$doi), ...)`.
+`check()` uses `isTRUE(ok)`, and `isTRUE()` of a length-6 logical vector is `FALSE`, so the assertion
+failed while the data were fine. **Practice:** in this project's verifiers every vectorised predicate
+must be wrapped in `all()` or `any()`; when an assertion fails unexpectedly, first check whether it
+received a scalar. The suite is only as trustworthy as its weakest `check()`.
+
+### P-70 — A literature-derived registry needs an inclusion rule and an exclusion log
+Harvesting published MN panels from search results produced papers with a single gene, papers whose
+gene list lives only in a paywalled supplement, and preprints with no retrievable identifier. Without a
+written rule the register would drift toward whatever was easy to fetch. **Practice:** state the
+inclusion rule as code (here: ≥2 named genes, PMID or DOI, reported diagnostic performance), enforce it
+in the verifier, and keep `metadata/trackB_exclusions.csv` with a reason per rejected candidate — a
+register that records its own provenance holes is worth more than one that looks complete.
+
 ---
 
 ## 6. Key Resources & Environment Info
@@ -1740,6 +1784,10 @@ calibrated is a random number generator.
 | `$DATA/<GSE>/*_series_matrix.txt.gz` | GEO metadata (11 of 13 intact; see B6) |
 | `metadata/ensg2symbol.tsv` | 19,847-entry Ensembl→symbol map harvested from GSE216841 |
 | `work/rma/` | 7 normalised array cohorts (`.rds` + `.txt.gz`) |
+| `work/bench/10b_harmonised.rds` | **Track B** cached matrices: `z_harmonised` (quantile-mapped + training stats) and `z_transductive` (per-cohort scaling, kept only to quantify it), with labels, groups and patient ids. Regenerable by `Rscript R/10b_harmonised_matrices.R`; gitignored because it is derived |
+| `metadata/trackB_panel_register.csv` | **Track B** input: 6 published panels (P01–P06) with PMID/DOI/cohorts/gene lists/reported performance plus deduplication and standardisation flags |
+| `metadata/trackB_exclusions.csv` | **Track B** rejected candidates with a stated reason each (single-gene study; preprint with no retrievable identifier) |
+| `output/models_trackb/` | **Track B** figures: `10c_attrition.{pdf,jpeg}`, `10d_panel_size_frontier.{pdf,jpeg}` |
 | `work/rnaseq/` | 3 normalised RNA-seq cohorts (+ `DGEList` objects for the two count cohorts) |
 | `work/sets/` | The 7 cohort sets: `*_expr.rds`, `*_expr_symbol.rds`, `*_samples.csv` |
 | `work/combat/` | ComBat-adjusted discovery TI matrices (Entrez + symbol) |
@@ -1830,6 +1878,10 @@ calibrated is a random number generator.
 | `R/09d_panel_mechanism.R` | panel-gene diagnostics, atlas localisation, pseudobulk, module-vs-panel, leave-one-gene-out | **~1 min** |
 | `R/09e_panel_sensitivity.R` | per-comparator AUC, pipeline-independence check, PC/batch confound, four-gene model | **~1 min** |
 | `R/09f_pla2r_strata.R` | PLA2R characteristic parsing + stratified panel performance | **~30 s** |
+| `R/10b_harmonised_matrices.R` | **Track B** — caches discovery + harmonised ERCB/RNA-seq matrices in `work/bench/10b_harmonised.rds` (one harmonisation implementation, shared with 05a) | ~1 min |
+| `R/10c_panel_reproduction.R` | **Track B** — 7-rung attrition ladder for every registered panel → `10c_attrition.csv` + `10c_panel_summary.csv` + figure | ~2 min |
+| `R/10d_panel_size_frontier.R` | **Track B** — panel-size frontier K = 2…50, genes ranked inside every fold; locked-panel values read from 09a/09b | ~5 min |
+| `R/99_verify_trackb.R` | **37** Track B assertions (register contract, ladder completeness, frontier claims, figure existence) | ~5 s |
 | `R/05c_gate_seed_stability.R` | refits the locked gate under **10 independent RNG streams** at *K* = 1000 and *K* = all; reports the AUC spread (the F62 "is it one lucky draw?" check) | **~6 min** (`run_in_background`) |
 | `tools/make_figures.py` | composite Figures 1–6 + S1–S6 as vector PDF (LaTeX) with embedded fonts + JPEG previews; page height measured per plate with `gs -sDEVICE=bbox`, then a **one-page guard** regrows from the row budget if LaTeX breaks the plate | **~2–3 min** |
 | `tools/make_environment_record.R` | `environment/renv.lock`, per-library package CSVs, sessionInfo, rebuild README | ~10 s |
@@ -1854,20 +1906,26 @@ None used. CIBERSORTx (now only an optional cross-check, see B3) would need a **
 
 > **When starting a new session, the very first message must be: "Read handoff.md first."**
 
-**Checkpoint of this refresh (2026-11-18 12:15):** the analysis is **consistent, verified and
-submission-ready from the computational side.** Three things a new session must not do:
-(1) quote the pre-audit figures in §2.5 and §2.11–§2.15 — **the panel is four genes**;
-(2) quote the F07-only gate range — the gate's ERCB AUC is **0.861–0.922** under the harmonised
-transfer and **partition-stable** (0.912–0.928 over 10 draws, Fig S6), **not** 0.674–0.837 and **not**
-the old transductive 0.866–0.915;
-(3) read the `gsm` column of `sample_metadata.csv` as a GEO accession for the RNA-seq cohorts — it holds
-`Sample_N` local indices there (see `id_type`), and 134 of them collide between the two RNA-seq series.
+**Checkpoint of this refresh (2026-11-18 17:10):** two workstreams are now live and must not be
+confused with each other.
 
-Current state: six verifiers exit 0 — **54 / 86 / 42 / 117 / 106 / 32**; 12 plates, every one **one
-page** with all fonts embedded and every one cited in the Results; 221 result tables; 48 R scripts;
-`Docs/` holds the BAP audit, the graded Findings Ledger (10 E2 / 4 E1 / 0 E4) and the consolidated
-results. The refit-based permutation null for the panel is *p* = 0.11, i.e. **not significant**, and the
-manuscript says so explicitly.
+**Paper 1 is frozen.** Its claims, figures and verifiers are final; add nothing to it. Four things a new
+session must not do: quote the pre-audit figures in §2.5/§2.11–§2.15 (**the panel is four genes**); quote
+the F07-only gate range (**it is 0.861–0.922 with harmonisation and is partition-stable**, not
+0.674–0.837); read `gsm` in `sample_metadata.csv` as a GEO accession for the RNA-seq cohorts (**it holds
+`Sample_N` indices — see `id_type`**); or hard-code any number that a table already stores (P-68).
+
+**Track B is the new, unfinished claim** (§2.25–§2.26): published MN panels carried down a 7-rung
+attrition ladder. Its pre-registered hypothesis was **falsified** — panels *do* transfer (median R5
+0.821) — and the replacement claim is that **0/6 panels beats its own refit permutation null**, i.e. any
+small gene set rides the same MN-versus-other axis. The panel-size frontier independently supports this:
+external AUC has no trend from K = 2 to K = 20 and collapses at K = 50, and the best external number in
+the whole sweep belongs to a 2-gene pair (SULF2 + MYOZ2, 0.858) that shares only one gene with our locked
+panel.
+
+Current state: **seven verifiers exit 0 — 54 / 86 / 42 / 117 / 106 / 27 / 37**; 12 plates (every one one
+page, fonts embedded, cited); 221 Paper 1 tables + 3 Track B tables; 48 Paper 1 scripts + 4 Track B
+scripts; git clean at a known HEAD.
 
 The new session should restate the current state from this document to confirm understanding —
 specifically: 13 accessions → 2,165 samples → 453 MN samples → **178 unique MN patients** → 7
@@ -1889,5 +1947,10 @@ vector plates (Fig 1–6, S1–S6) each one page with 0 non-embedded fonts, EBio
 (377-word Summary, 44 verified references), cover letter, IF plan, data-request pack, `renv.lock` → GEO inputs live in the shared
 `MN/Datasets` → **the remaining work is external: B2 clinical variables, B7 participant map, and IF
 validation of MYOZ2 first.**
+
+**Track B restatement:** 6 published panels (P01–P06, `metadata/trackB_panel_register.csv`) × 7 rungs
+(R1 apparent → R2 de-duplication → R3 nested CV → R4 transductive external → R5 harmonised external →
+R5r RNA-seq → R6 refit null) = 42 rows; median R1 0.785 / R3 0.747 / R5 0.821; **0/6 significant at R6**;
+panel-size frontier K = 2…50 shows external AUC flat 2–20 and collapsing at 50.
 
 If the previous session was interrupted, first record what actually completed before the interruption. The last verified state is: `Rscript R/99_verify_phase_a.R`, `99_verify_phase_b.R`, `99_verify_downstream.R`, `99_verify_scrna.R`, `99_verify_phase_d.R` **and** `99_verify_phase_e.R` all exit 0 (**54 / 86 / 32 / 42 / 117 / 106** checks). If any now fails, diagnose that before any new analysis — and check for 0-byte outputs first (P-28).

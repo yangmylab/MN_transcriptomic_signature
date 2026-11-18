@@ -3,13 +3,15 @@
 **Project:** machine-learning biomarker discovery for membranous nephropathy (MN) from multi-cohort bulk transcriptomics, plus Track B — a leakage-audited benchmark of *published* MN panels.
 **Project root:** `/run/media/meng/MY_Data/MN/Paper_1` — scripts resolve the root from `R/_lib.R` (override `PAPER1_PROJ`).
 **Data root:** `/run/media/meng/MY_Data/MN/Datasets` (shared with Paper_2/Paper_3) — `R/_lib.R` sets `DATA`; override `PAPER1_DATA`. The GEO inputs live outside the project.
-**Last updated:** 2026-11-18. **This file keeps only what a future session needs** (current numbers, open work, claim limits, pitfalls, environment). The full session-by-session record is in git: `git show 9230c6a:handoff.md`.
+**Last updated:** 2026-11-19. **This file keeps only what a future session needs** (current numbers, open work, claim limits, pitfalls, environment). The full session-by-session record is in git: `git show 9230c6a:handoff.md`.
 
 ---
 
 ## 1. Where things stand
 
-**Paper 1** (Phases 0, 1, A–E) is complete, re-derived under the audited pipeline and **frozen — add no methods to it**. Claims, figures, tables and seven verifiers are final.
+**Objective.** Deliver a submission-ready manuscript reporting a compartment-resolved glomerular transcriptomic signature and a four-gene classifier for membranous nephropathy, with every claim externally validated; plus Track B, a leakage-audited benchmark of published MN panels. Success criteria are the seven passing verifiers, the frozen Paper 1 claim set, and a submission package (manuscript, figures, declarations).
+
+**Paper 1** (Phases 0, 1, A–E) is complete, re-derived under the audited pipeline and **frozen — add no methods to it**. Claims, figures, tables and seven verifiers are final. The manuscript was **re-composed on 2026-11-19** without changing any analysis or claim: 12 plates / 61 panels, main figures carry only decisive discovery evidence, and S1–S6 carry the supporting QC/robustness/sensitivity material. Every panel is cited in order in Results (1A→1F … 6A→6E, S1A→S6E).
 
 **Track B** is the live workstream: **12** published MN panels carried down a 7-rung attrition ladder (R1 apparent → R2 de-duplication → R3 nested CV → R4 transductive external → R5 harmonised external → R5r RNA-seq → R6 refit null). The pre-registered hypothesis (median R5 AUC < 0.70) was tested on the original 6-panel registry and **falsified** (median 0.821). The registry was expanded to 12 panels on 2026-11-18 (B15): median R5 is now **0.674** (8/12 below 0.70), so transfer is real for some panels but far from uniform. The robust expanded claim is **0/12 beats its own refit permutation null** (*p* = 0.055–1.000), and external discrimination still does not improve with panel size.
 
@@ -66,6 +68,16 @@ Every value below is script-generated and asserted by a verifier; if prose and t
 | Phase E | PLA2R | 0.976 (PLA2R+) / 0.881 (PLA2R−) vs MCD; **0.833 within MN, 6 vs 6 → uninterpretable** |
 | Manuscript | Summary / main text (Intro+Results+Discussion) / references | 412 words / 3,929 words / 44 verified |
 
+**Manuscript and figures — current architecture (2026-11-19)**
+
+| Item | State |
+|---|---|
+| Plates | **12** — main Fig 1–6 (5, 6, 5, 5, 5, 5 panels = 31) + supplementary S1–S6 (5 each = 30) = **61 panels**; each one page, fonts embedded |
+| Main logic | Fig 1 cohort independence · Fig 2 DEG/meta · Fig 3 separability gate · Fig 4 modules · Fig 5 four-gene panel · Fig 6 atlas/deconvolution |
+| Supplementary logic | S1 supports Fig 1/3/6 (cohort QC, gate stability, atlas annotation, scRNA sample QC); S2–S3 support Fig 4 (network detail, functional profiling); S4–S5 support Fig 5 (calibration/robustness, localisation/sensitivity/PLA2R); S6 is the stand-alone negative subtyping result |
+| Citation order | Checked programmatically: 61/61 cited, all figures monotonic, main 1→6 and supplementary S1→S6 in first-citation order |
+| Submission copies | `Manuscript/Figures/` holds 24 files (12 PDF + 12 JPEG); it duplicates `output/figures/` and is **untracked** — regenerate with the copy commands in §5 |
+
 **Track B — current**
 
 | Quantity | Value |
@@ -89,7 +101,7 @@ Artefacts for the numbers: `output/tables/09a_*…09f_*`, `separability_*`, `gat
 | B15 | **Track B panel registry** | **done 2026-11-18** | Expanded 6 → **12** panels (P07–P12: Luo 2026, Fan 2025, Gui 2024, Shao 2025, Hui 2025, Zhao 2026) from PubMed/PMC full text; **15 exclusions** logged with reasons in `metadata/trackB_exclusions.csv`; method in `metadata/trackB_retrieval_log.md`. The ≥ 10 bar is met. Remaining user decision: submit the 12-panel benchmark as is, or fund a further retrieval pass (no qualifying paywalled candidate is currently identified). |
 | P0 | **IF validation of the panel proteins** | user (wet lab) | `Manuscript/IF_validation_plan.md`: pre-specified criteria per target, MN 10–15 (PLA2R+/− split), FSGS 6–8, MCD 4–6, normal 4–5, lineage anchors, blinded per-glomerulus quantification. Order: **MYOZ2** (unresolved cellular source, strongest single gene) → TRPC6 → PPP1R3C → SLAMF8 (barely detected on 2 platforms). ICAM1 is out of the panel and needs nothing. |
 | P0b | **Submit the B2 / B7 data request** | user (long lead time) | `Manuscript/DATA_REQUESTS.md`: NIDDK Central Repository R4R, study DOI `10.58020/f2ae-n094`; DACC `NEPTUNE-STUDY@umich.edu`; ask for the subject→sample map in the same request. This is the only thing between the biomarker paper and a prognostic one — start early. |
-| P1 | **Submission to *EBioMedicine*** | agent + user | User: authors/affiliations/ORCIDs/CRediT (currently "to be confirmed"), funding statement, 3 suggested reviewers, sign-off on declarations. Agent on request: trim Summary 377 → ~330 words if the system enforces a cap; confirm exact caps (publisher PDF is Cloudflare-blocked, P-50); renumber citations if the author list changes. Checklist: `Manuscript/SUBMISSION_CHECKLIST.md`. |
+| P1 | **Submission to *EBioMedicine*** | agent + user | User: authors/affiliations/ORCIDs/CRediT (currently "to be confirmed"), funding statement, 3 suggested reviewers, sign-off on declarations. Agent on request: trim Summary 412 → ~330 words if the system enforces a cap; confirm exact caps (publisher PDF is Cloudflare-blocked, P-50); renumber citations if the author list changes. Checklist: `Manuscript/SUBMISSION_CHECKLIST.md`. The manuscript/figures are submission-formatted as of 2026-11-19. |
 | P1b | **Optional consolidation analyses — DEFERRED (user, 2026-11-18)** | agent on request | (a) **MYOZ2 provenance test** — correlate with ACTA2/MYH11/TAGLN/PDGFRB across the 4 cohorts + snRNA subset; converts "source unresolved" into a tested statement (cheap). (b) **third deconvolution method** (nu-SVR/CIBERSORT-style, or top-500 specific-gene signature) — BAP wants two methods (moderate). (c) leave-one-cohort-out meta on the 584 meta-DEGs, subtyping power/ARI bootstrap, RNA-seq cohort relatedness check (all cheap). **Not worth doing:** more GEO series (adds samples, not variables, re-imports the redundancy Phase 1 removed); raising the permutation count (cannot fix a null with median 0.537 at 21 ERCB cases). |
 | P2 | **Phase F subtypes** | deferred | Analysis done and **negative**; resume only with new data. Blocked on B2 (eGFR/UPCR/remission). PLA2R no longer blocks anything. |
 | P4 | **Clinical variables** | user | Route in `Manuscript/DATA_REQUESTS.md`. On arrival: `metadata/neptune_clinical.csv` → append to `wgcna_traits.csv` → re-run `08b`, update the trait-count assertion in `99_verify_phase_d.R`. |
@@ -126,6 +138,7 @@ Artefacts for the numbers: `output/tables/09a_*…09f_*`, `separability_*`, `gat
 - **Re-run orders:** `08a → 08b → 08c → 08d → 08e` (08f with `--force`), or the whole 08d-onward chain via `bash tools/rerun_from_08d.sh`; panel revisit = `09a → 09b → 09c → 09d → 09e → 09f` then `python3 tools/make_figures.py`; Track B = `10b → 10c → 10d → 99_verify_trackb.R`.
 - **Foreground shell caps at 2 min** — run `04c`, `04d`, `07b`, `07c`, `07d`, `08c`, `08d`, `08f`, `05c`, `10d` in the background and read the `.out` log (P-21).
 - **Figure rebuild** needs TeX Live + Ghostscript: `python3 tools/make_figures.py` (composites via `pdflatex`, embeds fonts via `gs`, staged through `/tmp` because `gs` cannot read this exfat volume). Assert `pdfinfo → Pages: 1` per plate. Main plates carry **5–6 decisive panels**; **S1–S6 carry 5 support panels each** (`panel_h` = 62 mm): S1 supports cohort/gate/atlas QC, S2–S3 the module figure, S4–S5 the panel figure, and S6 is the stand-alone negative subtyping result. Every panel is cited in order in Results (checked by a citation-order script).
+- **Manuscript rebuild:** `pandoc Manuscript/Paper1_manuscript.md --reference-doc=reference/tnr_fangsong_redcode.docx -o Manuscript/Paper1_manuscript.docx` (pandoc 3.8.3). Then refresh the submit copies: `rm -f Manuscript/Figures/*.pdf Manuscript/Figures/*.jpeg` and copy `output/figures/Fig*` plus `output/figures/supplementary/FigS*` into `Manuscript/Figures/` (24 files). Verify the DOCX with `pandoc Manuscript/Paper1_manuscript.docx -t plain` (expect 12 legends, Fig 1–6 + S1–S6).
 - **`handoff.docx` in the project root is stale** — `handoff.md` is the only source; do not regenerate or read the `.docx`.
 - **Mount drift:** the volume alternates `/run/media/{meng,yang}/MY_Data`. `R/_lib.R`, the `00*_download*.sh` helpers and `tools/rerun_*.sh` are path-independent — keep it that way (P-59).
 

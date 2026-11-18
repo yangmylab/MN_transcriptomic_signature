@@ -1132,13 +1132,18 @@ submission and the repository cannot diverge.
 
 New code: `R/10b_harmonised_matrices.R` (caches the shared harmonisation so the benchmark and the gate
 use ONE implementation — P-63), `R/10c_panel_reproduction.R` (the 7-rung ladder),
-`R/99_verify_trackb.R` (**22 assertions, green**). Register: `metadata/trackB_panel_register.csv`
-(5 panels with PMID/DOI/cohorts/gene lists/reported performance, each flagged for whether it stated
-de-duplication and standardisation — all 5: no). Outputs: `output/tables/10c_attrition.csv` (35 rows),
+`R/99_verify_trackb.R` (**27 assertions, green**: identifier = PMID or DOI, ≥2 genes per panel,
+exclusions logged with reasons). Register: `metadata/trackB_panel_register.csv`
+(6 panels with PMID/DOI/cohorts/gene lists/reported performance, each flagged for whether it stated
+de-duplication and standardisation — all 6: no). Two further candidates are logged as exclusions with
+reasons in `metadata/trackB_exclusions.csv`. Outputs: `output/tables/10c_attrition.csv` (42 rows),
 `10c_panel_summary.csv`, `output/models_trackb/10c_attrition.{pdf,jpeg}`.
 
 **The pre-registered hypothesis was FALSIFIED, and that is the result.** I predicted median R5 AUC
-< 0.70; the pilot gave **0.830** (median R1→R5 change −0.024). Published panels DO transfer.
+< 0.70; the 6-panel pilot gave **0.821** (median R1→R5 change −0.041). Published panels DO transfer.
+P06 is the sharpest illustration: apparent AUC 0.590 but external 0.813, with RNA-seq at 0.435 — a
+weak-looking panel that "succeeds" externally and fails on the other platform, exactly what a random
+small gene set does.
 
 | Panel | R1 | R3 | R4 transductive | R5 harmonised | R5 RNA-seq | R6 refit-null p |
 |---|---|---|---|---|---|---|
@@ -1147,8 +1152,9 @@ de-duplication and standardisation — all 5: no). Outputs: `output/tables/10c_a
 | P03 Yang 2024 (38846934) | 0.825 | 0.795 | 0.571 | 0.675 | 0.866 | 0.139 |
 | P04 Han 2023 (37974210) | 0.712 | 0.672 | 0.713 | 0.672 | 0.790 | 0.269 |
 | P05 Han 2024 (38029552) | 0.764 | 0.706 | 0.836 | 0.831 | 0.686 | 0.055 |
+| P06 Zhang 2023 (DOI 10.3389/fimmu.2023.1252347) | 0.590 | 0.567 | 0.810 | 0.813 | 0.435 | 0.075 |
 
-**Replacement claim (stronger): 0/5 panels beats its own refit permutation null (p = 0.055–0.269) while
+**Replacement claim (stronger): 0/6 panels beats its own refit permutation null (p = 0.055–0.269) while
 all reach R5 0.67–0.89 — so MN-versus-other is an axis any small gene set captures, and no MN paper
 reports that null. Our own four-gene panel (p = 0.11) sits in exactly the same place.** Secondary:
 the standardisation convention moves R4→R5 by up to 0.22 in *both* directions (N2 now quantified

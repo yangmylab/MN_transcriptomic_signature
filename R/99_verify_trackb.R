@@ -28,7 +28,10 @@ cat("=== Track B verifier ===\n\n")
 reg <- read.csv(file.path(meta_dir, "trackB_panel_register.csv"), stringsAsFactors = FALSE)
 
 check(nrow(reg) >= 5, "panel register holds at least 5 published panels", nrow(reg))
-check(all(nzchar(reg$pmid) & nzchar(reg$doi)), "every panel carries a PMID and a DOI", "")
+# Identifier rule: a panel must be traceable. PMID preferred; a DOI alone is acceptable (P06's PMID
+# was not retrievable from the source page, its DOI was). The gap is recorded in the row's note.
+check(all(nzchar(reg$pmid) | nzchar(reg$doi)), "every panel carries a PMID or a DOI", "")
+check(all(nzchar(reg$doi)), "every panel carries a DOI", "")
 check(all(nzchar(reg$genes)), "every panel carries an explicit gene list", "")
 check(all(nzchar(reg$reported_auc_text)), "every panel carries its reported performance text", "")
 check(!any(duplicated(reg$panel_id)), "panel ids are unique", paste(reg$panel_id, collapse = " "))
@@ -38,6 +41,19 @@ check(all(reg$deduplication_stated %in% c("yes", "no")),
       "de-duplication status recorded for every panel (yes/no)", "")
 check(all(reg$standardisation_stated %in% c("yes", "no")),
       "standardisation status recorded for every panel (yes/no)", "")
+
+# inclusion rule: a multivariable panel, i.e. at least two named genes
+check(all(reg$n_genes_reported >= 2), "every included panel has at least 2 genes (panel, not single marker)",
+      paste(range(reg$n_genes_reported), collapse = " .. "))
+
+# exclusions must be logged with a reason, so the register cannot be padded or trimmed silently
+exc_file <- file.path(meta_dir, "trackB_exclusions.csv")
+check(file.exists(exc_file), "exclusion log exists", "")
+if (file.exists(exc_file)) {
+  exc <- read.csv(exc_file, stringsAsFactors = FALSE)
+  check(all(nzchar(exc$reason_excluded)), "every excluded candidate has a stated reason", nrow(exc))
+  check(!any(exc$first_author_year == ""), "every excluded candidate is dated", "")
+}
 
 # --- attrition ladder -------------------------------------------------------
 att <- read.csv(file.path(tab_dir, "10c_attrition.csv"), stringsAsFactors = FALSE)

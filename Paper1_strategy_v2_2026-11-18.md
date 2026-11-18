@@ -116,16 +116,18 @@ For every panel, compute AUC at each rung and report the **drop**:
 **Pre-registered hypothesis (2026-11-18, before any computation):** median R5 AUC across published
 panels < 0.70, i.e. most reported MN panel performance does not survive rigorous validation.
 
-**STATUS: FALSIFIED — pilot run 2026-11-18 (5 panels, `output/tables/10c_attrition.csv`).** Median R5
-was **0.830** and median R1→R5 change **−0.024**, i.e. the published panels *do* transfer. The
+**STATUS: FALSIFIED — pilot run 2026-11-18 (6 panels, `output/tables/10c_attrition.csv`).** Median R5
+was **0.821** and median R1→R5 change **−0.041**, i.e. the published panels *do* transfer. The
 hypothesis was wrong, and the pilot produced a sharper and more defensible claim (§3.5). Recording the
 falsification is the point: the ladder was specified with its wrong answer attached, so the corrected
 claim cannot be a post-hoc story.
 
 ### 3.5 Pilot result (2026-11-18) — what the ladder actually showed
 
-Five panels (P01–P05, register in `metadata/trackB_panel_register.csv`), 7 rungs, 35 rows, verifier
-`99_verify_trackb.R` green at 22 assertions.
+Six panels (P01–P06, register in `metadata/trackB_panel_register.csv`), 7 rungs, 42 rows, verifier
+`99_verify_trackb.R` green at 27 assertions. Two candidates were examined and excluded with recorded
+reasons in `metadata/trackB_exclusions.csv` (a single-gene SLC1A5 study, below the panel threshold; and
+a 2022 preprint with no retrievable identifier whose ECM1 gene already appears in P01).
 
 | Panel | R1 apparent | R3 nested CV | R4 transductive ERCB | R5 harmonised ERCB | R5 RNA-seq | R6 refit-null *p* |
 |---|---|---|---|---|---|---|
@@ -134,11 +136,12 @@ Five panels (P01–P05, register in `metadata/trackB_panel_register.csv`), 7 run
 | P03 Yang 2024 | 0.825 | 0.795 | 0.571 | **0.675** | 0.866 | 0.139 |
 | P04 Han 2023 | 0.712 | 0.672 | 0.713 | **0.672** | 0.790 | 0.269 |
 | P05 Han 2024 | 0.764 | 0.706 | 0.836 | **0.831** | 0.686 | 0.055 |
+| P06 Zhang 2023 | 0.590 | 0.567 | 0.810 | **0.813** | 0.435 | 0.075 |
 
 **Three findings, in order of strength:**
 
-1. **No published panel beats its own refit permutation null (0/5 at *p* < 0.05; *p* = 0.055–0.269).**
-   Yet all five reach R5 AUC 0.67–0.89. The reading is not "the panels fail" — it is that
+1. **No published panel beats its own refit permutation null (0/6 at *p* < 0.05; *p* = 0.055–0.269).**
+   Yet all six reach R5 AUC 0.67–0.89. The reading is not "the panels fail" — it is that
    *MN-versus-other-glomerulopathy is an intrinsically separable axis that any small gene set
    captures*. A randomly drawn 4–7-gene panel of the same size achieves a comparable ERCB AUC. **No MN
    paper reports this null**, and our own four-gene panel lands in exactly the same place (*p* = 0.11).
@@ -151,6 +154,11 @@ Five panels (P01–P05, register in `metadata/trackB_panel_register.csv`), 7 run
    exactly) — but the field's redundancy is *cross-compartment*: P01 "validates" a glomerular
    discovery in GSE133288, the tubulointerstitial series of the same NEPTUNE patients. Independence
    failure in the literature is at the patient level across compartments, not duplicated rows.
+
+**P06 is the sharpest single illustration, in both directions.** Its apparent AUC is the lowest of the
+six (0.590) yet its harmonised external AUC is 0.813 — a panel that looks weak in its own cohort and
+strong in someone else's, which is what random small panels do. Its RNA-seq transfer, however, is 0.435
+(below chance), i.e. the "external success" of a two-gene model is itself fragile across platforms.
 
 **Secondary observations to carry forward:** 3 of 5 panels lose at least one published gene in a shared
 three-cohort gene space (P04 loses two non-coding genes, N4BP2L2-IT2 and SCARNA9, which are not
@@ -225,7 +233,7 @@ MR + coloc for the four genes; pQTL anchoring; then IF (MYOZ2 first) — the exi
 
 | # | Claim | Killer experiment | Current status |
 |---|---|---|---|
-| N1 | **Published MN panels transfer (AUC 0.67–0.89) but none is distinguishable from a same-size random panel — the refit null, which no MN paper reports, is the only rung that separates gene-specific biology from the generic MN-vs-other axis** | the ladder: if any panel survives R6 at *p* < 0.05 with a stable R5, the claim dies | **pilot done: 0/5 significant, so the claim holds on 5 panels.** Expand to ≥10 before submission |
+| N1 | **Published MN panels transfer (AUC 0.67–0.89) but none is distinguishable from a same-size random panel — the refit null, which no MN paper reports, is the only rung that separates gene-specific biology from the generic MN-vs-other axis** | the ladder: if any panel survives R6 at *p* < 0.05 with a stable R5, the claim dies | **pilot done: 0/6 significant on 6 panels.** Expand to ≥10 before submission |
 | N2 | The standardisation convention, not gene choice, dominates external AUC | R4 vs R5 across panels | **pilot supports it: Δ up to 0.22, in both directions, across 5 independent panels** |
 | N3 | MN signal is glomerular-specific | TI transfer (0.449) | **done, E2** |
 | N4 | A four-gene panel transports across four sources | ERCB/RNA-seq/LCM/alt-CDF | **done, E2**; refit null p = 0.11 is the honest limit |

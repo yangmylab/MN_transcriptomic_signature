@@ -46,6 +46,9 @@ permutedStats-actualModules*.RData
 *~
 *.swp
 
+# --- leaked graphics devices (R writes ./Rplots.pdf when a device is left open) ---
+Rplots.pdf
+
 # --- LaTeX intermediates (the compositor stages these itself) ---
 work/figtex/
 *.aux

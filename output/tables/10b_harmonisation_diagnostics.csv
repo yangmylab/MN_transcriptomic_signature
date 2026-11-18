@@ -1,0 +1,4 @@
+"set","genes","samples","median_absz_harmonised","p999_absz_harmonised","median_absz_transductive"
+"disc",13379,147,0.646,4.2,0.646
+"ercb",13379,170,0.462,3.78,0.418
+"rna",13379,273,0.643,4.08,0.604

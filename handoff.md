@@ -1128,6 +1128,38 @@ deconvolution (2026, PMC13106970); **decoupleR** for regulator activity. Each re
 **Deliberate boundary:** no new methods enter Paper 1 — it is frozen at its current claims, so the
 submission and the repository cannot diverge.
 
+### 2.25 Track B started — the panel attrition ladder, and a falsified hypothesis (2026-11-18) ✅
+
+New code: `R/10b_harmonised_matrices.R` (caches the shared harmonisation so the benchmark and the gate
+use ONE implementation — P-63), `R/10c_panel_reproduction.R` (the 7-rung ladder),
+`R/99_verify_trackb.R` (**22 assertions, green**). Register: `metadata/trackB_panel_register.csv`
+(5 panels with PMID/DOI/cohorts/gene lists/reported performance, each flagged for whether it stated
+de-duplication and standardisation — all 5: no). Outputs: `output/tables/10c_attrition.csv` (35 rows),
+`10c_panel_summary.csv`, `output/models_trackb/10c_attrition.{pdf,jpeg}`.
+
+**The pre-registered hypothesis was FALSIFIED, and that is the result.** I predicted median R5 AUC
+< 0.70; the pilot gave **0.830** (median R1→R5 change −0.024). Published panels DO transfer.
+
+| Panel | R1 | R3 | R4 transductive | R5 harmonised | R5 RNA-seq | R6 refit-null p |
+|---|---|---|---|---|---|---|
+| P01 Huang 2025 (PMID 39806779) | 0.835 | 0.811 | 0.871 | 0.893 | 0.836 | 0.124 |
+| P02 Xu 2025 (41132671) | 0.806 | 0.788 | 0.834 | 0.830 | 0.799 | 0.095 |
+| P03 Yang 2024 (38846934) | 0.825 | 0.795 | 0.571 | 0.675 | 0.866 | 0.139 |
+| P04 Han 2023 (37974210) | 0.712 | 0.672 | 0.713 | 0.672 | 0.790 | 0.269 |
+| P05 Han 2024 (38029552) | 0.764 | 0.706 | 0.836 | 0.831 | 0.686 | 0.055 |
+
+**Replacement claim (stronger): 0/5 panels beats its own refit permutation null (p = 0.055–0.269) while
+all reach R5 0.67–0.89 — so MN-versus-other is an axis any small gene set captures, and no MN paper
+reports that null. Our own four-gene panel (p = 0.11) sits in exactly the same place.** Secondary:
+the standardisation convention moves R4→R5 by up to 0.22 in *both* directions (N2 now quantified
+across independent panels); within-compartment de-duplication is a no-op (147 samples = 147 patients),
+so the field's independence failure is cross-compartment (P01 validates glomerular discovery in the
+NEPTUNE TI series). 3/5 panels lose ≥1 published gene in a shared 3-cohort gene space (P04 loses two
+non-coding RNAs).
+
+`Paper1_strategy_v2_2026-11-18.md` §3.3 now records the falsification verbatim and §3.5 carries the
+pilot table and the revised N1/N2 rows. Next: expand the register to ≥10 panels before submission.
+
 
 ---
 

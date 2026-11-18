@@ -32,13 +32,15 @@ PANEL_WORD = {3: "three", 4: "four", 5: "five", 6: "six"}.get(N_PANEL, str(N_PAN
 # (panel pdf, sub-label, width fraction of the text block)
 FIGURES = {
     "Fig1_study_design_and_QC": {
-        "title": "Cohort harmonisation and expression QC",
+        "title": "Cohort harmonisation and expression quality control",
         "cols": 2,
         "panels": [
             (O / "qc/03c_disc_glom_array_pca.pdf", "A", 1.0),
             (O / "qc/03c_val_glom_array_pca.pdf", "B", 1.0),
-            (O / "qc/04a_disc_ti_array_pca_before_after.pdf", "C", 1.0),
-            (O / "qc/03c_cross_glom_rnaseq_pca.pdf", "D", 1.0),
+            (O / "qc/03c_cross_glom_rnaseq_pca.pdf", "C", 1.0),
+            (O / "qc/04a_disc_ti_array_pca_before_after.pdf", "D", 1.0),
+            (O / "qc/03c_val_ti_array_pca.pdf", "E", 1.0),
+            (O / "qc/03c_pla2r_lcm_pca.pdf", "F", 1.0),
         ],
     },
     "Fig2_discovery_and_meta": {
@@ -49,6 +51,8 @@ FIGURES = {
             (O / "deg/04c_Glom_metaDEG_heatmap.pdf", "B", 1.0),
             (O / "deg/04c_Glom_MN_vs_Control_forest_CCNL1.pdf", "C", 1.0),
             (O / "deg/04c_Glom_MN_vs_Control_forest_HBA2.pdf", "D", 1.0),
+            (O / "deg/04c_Glom_MN_vs_FSGS_volcano.pdf", "E", 1.0),
+            (O / "deg/04c_Glom_MN_vs_nonMN_volcano.pdf", "F", 1.0),
         ],
     },
     "Fig3_separability_gate": {
@@ -57,8 +61,10 @@ FIGURES = {
         "panels": [
             (O / "models_gate/05a_gate_roc.pdf", "A", 1.0),
             (O / "models_gate/05a_gate_auc_vs_k.pdf", "B", 1.0),
-            (O / "models_gate/05b_gate_permutation_null.pdf", "C", 0.92),
-            (O / "models_gate/05b_gate_auc_by_comparator.pdf", "D", 0.92),
+            (O / "models_gate/05b_gate_permutation_null.pdf", "C", 1.0),
+            (O / "models_gate/05b_gate_auc_by_comparator.pdf", "D", 1.0),
+            (O / "models_gate/05a_gate_confusion.pdf", "E", 1.0),
+            (O / "models_gate/05c_gate_seed_stability.pdf", "F", 1.0),
         ],
     },
     "Fig4_WGCNA_modules": {
@@ -67,18 +73,22 @@ FIGURES = {
         "panels": [
             (O / "wgcna/08a_glom_module_dendro.pdf", "A", 1.0),
             (O / "wgcna/08b_glom_module_trait.pdf", "B", 1.0),
-            (O / "wgcna/08d_glom_preservation.pdf", "C", 0.86),
-            (O / "wgcna/08f_glom_mn_modules.pdf", "D", 0.86),
+            (O / "wgcna/08b_glom_me_box.pdf", "C", 1.0),
+            (O / "wgcna/08a_glom_me_cor.pdf", "D", 1.0),
+            (O / "wgcna/08d_glom_preservation.pdf", "E", 1.0),
+            (O / "wgcna/08f_glom_mn_modules.pdf", "F", 1.0),
         ],
     },
     "Fig5_biomarker_panel": {
         "title": f"A {PANEL_WORD}-gene glomerular panel for MN",
         "cols": 2,
         "panels": [
-            (O / "models_panel/09a_frequency.pdf", "A", 0.92),
-            (O / "models_panel/09b_roc.pdf", "B", 1.0),
-            (O / "models_panel/09b_forest.pdf", "C", 1.0),
-            (O / "models_panel/09e_by_comparator.pdf", "D", 1.0),
+            (O / "models_panel/09a_frequency.pdf", "A", 1.0),
+            (O / "models_panel/09a_cv_auc.pdf", "B", 1.0),
+            (O / "models_panel/09b_roc.pdf", "C", 1.0),
+            (O / "models_panel/09b_forest.pdf", "D", 1.0),
+            (O / "models_panel/09b_score_box.pdf", "E", 1.0),
+            (O / "models_panel/09e_by_comparator.pdf", "F", 1.0),
         ],
     },
     "Fig6_atlas_and_deconvolution": {
@@ -86,20 +96,23 @@ FIGURES = {
         "cols": 2,
         "panels": [
             (O / "scrna/07c_umap_celltype.pdf", "A", 1.0),
-            (O / "scrna/07d_composition.pdf", "B", 1.0),
-            (O / "scrna/07f_deconvolution_stacked.pdf", "C", 1.0),
-            (O / "scrna/07e_bulk_vs_pseudobulk.pdf", "D", 1.0),
+            (O / "scrna/07c_marker_dotplot.pdf", "B", 1.0),
+            (O / "scrna/07d_composition.pdf", "C", 1.0),
+            (O / "scrna/07f_deconvolution_stacked.pdf", "D", 1.0),
+            (O / "scrna/07f_deconvolution_boxplots.pdf", "E", 1.0),
+            (O / "scrna/07e_bulk_vs_pseudobulk.pdf", "F", 1.0),
         ],
     },
     # ---------------- supplementary ----------------
     "FigS1_WGCNA_stability_and_hubs": {
-        "title": "Module reproducibility, hub genes and preservation detail",
+        "title": "Module reproducibility, hub genes and annotation detail",
         "cols": 2,
         "panels": [
             (O / "wgcna/08a_glom_softpower.pdf", "A", 1.0),
             (O / "wgcna/08c_glom_stability.pdf", "B", 1.0),
             (O / "wgcna/08e_glom_hub_network.pdf", "C", 1.0),
-            (O / "wgcna/08f_glom_module_dotplot.pdf", "D", 1.0),
+            (O / "wgcna/08e_glom_hub_kme.pdf", "D", 1.0),
+            (O / "wgcna/08f_glom_module_dotplot.pdf", "E", 1.0),
         ],
     },
     "FigS2_panel_robustness": {
@@ -107,11 +120,10 @@ FIGURES = {
         "cols": 2,
         "panels": [
             (O / "models_panel/09c_robustness_roc.pdf", "A", 1.0),
-            (O / "models_panel/09c_recalibration.pdf", "B", 1.0),
-            (O / "models_panel/09b_calibration.pdf", "C", 1.0),
+            (O / "models_panel/09b_calibration.pdf", "B", 1.0),
+            (O / "models_panel/09c_recalibration.pdf", "C", 1.0),
             (O / "models_panel/09b_dca.pdf", "D", 1.0),
-            (O / "models_panel/09e_authors_check.pdf", "E", 1.0),
-            (O / "models_panel/09d_leave_one_out.pdf", "F", 1.0),
+            (O / "models_panel/09d_leave_one_out.pdf", "E", 1.0),
         ],
     },
     "FigS4_functional_profiling": {
@@ -121,22 +133,19 @@ FIGURES = {
             (O / "enrichment/04d_Glom_MN_vs_Control_GO_BP_dotplot.pdf", "A", 1.0),
             (O / "enrichment/04d_Glom_MN_vs_Control_GSEA_C7_bar.pdf", "B", 1.0),
             (O / "enrichment/04d_Glom_MN_vs_Control_GSEA_HALLMARK_APICAL_JUNCTION.pdf", "C", 1.0),
-            (O / "enrichment/04d_Glom_MN_vs_nonMN_GO_BP_dotplot.pdf", "D", 1.0),
+            (O / "enrichment/04d_Glom_MN_vs_Control_GSEA_HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION.pdf", "D", 1.0),
+            (O / "enrichment/04d_Glom_MN_vs_nonMN_GO_BP_dotplot.pdf", "E", 1.0),
         ],
     },
     "FigS5_localisation_and_pla2r": {
-        "title": "Where the panel genes sit, and performance by PLA2R stratum",
+        "title": "Where the panel genes sit, panel sensitivity and PLA2R stratum",
         "cols": 2,
         "panels": [
             (O / "models_panel/09d_gene_celltype.pdf", "A", 1.0),
-            (O / "models_panel/09f_pla2r_strata.pdf", "B", 1.0),
-        ],
-    },
-    "FigS6_gate_partition_stability": {
-        "title": "The harmonised gate is stable across fold partitions",
-        "cols": 1,
-        "panels": [
-            (O / "models_gate/05c_gate_seed_stability.pdf", "A", 1.0),
+            (O / "models_panel/09d_pseudobulk.pdf", "B", 1.0),
+            (O / "models_panel/09e_no_slamf8_roc.pdf", "C", 1.0),
+            (O / "models_panel/09e_authors_check.pdf", "D", 1.0),
+            (O / "models_panel/09f_pla2r_strata.pdf", "E", 1.0),
         ],
     },
     "FigS3_subtypes_negative": {
@@ -147,6 +156,7 @@ FIGURES = {
             (O / "subtypes/06a_stability_pac.pdf", "B", 1.0),
             (O / "subtypes/06a_centroid_concordance.pdf", "C", 1.0),
             (O / "subtypes/06a_array_subtype_heatmap.pdf", "D", 1.0),
+            (O / "subtypes/06a_rnaseq_consensus_k3.pdf", "E", 1.0),
         ],
     },
 }
@@ -213,16 +223,19 @@ def build(name, spec, dest):
         return False
 
     cols = spec["cols"]
+    # Multi-panel plates (>= 5 panels) use 62 mm panels so that three rows still fit an A4 page;
+    # the old 82 mm is kept for compact 4-panel plates.
+    ph = spec.get("panel_h", 62 if len(spec["panels"]) >= 5 else PANEL_H_MM)
     frac = 0.98 / cols
     rows = (len(spec["panels"]) + cols - 1) // cols
     # generous first guess, then shrink to the measured content height + 2 x 8 mm margins
-    height_mm = 16 + rows * (PANEL_H_MM + 16)
+    height_mm = 16 + rows * (ph + 16)
 
     def write_tex(page_mm):
         body = [PREAMBLE % {"height": page_mm},
                 r"{\bfseries\large %s}\par\vspace{2mm}" % spec["title"], "\n"]
         for i, (path, label, w) in enumerate(spec["panels"]):
-            body.append(r"\panel{%s}{%s}{%.3f}{%d}" % (path, label, frac * w, PANEL_H_MM))
+            body.append(r"\panel{%s}{%s}{%.3f}{%d}" % (path, label, frac * w, ph))
             body.append("\n\\vspace{3mm}\n")
             if (i + 1) % cols == 0 and i != len(spec["panels"]) - 1:
                 body.append("\n\\par\\vspace{2mm}\n")
@@ -256,7 +269,7 @@ def build(name, spec, dest):
     # pushes the last row onto a second (blank-ish) page: journals reject that, and pdftoppm leaves
     # a stray "-2.jpg" evidence file behind. Grow the page until LaTeX stops breaking.
     guard = 0
-    base_mm = 16 + rows * (PANEL_H_MM + 16)
+    base_mm = 16 + rows * (ph + 16)
     height_mm = max(height_mm, base_mm)   # the bbox loop shrinks; a multi-page plate needs the row budget
     while _page_count(pdf_src) > 1 and guard < 6:
         guard += 1

@@ -7,7 +7,7 @@ affiliation:
   - "^1 Research Center for Medical Big Data and Artificial Intelligence, The People's Hospital of Guangxi Zhuang Autonomous Region, Nanning, China"
   - "^2 Guangxi Academy of Medical Sciences, Nanning, China"
   - "^\\* Correspondence: Lingzhang Meng, Research Center for Medical Big Data and Artificial Intelligence, The People's Hospital of Guangxi Zhuang Autonomous Region, No. 6 Taoyuan Road, Nanning 530021, China (m.lingzhang@hotmail.com; lzmeng@gxams.org.cn)"
-date: "Draft — 2026-10-20"
+date: "Draft — 2026-11-19"
 ---
 
 
@@ -253,16 +253,28 @@ Patient-level de-duplication was the first analytical step and changed the desig
 453 were MN, but they came from 178 patients; NEPTUNE-numbered samples were redundant 2.98-fold and
 ERCB-numbered 2.00-fold, and four accessions were entirely contained in another. Merging by
 accession, as a naïve meta-analysis would, would have counted a substantial fraction of patients
-several times. After de-duplication, discovery (array), external validation (ERCB array, 0 % shared
-participants) and the RNA-seq cohorts are three genuinely independent sample sources (Fig 1).
+several times.
+
+The retained sets were checked for structure before any modelling (Fig 1). Discovery glomerular
+samples separated by diagnosis on the first two principal components (Fig 1A), as did the independent
+ERCB glomerular cohort (Fig 1B) and the RNA-seq glomerular cohort (Fig 1C); no single sample
+dominated an axis. In the tubulointerstitial compartment, ComBat removed the series effect between
+the two discovery series while preserving disease separation (Fig 1D), and the ERCB
+tubulointerstitial set showed the same diagnosis-led structure (Fig 1E). The laser-capture cohort
+used for the PLA2R strata contained both PLA2R-positive and PLA2R-negative MN and separated from MCD
+on the first component (Fig 1F). After de-duplication, discovery (array), external validation (ERCB
+array, 0 % shared participants) and the RNA-seq cohorts are three genuinely independent sample
+sources.
 
 ## Thresholded differential expression understates separability
 
-Discovery glomerular MN differed from healthy glomeruli by 904 genes (|log2FC| > 1, BH < 0.05), and
-the random-effects meta-analysis of discovery plus RNA-seq produced **584 glomerular meta-DEGs**
-(353 up, 231 down) with median I² = 0 — i.e. the array and RNA-seq cohorts agreed. Against other
-glomerulopathies, however, thresholded signal was thin: 18 meta-DEGs versus FSGS, 60 versus MCD,
-16 versus other glomerulonephritis (Fig 2).
+Discovery glomerular MN differed from healthy glomeruli by 904 genes (|log2FC| > 1, BH < 0.05; Fig
+2A), and the random-effects meta-analysis of the discovery and RNA-seq cohorts produced **584
+glomerular meta-DEGs** (353 up, 231 down) with median I² = 0, i.e. the two platforms agreed (Fig 2B).
+Representative forest plots show that agreement gene by gene (Fig 2C, *CCNL1*; Fig 2D, *HBA2*).
+Against other glomerulopathies, however, thresholded signal was thin: 18 meta-DEGs versus FSGS (Fig
+2E) and 18 versus all non-MN disease combined (Fig 2F), with 60 versus MCD and 16 versus other
+glomerulonephritis in the underlying contrasts.
 
 ERCB replicated 55.3 % of glomerular MN-versus-control meta-DEGs (252/456; BH < 0.05, same sign) but
 only 32.4 % in the tubulointerstitial compartment, and tubulointerstitial MN-versus-FSGS was null in
@@ -270,23 +282,27 @@ every cohort. The glomerular compartment, not the interstitium, carries the disc
 
 Given 584 versus 18 genes, we tested the claim the paper actually needed — that MN is
 distinguishable from its mimics — rather than inferring it from DEG counts. The elastic-net gate
-achieved nested-CV AUC 0.911–0.926, and **external ERCB AUC 0.861–0.922 across feature sizes (0.922
-at the full feature set; 95 % CI 0.862–0.982)** with 0.928–0.939 in the independent RNA-seq cohort,
-once each validation cohort was harmonised to the discovery reference distribution and scored with
-training coefficients only. That harmonisation is not cosmetic. Removing the transductive z-scoring
-alone — the intuitive "training statistics only" fix — left the model measuring platform shift
-rather than disease: with discovery standard deviations applied to raw HG-U133 values the median gene
-falls at \|z\| ≈ 4 instead of ≈ 0.6, the linear predictor saturates, the ERCB AUC becomes
-K-dependent (0.638–0.679 across twelve refits at the full feature set) and four comparator diagnoses
-rank *above* MN (RPGN 0.05, FSGS/MCD 0.01–0.14, FSGS 0.40, DN 0.48). Rank-preserving quantile
-mapping onto the discovery reference, which is label-blind because it transfers each gene's marginal
-distribution, removes that artefact; an independent re-fit of the same model agrees with the sweep to
-within 0.01 AUC. Permutation nulls (median AUC 0.500, 95th percentile 0.674) never reached the
-observed value (empirical *p* = 0.048), and removing QC-flagged samples raised ERCB AUC to 0.939.
-FSGS and the mixed FSGS/MCD group remained the hardest comparators (0.83 and 0.71), as expected
-clinically, and every single comparator was separated (0.71–0.98; Fig 3). Refitting the same model under
-ten independent fold partitions gave ERCB AUC 0.912–0.928 at the full feature set and 0.900–0.903 at
-*K* = 1000 (Fig S6), so the reported value is not the product of a fortunate partition. The number of
+achieved nested-CV AUC 0.911–0.926, and its ERCB ROC was high across feature counts (Fig 3A).
+**External ERCB AUC was 0.861–0.922 across feature sizes (0.922 at the full feature set; 95 % CI
+0.862–0.982)**, with 0.928–0.939 in the independent RNA-seq cohort, once each validation cohort was
+harmonised to the discovery reference distribution and scored with training coefficients only (Fig
+3B). That harmonisation is not cosmetic. Removing the transductive z-scoring alone — the intuitive
+"training statistics only" fix — left the model measuring platform shift rather than disease: with
+discovery standard deviations applied to raw HG-U133 values the median gene falls at \|z\| ≈ 4
+instead of ≈ 0.6, the linear predictor saturates, the ERCB AUC becomes K-dependent (0.638–0.679
+across twelve refits at the full feature set) and four comparator diagnoses rank *above* MN (RPGN
+0.05, FSGS/MCD 0.01–0.14, FSGS 0.40, DN 0.48). Rank-preserving quantile mapping onto the discovery
+reference, which is label-blind because it transfers each gene's marginal distribution, removes that
+artefact; an independent re-fit of the same model agrees with the sweep to within 0.01 AUC.
+Permutation nulls (median AUC 0.500, 95th percentile 0.674) never reached the observed value
+(empirical *p* = 0.048; Fig 3C), and removing QC-flagged samples raised ERCB AUC to 0.939. FSGS and
+the mixed FSGS/MCD group remained the hardest comparators (0.83 and 0.71), as expected clinically,
+and every single comparator was separated (0.71–0.98; Fig 3D). The multiclass extension did not
+resolve diagnoses: at *K* = all it recovered 20 of 21 ERCB MN samples but assigned MN to 50 non-MN
+samples, giving a balanced accuracy of 0.44 (Fig 3E), which is the behaviour of a single
+MN-detection boundary rather than a diagnostic classifier. Refitting the same model under ten
+independent fold partitions gave ERCB AUC 0.912–0.928 at the full feature set and 0.900–0.903 at
+*K* = 1000 (Fig 3F), so the reported value is not the product of a fortunate partition. The number of
 non-zero coefficients did vary across those draws (35–198), i.e. the prediction is stable even where
 the selected gene set is not — which is why the panel in Phase E was locked by selection frequency
 across folds rather than by any single fit.
@@ -295,60 +311,56 @@ across folds rather than by any single fit.
 
 Signed networks were built separately per compartment (glomerular: 7,882 genes × 153 samples, soft
 power 18, scale-free R² = 0.872, 9 modules; tubulointerstitial: 7,616 × 269, power 10, 7 modules).
-Four glomerular modules associated with MN at BH < 0.05 (Fig 4). Adjusting for podocyte, fibroblast
-and myeloid fractions — the guard against a pure cellular-composition artefact — left two
-significant: a **pink** module of 84 genes (bicor *r* = 0.55, BH *p* = 6.5 × 10⁻¹², adjusted
-*p* = 1.0 × 10⁻⁵) and a **red** module of 144 genes (*r* = 0.46, adjusted *p* = 6.6 × 10⁻⁴). The
-2,304-gene turquoise module was the largest and showed no MN association (*r* = 0.034), a useful
-internal negative control.
+The glomerular dendrogram shows the nine modules (Fig 4A); the soft-threshold fit and the split-half
+membership stability that justified this construction are in Fig S1A and S1B. Four glomerular
+modules associated with MN at BH < 0.05 (Fig 4B). Adjusting for podocyte, fibroblast and myeloid
+fractions — the guard against a pure cellular-composition artefact — left two significant: a **pink**
+module of 84 genes (bicor *r* = 0.55, BH *p* = 6.5 × 10⁻¹², adjusted *p* = 1.0 × 10⁻⁵) and a **red**
+module of 144 genes (*r* = 0.46, adjusted *p* = 6.6 × 10⁻⁴). The 2,304-gene turquoise module was the
+largest and showed no MN association (*r* = 0.034), a useful internal negative control. The
+corresponding eigengenes show pink and red highest in MN — and also elevated in FSGS, the hard
+comparator — whereas the black module tracks FSGS and other nephropathies rather than MN and the
+green module is flat across diagnoses (Fig 4C). The nine eigengenes fall into correlated blocks
+(three modules at *r* = 0.57–0.79) while one pair is anti-correlated (*r* = −0.73; Fig 4D), so the
+MN-associated modules are not a single axis.
 
-Functional annotation gave the two modules identities rather than colours: the pink module is a
-**cell-surface / calcium-ion-binding / external-encapsulating-structure** programme — a podocyte
-surface and matrix-interface signature — and the red module a **metal-ion transport / lysosomal /
-glycosylation** programme. A third module (black, 113 genes) showed ECM-organisation and
-epithelial–mesenchymal-transition terms but lost significance after composition adjustment, marking
-it as an injury-response rather than an MN-intrinsic programme.
+**All nine glomerular modules were preserved in ERCB** (Z = 21.4–84.6, *q* < 10⁻¹⁰⁰; Fig 4E) and all
+seven tubulointerstitial modules likewise; the unassigned (grey) and random (gold) modules failed in
+every test (Z = −27 to +1.2), confirming the test discriminates rather than rubber-stamping.
+Functional annotation then gave the two MN-associated modules identities rather than colours (Fig
+4F): the pink module is a **cell-surface / calcium-ion-binding /
+external-encapsulating-structure** programme — a podocyte surface and matrix-interface signature —
+and the red module a **metal-ion transport / lysosomal / glycosylation** programme. A third module
+(black, 113 genes) showed ECM-organisation and epithelial–mesenchymal-transition terms but lost
+significance after composition adjustment, marking it as an injury-response rather than an
+MN-intrinsic programme.
 
 At pathway level the glomerular contrast was dominated by epithelial–mesenchymal transition (NES
 +2.38, adjusted *p* = 4.1 × 10⁻¹⁰), apical junction (+2.20) and myogenesis (+2.23; both adjusted
 *p* = 3.4 × 10⁻⁷), with fatty-acid metabolism (−2.08, adjusted *p* = 4.3 × 10⁻⁶) and oxidative
-phosphorylation (−1.92) suppressed (Fig S4). These are membership-based enrichments of the ranked
-gene list, not measurements of pathway activity.
+phosphorylation (−1.92) suppressed. The underlying enrichments are shown in Fig S4: GO
+biological-process ORA of the meta-DEGs (S4A), C7 immunologic-signature GSEA (S4B), the
+apical-junction running score (S4C), the epithelial–mesenchymal-transition running score (S4D) and
+the MN-versus-non-MN ORA (S4E). These are membership-based enrichments of the ranked gene list, not
+measurements of pathway activity.
 
-**All nine glomerular modules were preserved in ERCB** (Z = 21.4–84.6, *q* < 10⁻¹⁰⁰) and all seven
-tubulointerstitial modules likewise; the unassigned (grey) and random (gold) modules failed in every
-test (Z = −27 to +1.2), confirming the test discriminates rather than rubber-stamping. Split-half
-reproducibility showed that co-expression **axes** are highly reproducible (eigengene bicor
-0.92–0.96) while gene **membership** is only partly so (Jaccard ≈ 0.3) — which is why hub genes were
-admitted only after independent preservation, and why the panel was not selected on membership
-alone (Fig S1). No tubulointerstitial module tracked MN.
-
-## The atlas assigns the modules to cells, and the deconvolution travels with them
-
-A 236,107-cell kidney atlas (16 cell types) [33,40,41] integrated 49 samples across MN, IgAN, MCD, DKD and
-control. MN-versus-control cell composition did not differ after BH correction (smallest adjusted
-*p* = 0.218), so the transcriptomic difference is not a simple abundance shift. NNLS deconvolution
-of all seven bulk sets (1,328 samples) assigned glomerular MN samples a podocyte-dominant profile,
-and 67 of 316 testable cell-type comparisons survived BH correction. The podocyte contrast was
-significant against the other glomerulopathies — discovery MN 0.637 versus other glomerulonephritis
-0.583 (adjusted *p* = 3.3 × 10⁻⁴) and versus FSGS 0.587 (*p* = 0.029), and in RNA-seq MN 0.847 versus
-MCD 0.745, FSGS 0.753 and other disease 0.730 (*p* = 1.0 × 10⁻⁷ to 2.9 × 10⁻⁵) — but **not** against
-healthy glomeruli in discovery (0.637 versus 0.615, adjusted *p* = 0.29), so the finding is
-"podocyte-rich relative to other nephropathies", not "podocyte loss". The deconvolution is fragile in
-detail — a specificity-filtered and an all-gene signature disagreed on the dominant cell type in
-1,314 of 1,328 samples — so only the podocyte result is interpreted; pDC and neutrophil columns rest
-on 97 and 535 atlas cells and were excluded from all downstream trait and attribution analyses
-(Fig 6).
+Split-half reproducibility showed that co-expression **axes** are highly reproducible (eigengene
+bicor 0.92–0.96) while gene **membership** is only partly so (Jaccard ≈ 0.3; Fig S1B) — which is why
+hub genes were admitted only after independent preservation, their network and module-membership
+distributions being shown in Fig S1C and Fig S1D, and why the panel was not selected on membership
+alone; per-module annotation of the preserved modules is in Fig S1E. No tubulointerstitial module
+tracked MN.
 
 ## A four-gene panel retains external discrimination
 
-From 287 candidate genes (of 353 core genes; 68 dropped because they were not measurable in ≥ 95 %
-of ERCB samples), nested CV gave mean AUC 0.846 (LASSO), 0.843 (SVM-RFE) and 0.814 (Boruta). Genes
+Selection frequency across nested CV folds for the three selectors is shown in Fig 5A. From 287
+candidate genes (of 353 core genes; 68 dropped because they were not measurable in ≥ 95 % of ERCB
+samples), nested CV gave mean AUC 0.846 (LASSO), 0.843 (SVM-RFE) and 0.814 (Boruta; Fig 5B). Genes
 selected by at least two of the three methods at a per-method frequency of 0.60 or more formed the
-consensus panel: **SLAMF8, TRPC6, MYOZ2 and PPP1R3C** (Fig 5). *ICAM1*, which appeared in an earlier
-version of this panel, was dropped once the cross-validation folds were drawn correctly (one
-partition per repeat instead of a fresh random partition per fold); it no longer met the consensus
-frequency and its fitted coefficient had the opposite sign to its marginal effect.
+consensus panel: **SLAMF8, TRPC6, MYOZ2 and PPP1R3C**. *ICAM1*, which appeared in an earlier version
+of this panel, was dropped once the cross-validation folds were drawn correctly (one partition per
+repeat instead of a fresh random partition per fold); it no longer met the consensus frequency and
+its fitted coefficient had the opposite sign to its marginal effect.
 
 | Cohort | n (MN/other) | AUC (95 % CI) |
 |---|---|---|
@@ -360,61 +372,84 @@ frequency and its fitted coefficient had the opposite sign to its marginal effec
 | ERCB incl. healthy donors (secondary) | 196 (21/175) | 0.837 (0.749–0.925) |
 | Reference: 13,379-gene elastic net | 170 (21/149) | 0.922 (0.862–0.982) |
 
-All four genes contribute positively in the locked model: odds ratios 2.83 (95 % CI 1.28–6.24) for
-*SLAMF8*, 3.40 (1.06–10.93) for *TRPC6*, 3.32 (1.20–9.22) for *MYOZ2* and 2.59 (1.31–5.12) for
-*PPP1R3C* per SD of expression. The four-gene model uses 1/3,345 of the whole-transcriptome
-classifier's genes and is below it in ERCB (0.816 versus 0.922) while being close in RNA-seq (0.901
-versus 0.939): the compact panel buys interpretability and transportability, not superiority.
-ERCB-label permutations gave *p* = 0.005; a stricter null
-that refits the panel on shuffled discovery labels reached *p* = 0.11, which is **not** significant,
-and we report it as such — with 21 ERCB cases a randomly selected four-gene model transfers well
-often enough that the strict null cannot exclude it.
+Its external ROC curves are in Fig 5C. All four genes contribute positively in the locked model (Fig
+5D): odds ratios 2.83 (95 % CI 1.28–6.24) for *SLAMF8*, 3.40 (1.06–10.93) for *TRPC6*, 3.32
+(1.20–9.22) for *MYOZ2* and 2.59 (1.31–5.12) for *PPP1R3C* per SD of expression. The four-gene model
+uses 1/3,345 of the whole-transcriptome classifier's genes and is below it in ERCB (0.816 versus
+0.922) while being close in RNA-seq (0.901 versus 0.939): the compact panel buys interpretability and
+transportability, not superiority. The predicted probabilities make the calibration problem visible —
+scores saturate near 1 in ERCB and near 0 in RNA-seq while preserving ranking (Fig 5E). ERCB-label
+permutations gave *p* = 0.005; a stricter null that refits the panel on shuffled discovery labels
+reached *p* = 0.11, which is **not** significant, and we report it as such — with 21 ERCB cases a
+randomly selected four-gene model transfers well often enough that the strict null cannot exclude it.
 
 Against individual comparator diagnoses the panel was strongest for the immune-complex and
 hypertensive groups (TMD 0.97, HT 0.96, IgAN 0.94, SLE 0.87, MCD 0.88) and weakest for **FSGS
-(0.63; 0.44–0.83)** and mixed FSGS/MCD (0.48), mirroring the gate and the clinical difficulty [42].
+(0.63; 0.44–0.83)** and mixed FSGS/MCD (0.48; Fig 5F), mirroring the gate and the clinical
+difficulty [42].
+
+## The atlas assigns the modules to cells, and the deconvolution travels with them
+
+A 236,107-cell kidney atlas (16 cell types) [33,40,41] integrated 49 samples across MN, IgAN, MCD, DKD and
+control (Fig 6A), with canonical markers supporting every annotation (Fig 6B). MN-versus-control
+cell composition did not differ after BH correction (smallest adjusted *p* = 0.218; Fig 6C), so the
+transcriptomic difference is not a simple abundance shift. NNLS deconvolution of all seven bulk sets
+(1,328 samples) assigned glomerular MN samples a podocyte-dominant profile (Fig 6D), and 67 of 316
+testable cell-type comparisons survived BH correction (Fig 6E). The podocyte contrast was significant
+against the other glomerulopathies — discovery MN 0.637 versus other glomerulonephritis 0.583
+(adjusted *p* = 3.3 × 10⁻⁴) and versus FSGS 0.587 (*p* = 0.029), and in RNA-seq MN 0.847 versus MCD
+0.745, FSGS 0.753 and other disease 0.730 (*p* = 1.0 × 10⁻⁷ to 2.9 × 10⁻⁵) — but **not** against
+healthy glomeruli in discovery (0.637 versus 0.615, adjusted *p* = 0.29), so the finding is
+"podocyte-rich relative to other nephropathies", not "podocyte loss". The deconvolution is fragile in
+detail — a specificity-filtered and an all-gene signature disagreed on the dominant cell type in
+1,314 of 1,328 samples — and bulk-to-pseudobulk concordance was weak (best Pearson 0.29; Fig 6F),
+a limit of comparing whole tissue with one cell type's pseudobulk, so only the podocyte result is
+interpreted; pDC and neutrophil columns rest on 97 and 535 atlas cells and were excluded from all
+downstream trait and attribution analyses.
 
 ## Specificity, portability and recalibration
 
 Three further tests constrained interpretation. First, the panel was **compartment-specific**: AUC
 fell to 0.449 (0.310–0.589) in ERCB tubulointerstitium and 0.539 (0.447–0.630) in the RNA-seq
-tubulointerstitium — chance in both, despite the same patients and platform. Second, the coefficients
-were platform-portable: refitting the four genes on RNA-seq and testing in ERCB gave AUC 0.850 with
-all four signs concordant. Third, discrimination was portable but **absolute risk was not**:
-calibration-in-the-large was +0.86 in ERCB and −0.21 in RNA-seq. A two-parameter recalibration
-(intercept and slope) fitted on one half of ERCB and applied to the other removed the offset
-(+0.862 → −0.003) and reduced the Brier score from 0.845 to 0.096 without changing AUC (Fig S2).
-
-Because *SLAMF8* was detected in only 9.5 % of RNA-seq samples, a model without it was prespecified
-as a sensitivity analysis. On the corrected pipeline it is a three-gene model (TRPC6, MYOZ2,
-PPP1R3C) and it is **comparable rather than superior** to the locked panel (ERCB 0.845, 0.753–0.937;
-RNA-seq 0.891; laser-capture 0.941; permutation *p* = 0.005). No single gene was indispensable (every
-leave-one-gene-out model exceeded 0.70 in ERCB), and *MYOZ2* alone matched the full panel in ERCB
-(0.903).
+tubulointerstitium — chance in both, despite the same patients and platform (Fig S2A). Reprocessing
+ERCB through an alternative CDF left discrimination at 0.848 (0.759–0.938), so the result is not a
+single-annotation artefact (Fig S2A). Second, the coefficients were platform-portable: refitting the
+four genes on RNA-seq and testing in ERCB gave AUC 0.850 with all four signs concordant. Third,
+discrimination was portable but **absolute risk was not**: calibration-in-the-large was +0.86 in ERCB
+and −0.21 in RNA-seq (Fig S2B). A two-parameter recalibration (intercept and slope) fitted on one
+half of ERCB and applied to the other removed the offset (+0.862 → −0.003) and reduced the Brier
+score from 0.845 to 0.096 without changing AUC (Fig S2C), and decision-curve analysis showed net
+benefit across clinically relevant thresholds (Fig S2D). No single gene was indispensable: every
+leave-one-gene-out model exceeded 0.70 in ERCB (Fig S2E), and *MYOZ2* alone matched the full panel
+(0.903). Because *SLAMF8* was detected in only 9.5 % of RNA-seq samples, a prespecified three-gene
+sensitivity analysis is reported below.
 
 ## Where the panel genes live — and one caveat
 
 Atlas localisation placed *TRPC6* in podocytes (44.5 CPM) [43], *PPP1R3C* in mesangium (10.8) and
-*SLAMF8* in B cells (1.0). *MYOZ2* was the exception: 93.8 % of atlas cells were zero and its top
-column was the unreliable pDC. Because *MYOZ2* is the strongest single gene in ERCB (AUC 0.903 alone),
-we tested it independently in the submitters' own processed matrix, where its MN-versus-other AUC was
-0.865 against our 0.866 — the signal is not an artefact of our preprocessing, but its cellular source
-in kidney is unresolved, and it is the first candidate for protein-level confirmation (Fig S5A).
+*SLAMF8* in B cells (1.0), whereas *MYOZ2* was the exception: 93.8 % of atlas cells were zero and its
+top column was the unreliable pDC (Fig S5A). MN-versus-control pseudobulk for the panel genes showed
+no comparison surviving BH correction with 15 versus 10 donors (smallest raw *p* = 0.00095, *TRPC6*
+in mast cells; adjusted *p* = 0.29; Fig S5B), so cell-type-level expression of the panel remains
+hypothesis-generating. Because *MYOZ2* is the strongest single gene in ERCB (AUC 0.903 alone), its
+signal was tested independently in the submitters' own processed matrix in the sensitivity analyses
+below. Its cellular source in kidney is unresolved, and it is the first candidate for protein-level
+confirmation.
 
 ## Sensitivity: comparators, preprocessing and a three-gene alternative
+
+Because *SLAMF8* is detected in only 9.5 % of RNA-seq samples, a prespecified model without it was
+tested: as a three-gene assay it is comparable to the locked panel (ERCB 0.845, 95 % CI 0.753–0.937;
+RNA-seq 0.891; laser-capture 0.941; permutation *p* = 0.005; Fig S5C), so a three-gene format is
+defensible when a platform cannot measure *SLAMF8* — but it is no longer a strict improvement, so the
+locked four-gene panel remains the primary result.
 
 To exclude a preprocessing artefact we re-derived each gene's single-marker separation in the
 submitters' own processed matrix, which shares no step with our pipeline; the two estimates agreed to
 within 0.01 for all four genes (*MYOZ2* 0.865 versus 0.866; *TRPC6* 0.857 versus 0.863; *SLAMF8*
-0.800 versus 0.808; *PPP1R3C* 0.796 versus 0.786). The panel score also carried little global
-expression structure (R² = 0.37 in discovery and 0.21 in ERCB against PC1–5), and adjusting for those
-components did not reduce discrimination.
-
-Because *SLAMF8* is detected in only 9.5 % of RNA-seq samples, a prespecified model without it was
-tested: as a three-gene assay it is comparable to the locked panel (ERCB 0.845, 95 % CI 0.753–0.937;
-RNA-seq 0.891; laser-capture 0.941; permutation *p* = 0.005), so a three-gene format is defensible
-when a platform cannot measure *SLAMF8* — but it is no longer a strict improvement, so the locked
-four-gene panel remains the primary result.
+0.800 versus 0.808; *PPP1R3C* 0.796 versus 0.786; Fig S5D). The panel score also carried little
+global expression structure (R² = 0.37 in discovery and 0.21 in ERCB against PC1–5), and adjusting
+for those components did not reduce discrimination.
 
 Finally, the panel was re-scored under the cross-platform harmonisation used for the gate. The
 answer does not depend on that convention: ERCB discrimination is 0.817 versus 0.816 unadjusted and
@@ -429,20 +464,17 @@ Within the laser-capture cohort the panel detected MN against MCD in PLA2R-posit
 at 0.929 (0.824–1.000). The within-MN contrast (PLA2R-positive versus PLA2R-negative) was 0.833
 (0.554–1.000) on six cases per group: it is numerically higher than the pre-audit panel's 0.528 but
 the confidence interval spans chance and the sample is far too small to interpret. We therefore make
-no claim about PLA2R tracking in either direction (Fig S5B).
-
-MN-versus-control pseudobulk for the panel genes showed no comparison surviving BH correction with 15
-versus 10 donors (smallest raw *p* = 0.00095, *TRPC6* in mast cells; adjusted *p* = 0.29), so
-cell-type-level expression of the panel remains hypothesis-generating.
+no claim about PLA2R tracking in either direction (Fig S5E).
 
 ## Exploratory subtyping does not reproduce
 
-Consensus clustering [44] of the glomerular discovery cohort gave a stable *k* = 2 partition (PAC 0.0015),
-but the RNA-seq cohort had no stable partition at all (PAC 0.215 at *k* = 5), cross-platform
-subtype-defining genes shared only 6 of 889 (Jaccard 0.007), maximal centroid correlation was 0.50,
-and the array partition tracked technical covariates (median sample–sample correlation 0.686 versus
-0.638, *p* = 4 × 10⁻⁴). We therefore report molecular subtyping of MN as not reproducible in these
-data (Fig S3) and do not present subtype–outcome claims.
+Consensus clustering [44] of the glomerular discovery cohort gave a stable *k* = 2 partition (PAC
+0.0015; Fig S3A), but the RNA-seq cohort had no stable partition at all (PAC 0.215 at *k* = 5; Fig
+S3B), cross-platform subtype-defining genes shared only 6 of 889 (Jaccard 0.007; Fig S3C), maximal
+centroid correlation was 0.50, and the array partition tracked technical covariates (median
+sample–sample correlation 0.686 versus 0.638, *p* = 4 × 10⁻⁴; Fig S3D). The RNA-seq consensus matrix
+at *k* = 3 shows no block structure (Fig S3E). We therefore report molecular subtyping of MN as not
+reproducible in these data and do not present subtype–outcome claims.
 
 # Discussion
 
@@ -592,53 +624,67 @@ Renal cDNA Bank and the submitters of every GEO series reanalysed here for makin
 
 # Figure legends
 
-**Figure 1. Cohort harmonisation and expression quality control.** (A, B) PCA of the glomerular
-discovery and ERCB validation cohorts. (C) ComBat correction of the two-series tubulointerstitial
-discovery set, before and after adjustment. (D) PCA of the independent RNA-seq glomerular cohort.
+**Figure 1. Cohort harmonisation and expression quality control.** (A) PCA of the glomerular
+discovery cohort (top 2,000 variable genes), coloured by diagnosis. (B) PCA of the independent ERCB
+glomerular validation cohort. (C) PCA of the independent RNA-seq glomerular cohort. (D) PCA of the
+two-series tubulointerstitial discovery set before and after ComBat correction. (E) PCA of the ERCB
+tubulointerstitial cohort. (F) PCA of the laser-capture cohort used for the PLA2R-stratified
+analysis.
 
 **Figure 2. Differential expression and random-effects meta-analysis.** (A) Volcano plot, glomerular
-MN versus control. (B) Heatmap of glomerular meta-DEGs across discovery and replication cohorts.
-(C, D) Representative meta-analytic forest plots.
+MN versus control in discovery. (B) Heatmap of the 584 glomerular meta-DEGs across the discovery and
+RNA-seq cohorts. (C, D) Representative random-effects forest plots for *CCNL1* and *HBA2*. (E)
+Volcano plot, meta-analysis of MN versus FSGS. (F) Volcano plot, meta-analysis of MN versus all
+non-MN disease.
 
 **Figure 3. Separability of MN from its mimics, and why a DEG count hides it.** (A) ROC of the
-discovery-trained elastic-net gate in ERCB, for each feature count *K*. (B) External ERCB AUC as a
-function of *K* (training-set standardisation with platform harmonisation; the same model in the
-independent RNA-seq cohort). (C) Permutation null (20 discovery-label shuffles) against the observed
-ERCB AUC. (D) AUC against each individual comparator diagnosis in ERCB.
+discovery-trained elastic-net gate in ERCB across feature counts *K*. (B) External ERCB AUC as a
+function of *K* (training-statistic standardisation with platform harmonisation), with the
+independent RNA-seq cohort shown for comparison. (C) Permutation null (20 discovery-label shuffles)
+against the observed ERCB AUC. (D) AUC against each individual comparator diagnosis in ERCB. (E)
+Multiclass confusion matrix in ERCB at *K* = all (rows, predicted class; columns, true diagnosis).
+(F) ERCB AUC of the locked gate refitted under ten independent random-number streams at *K* = 1000
+and at the full feature set (horizontal bar = median).
 
-**Figure 4. Glomerular co-expression modules.** (A) Gene dendrogram with module colours. (B)
-Module–trait relationships (bicor, BH-adjusted). (C) Module preservation in ERCB (Zsummary versus
-module size). (D) Functional identity of the MN-associated modules.
+**Figure 4. Glomerular co-expression modules, trait association and ERCB preservation.** (A) Gene
+dendrogram with module colours. (B) Module–trait relationships (bicor, BH-adjusted). (C) Module
+eigengenes by diagnosis for the black, green, pink and red modules. (D) Correlation between the nine
+glomerular module eigengenes. (E) Module preservation in ERCB (Zsummary versus module size). (F)
+Functional identity of the two MN-associated modules.
 
 **Figure 5. A four-gene glomerular panel.** (A) Selection frequency across nested CV folds for the
-three selectors. (B) ROC curves in the external cohorts. (C) Locked-model coefficients with 95 %
-confidence intervals. (D) AUC against each comparator diagnosis.
+three selectors. (B) Nested-CV AUC for LASSO, SVM-RFE and Boruta. (C) ROC curves of the locked panel
+in the external cohorts. (D) Locked-model coefficients with 95 % confidence intervals. (E) Predicted
+probability of MN by diagnosis in discovery, ERCB and RNA-seq. (F) AUC against each comparator
+diagnosis.
 
-**Figure 6. Kidney single-cell atlas and bulk deconvolution.** (A) Atlas cell types. (B) Cell-type
-composition by disease. (C) NNLS deconvolution of all seven bulk cohorts. (D) Bulk-to-pseudobulk
-concordance.
+**Figure 6. Kidney single-cell atlas and bulk deconvolution.** (A) Atlas cell types (UMAP). (B)
+Canonical marker expression by cell type. (C) Cell-type composition by disease. (D) NNLS
+deconvolution of all seven bulk cohorts (stacked proportions). (E) Deconvolved cell-type proportions
+by disease group. (F) Bulk-to-pseudobulk concordance.
 
-**Figure S1. Module reproducibility, hub genes and annotation detail.** Soft-threshold diagnostics,
-split-half reproducibility, hub-gene network of preserved modules and per-module enrichment.
+**Figure S1. Module reproducibility, hub genes and annotation detail.** (A) Soft-threshold
+diagnostics. (B) Split-half stability of module eigengenes and gene membership. (C) Hub-gene network
+of the preserved modules. (D) Module membership (|kME|) of hub genes by module, coloured by
+preservation status. (E) Per-module enrichment for the preserved modules.
 
-**Figure S2. Panel robustness, calibration and transfer.** (A) Transfer to the tubulointerstitial
-compartment and to the alternative-CDF reprocessing. (B) Recalibration fitted on one half of ERCB and
-scored on the other. (C) Calibration of the locked panel before recalibration. (D) Decision-curve
-analysis. (E) Pipeline-independence check in the submitters' own processed matrix. (F)
-Leave-one-gene-out sensitivity.
+**Figure S2. Panel robustness, calibration and transfer.** (A) ROC of the panel in the
+tubulointerstitial compartment and after alternative-CDF reprocessing. (B) Calibration of the locked
+panel before recalibration. (C) Recalibration fitted on one half of ERCB and scored on the other.
+(D) Decision-curve analysis. (E) Leave-one-gene-out sensitivity.
 
-**Figure S3. Exploratory subtyping is not reproducible.** Consensus matrices, PAC stability curve,
-centroid concordance between platforms and the array subtype heatmap with its technical confounder.
+**Figure S3. Exploratory subtyping is not reproducible.** (A) Array consensus matrix at *k* = 2.
+(B) PAC stability curve. (C) Centroid concordance between platforms. (D) Array subtype heatmap with
+its technical confounder. (E) RNA-seq consensus matrix at *k* = 3.
 
-**Figure S4. Functional profiling of the glomerular signature.** (A) GO biological-process ORA of the
-glomerular meta-DEGs. (B) Hallmark and C7 GSEA. (C) Running enrichment score for apical-junction
-genes. (D) ORA for the MN-versus-non-MN contrast.
+**Figure S4. Functional profiling of the glomerular signature.** (A) GO biological-process ORA of
+the glomerular meta-DEGs. (B) C7 immunologic-signature GSEA. (C) Running enrichment score for
+apical-junction genes. (D) Running enrichment score for epithelial–mesenchymal-transition genes. (E)
+ORA for the MN-versus-non-MN contrast.
 
-**Figure S5. Where the panel genes sit, and performance by PLA2R stratum.** (A) Panel-gene expression
-across the 16 atlas cell types (max CPM per cell type). (B) Panel performance within the laser-capture
-cohort: MN versus MCD overall, by PLA2R stratum, and within MN.
-
-**Figure S6. The gate is stable across fold partitions.** ERCB AUC of the locked elastic-net gate
-refitted under ten independent random-number streams, at *K* = 1000 and at the full feature set
-(horizontal bar = median). Spread is 0.003 and 0.016 respectively, against a range of 0.04 with
-inverted comparator AUCs when the same model was scored without platform harmonisation.
+**Figure S5. Where the panel genes sit, panel sensitivity and PLA2R stratum.** (A) Panel-gene
+expression across the 16 atlas cell types (max CPM per cell type). (B) Panel genes in
+MN-versus-control pseudobulk per cell type. (C) Locked four-gene versus three-gene (without *SLAMF8*)
+ROC in ERCB. (D) Single-gene AUC computed in our pipeline versus the submitters' processed matrix.
+(E) Panel performance within the laser-capture cohort: MN versus MCD overall, by PLA2R stratum, and
+within MN.

@@ -1101,6 +1101,33 @@ assertions** in `99_verify_downstream.R` (27 → **32**). Word count now 4,336 m
 
 **Note for a re-run:** `05c` depends only on `work/sets/`, so it can be re-run in ~6 minutes without
 touching the rest of the pipeline.
+### 2.24 Analysis strategy v2 — repositioned around a methodological gap (2026-11-18) ✅
+
+`Paper1_strategy_v2_2026-11-18.md` (+ `.docx`) supersedes the 2026-10-15 plan. **No analysis was
+re-run**; this is a strategy document, committed to git (`5a77f69`).
+
+**Field scan (verified online this session):** 2024–2025 MN bioinformatics papers keep publishing
+`limma → WGCNA → LASSO → AUC > 0.9` on the same accessions — Ren Fail 2025 (PMID 39806779, discovery
+GSE115857+GSE200828, "validation" GSE133288) and Front Immunol 2025 (PMID 41132671, GSE108109) —
+with no patient de-duplication, no stated standardisation convention, and in the first case a
+"validation" cohort from the same NEPTUNE consortium as the discovery set.
+
+**Repositioning:** four tracks — A = Paper 1 frozen for submission; **B = the flagship (new)**: a
+leakage-audited benchmark of *published* MN panels with a 7-rung attrition ladder (R0 as published →
+R6 permutation null) and a pre-registered falsifiable hypothesis (median R5 AUC < 0.70); C = MR/pQTL +
+IF causal anchor; D = outcome modelling (blocked on B2). Plus gap register **G1–G8**.
+
+**Tool upgrades proposed with adoption tests**, verified this session unless marked 【verify】:
+TabPFN v2 (Nature 2025, PMID 39780007) — *with* the TabBench-Bio caveat that penalised logistic
+regression is statistically indistinguishable on biomedical tables, so a tie must be reported;
+BayesPrism/**InstaPrism** (Bioinformatics 2024, PMID 38970377; BayesPrism top-ranked in the
+heterogeneous-pseudobulk benchmark, Genome Biol 2024, PMID 38956606); integrated sc+sn reference for
+deconvolution (2026, PMC13106970); **decoupleR** for regulator activity. Each requires a pre-specified
+ΔAUC margin before adoption.
+
+**Deliberate boundary:** no new methods enter Paper 1 — it is frozen at its current claims, so the
+submission and the repository cannot diverge.
+
 
 ---
 

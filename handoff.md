@@ -15,7 +15,7 @@
 
 **Chain to restate on resume:** 13 accessions → 2,165 samples → 453 MN samples → **178 unique MN patients** → 7 non-redundant cohort sets → Phase A 54/54 → Phase B 86/86 → gate passes (nested CV 0.911–0.926, ERCB 0.861–0.922, *p* = 0.048) → subtypes **negative** → scRNA 432,378 cells → 236,107-cell atlas, 16 cell types → deconvolution 1,328 samples, 67/316 significant → Phase D modules **all preserved**, MN signal in pink + red → Phase E **four-gene panel**, ERCB 0.816 → recalibrated (Brier 0.845 → 0.096).
 
-**Verified state (re-derived 2026-11-19, not copied):** seven verifiers exit 0 — **54 / 86 / 32 / 42 / 117 / 106 / 37**; **11 plates** (Fig 1–6 with 6 panels each; S1–S5 with 5 panels each = **61 panels**), each one page, 0 non-embedded fonts; **182 figure PDFs / 182 rasters**; **225 result CSVs** (113 at `output/tables/` top level); **52 files in `R/`** (44 pipeline + 7 verifiers + `_lib.R`; Track B = `10b`, `10c`, `10d`, `99_verify_trackb`); project ~32 GB.
+**Verified state (re-derived 2026-11-19, not copied):** seven verifiers exit 0 — **54 / 86 / 32 / 42 / 117 / 106 / 37**; **12 plates** (main Fig 1–6: 5, 6, 5, 5, 5, 5 panels = 31; supplementary S1–S6: 5 each = 30; **61 panels**), each one page, 0 non-embedded fonts; **183 figure PDFs / 183 rasters**; **225 result CSVs** (113 at `output/tables/` top level); **52 files in `R/`** (44 pipeline + 7 verifiers + `_lib.R`; Track B = `10b`, `10c`, `10d`, `99_verify_trackb`); project ~32 GB.
 
 **Version control:** git since 2026-11-18; `git log` is authoritative. `core.fileMode`/`core.autocrlf` = `false` (exfat). `work/`, `.Rlib/`, `scrna/extracted/`, `logs/` and five bulk CSVs > 3 MB are gitignored as regenerable — a checkout alone is not a reproducible run. Commit `handoff.md` at every checkpoint.
 
@@ -64,7 +64,7 @@ Every value below is script-generated and asserted by a verifier; if prose and t
 | Phase E | cross-platform transfer (RNA-seq → ERCB) | AUC 0.850, **4/4 coefficient signs** concordant |
 | Phase E | per-comparator ERCB | FSGS **0.632**, FSGS_MCD 0.484, RPGN 0.714, DN 0.722, MCD 0.878, SLE 0.872, IgAN 0.940, HT 0.959, TMD 0.968 |
 | Phase E | PLA2R | 0.976 (PLA2R+) / 0.881 (PLA2R−) vs MCD; **0.833 within MN, 6 vs 6 → uninterpretable** |
-| Manuscript | Summary / main text (Intro+Results+Discussion) / references | 412 words / 3,936 words / 44 verified |
+| Manuscript | Summary / main text (Intro+Results+Discussion) / references | 412 words / 3,929 words / 44 verified |
 
 **Track B — current**
 
@@ -125,7 +125,7 @@ Artefacts for the numbers: `output/tables/09a_*…09f_*`, `separability_*`, `gat
 - **Verifiers (all must exit 0):** `99_verify_phase_a` 54, `phase_b` 86, `downstream` 32, `scrna` 42, `phase_d` 117, `phase_e` 106, `trackb` 37. Each ~5–20 s.
 - **Re-run orders:** `08a → 08b → 08c → 08d → 08e` (08f with `--force`), or the whole 08d-onward chain via `bash tools/rerun_from_08d.sh`; panel revisit = `09a → 09b → 09c → 09d → 09e → 09f` then `python3 tools/make_figures.py`; Track B = `10b → 10c → 10d → 99_verify_trackb.R`.
 - **Foreground shell caps at 2 min** — run `04c`, `04d`, `07b`, `07c`, `07d`, `08c`, `08d`, `08f`, `05c`, `10d` in the background and read the `.out` log (P-21).
-- **Figure rebuild** needs TeX Live + Ghostscript: `python3 tools/make_figures.py` (composites via `pdflatex`, embeds fonts via `gs`, staged through `/tmp` because `gs` cannot read this exfat volume). Assert `pdfinfo → Pages: 1` per plate. Plates are **6 main × 6 panels and 5 supplementary × 5 panels** (`panel_h` = 62 mm); the retired S6 content moved to Fig 3F. Every panel is cited in order in Results (checked by a citation-order script).
+- **Figure rebuild** needs TeX Live + Ghostscript: `python3 tools/make_figures.py` (composites via `pdflatex`, embeds fonts via `gs`, staged through `/tmp` because `gs` cannot read this exfat volume). Assert `pdfinfo → Pages: 1` per plate. Main plates carry **5–6 decisive panels**; **S1–S6 carry 5 support panels each** (`panel_h` = 62 mm): S1 supports cohort/gate/atlas QC, S2–S3 the module figure, S4–S5 the panel figure, and S6 is the stand-alone negative subtyping result. Every panel is cited in order in Results (checked by a citation-order script).
 - **`handoff.docx` in the project root is stale** — `handoff.md` is the only source; do not regenerate or read the `.docx`.
 - **Mount drift:** the volume alternates `/run/media/{meng,yang}/MY_Data`. `R/_lib.R`, the `00*_download*.sh` helpers and `tools/rerun_*.sh` are path-independent — keep it that way (P-59).
 

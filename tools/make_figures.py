@@ -39,8 +39,7 @@ FIGURES = {
             (O / "qc/03c_val_glom_array_pca.pdf", "B", 1.0),
             (O / "qc/03c_cross_glom_rnaseq_pca.pdf", "C", 1.0),
             (O / "qc/04a_disc_ti_array_pca_before_after.pdf", "D", 1.0),
-            (O / "qc/03c_val_ti_array_pca.pdf", "E", 1.0),
-            (O / "qc/03c_pla2r_lcm_pca.pdf", "F", 1.0),
+            (O / "qc/03c_pla2r_lcm_pca.pdf", "E", 1.0),
         ],
     },
     "Fig2_discovery_and_meta": {
@@ -64,7 +63,6 @@ FIGURES = {
             (O / "models_gate/05b_gate_permutation_null.pdf", "C", 1.0),
             (O / "models_gate/05b_gate_auc_by_comparator.pdf", "D", 1.0),
             (O / "models_gate/05a_gate_confusion.pdf", "E", 1.0),
-            (O / "models_gate/05c_gate_seed_stability.pdf", "F", 1.0),
         ],
     },
     "Fig4_WGCNA_modules": {
@@ -74,9 +72,8 @@ FIGURES = {
             (O / "wgcna/08a_glom_module_dendro.pdf", "A", 1.0),
             (O / "wgcna/08b_glom_module_trait.pdf", "B", 1.0),
             (O / "wgcna/08b_glom_me_box.pdf", "C", 1.0),
-            (O / "wgcna/08a_glom_me_cor.pdf", "D", 1.0),
-            (O / "wgcna/08d_glom_preservation.pdf", "E", 1.0),
-            (O / "wgcna/08f_glom_mn_modules.pdf", "F", 1.0),
+            (O / "wgcna/08d_glom_preservation.pdf", "D", 1.0),
+            (O / "wgcna/08f_glom_mn_modules.pdf", "E", 1.0),
         ],
     },
     "Fig5_biomarker_panel": {
@@ -84,11 +81,10 @@ FIGURES = {
         "cols": 2,
         "panels": [
             (O / "models_panel/09a_frequency.pdf", "A", 1.0),
-            (O / "models_panel/09a_cv_auc.pdf", "B", 1.0),
-            (O / "models_panel/09b_roc.pdf", "C", 1.0),
-            (O / "models_panel/09b_forest.pdf", "D", 1.0),
-            (O / "models_panel/09b_score_box.pdf", "E", 1.0),
-            (O / "models_panel/09e_by_comparator.pdf", "F", 1.0),
+            (O / "models_panel/09b_roc.pdf", "B", 1.0),
+            (O / "models_panel/09b_forest.pdf", "C", 1.0),
+            (O / "models_panel/09b_score_box.pdf", "D", 1.0),
+            (O / "models_panel/09e_by_comparator.pdf", "E", 1.0),
         ],
     },
     "Fig6_atlas_and_deconvolution": {
@@ -96,15 +92,25 @@ FIGURES = {
         "cols": 2,
         "panels": [
             (O / "scrna/07c_umap_celltype.pdf", "A", 1.0),
-            (O / "scrna/07c_marker_dotplot.pdf", "B", 1.0),
-            (O / "scrna/07d_composition.pdf", "C", 1.0),
-            (O / "scrna/07f_deconvolution_stacked.pdf", "D", 1.0),
-            (O / "scrna/07f_deconvolution_boxplots.pdf", "E", 1.0),
-            (O / "scrna/07e_bulk_vs_pseudobulk.pdf", "F", 1.0),
+            (O / "scrna/07d_composition.pdf", "B", 1.0),
+            (O / "scrna/07f_deconvolution_stacked.pdf", "C", 1.0),
+            (O / "scrna/07f_deconvolution_boxplots.pdf", "D", 1.0),
+            (O / "scrna/07e_bulk_vs_pseudobulk.pdf", "E", 1.0),
         ],
     },
     # ---------------- supplementary ----------------
-    "FigS1_WGCNA_stability_and_hubs": {
+    "FigS1_cohort_and_singlecell_qc": {
+        "title": "Cohort QC, gate stability and single-cell annotation",
+        "cols": 2,
+        "panels": [
+            (O / "qc/03c_val_ti_array_pca.pdf", "A", 1.0),
+            (O / "qc/03c_cross_ti_rnaseq_pca.pdf", "B", 1.0),
+            (O / "models_gate/05c_gate_seed_stability.pdf", "C", 1.0),
+            (O / "scrna/07c_marker_dotplot.pdf", "D", 1.0),
+            (O / "scrna/07b_sample_qc.pdf", "E", 1.0),
+        ],
+    },
+    "FigS2_WGCNA_stability_and_hubs": {
         "title": "Module reproducibility, hub genes and annotation detail",
         "cols": 2,
         "panels": [
@@ -115,7 +121,7 @@ FIGURES = {
             (O / "wgcna/08f_glom_module_dotplot.pdf", "E", 1.0),
         ],
     },
-    "FigS2_panel_robustness": {
+    "FigS4_panel_robustness": {
         "title": "Panel robustness, calibration and transfer",
         "cols": 2,
         "panels": [
@@ -126,7 +132,7 @@ FIGURES = {
             (O / "models_panel/09d_leave_one_out.pdf", "E", 1.0),
         ],
     },
-    "FigS4_functional_profiling": {
+    "FigS3_functional_profiling": {
         "title": "Functional profiling of the glomerular MN signature",
         "cols": 2,
         "panels": [
@@ -148,7 +154,7 @@ FIGURES = {
             (O / "models_panel/09f_pla2r_strata.pdf", "E", 1.0),
         ],
     },
-    "FigS3_subtypes_negative": {
+    "FigS6_subtypes_negative": {
         "title": "Exploratory molecular subtyping is not reproducible",
         "cols": 2,
         "panels": [

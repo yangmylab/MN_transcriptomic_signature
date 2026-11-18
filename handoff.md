@@ -17,7 +17,7 @@
 
 **Chain to restate on resume:** 13 accessions → 2,165 samples → 453 MN samples → **178 unique MN patients** → 7 non-redundant cohort sets → Phase A 54/54 → Phase B 86/86 → gate passes (nested CV 0.911–0.926, ERCB 0.861–0.922, *p* = 0.048) → subtypes **negative** → scRNA 432,378 cells → 236,107-cell atlas, 16 cell types → deconvolution 1,328 samples, 67/316 significant → Phase D modules **all preserved**, MN signal in pink + red → Phase E **four-gene panel**, ERCB 0.816 → recalibrated (Brier 0.845 → 0.096).
 
-**Verified state (re-derived 2026-11-19, not copied):** seven verifiers exit 0 — **54 / 86 / 32 / 42 / 117 / 106 / 37**; **12 plates** (main Fig 1–6: 5, 6, 5, 5, 5, 5 panels = 31; supplementary S1–S6: 5 each = 30; **61 panels**), each one page, 0 non-embedded fonts; **183 figure PDFs / 183 rasters**; **225 result CSVs** (113 at `output/tables/` top level); **52 files in `R/`** (44 pipeline + 7 verifiers + `_lib.R`; Track B = `10b`, `10c`, `10d`, `99_verify_trackb`); project ~32 GB.
+**Verified state (re-derived 2026-11-19, not copied):** seven verifiers exit 0 — **54 / 86 / 32 / 42 / 117 / 106 / 37**; **12 plates** (main Fig 1–6: 5, 6, 5, 5, 5, 5 panels = 31; supplementary S1–S6: 5 each = 30; **61 panels**), each one page, 0 non-embedded fonts; **186 figure PDFs / 186 rasters**; **240 result CSVs** (121 at `output/tables/` top level, 2026-11-19 after the P1b provenance test); **52 files in `R/`** (44 pipeline + 7 verifiers + `_lib.R`; Track B = `10b`, `10c`, `10d`, `99_verify_trackb`; the P1b test is `tools/moyz2_provenance.R`, outside the pipeline); project ~32 GB.
 
 **Version control:** git since 2026-11-18; `git log` is authoritative. `core.fileMode`/`core.autocrlf` = `false` (exfat). `work/`, `.Rlib/`, `scrna/extracted/`, `logs/` and five bulk CSVs > 3 MB are gitignored as regenerable — a checkout alone is not a reproducible run. Commit `handoff.md` at every checkpoint.
 
@@ -90,6 +90,18 @@ Every value below is script-generated and asserted by a verifier; if prose and t
 | Panel-size frontier | internal CV peaks at *K* ≈ 12 then overfits; external AUC **flat 0.767–0.858 from *K* = 2 to 20 and collapses at *K* = 50 (0.690)** |
 | Frontier identities | top-4 by moderated *t* = SULF2, MYOZ2, TRPC6, ARHGAP20 (shares only 2 with the locked panel); best external = 2-gene SULF2 + MYOZ2, 0.858 |
 
+**MYOZ2 provenance (2026-11-19, P1b — a tested statement, not a Paper 1 method)**
+
+| Quantity | Value |
+|---|---|
+| Bulk SMC/perivascular (4 cohorts) | ACTA2/MYH11/TAGLN/PDGFRB rho 0.14–0.32; SMC composite 0.01–0.45; **does not track in 4/4 cohorts**, both sample sets |
+| Bulk podocyte | NPHS2 0.35 / 0.28 / 0.53 / 0.81 (discovery/ERCB/RNA-seq/LCM, all samples); 0.31–0.52 within MN except LCM 0.40 (ns, n = 12) — **partly disease-driven** |
+| snRNA MYOZ2+ cells | 1,686 / 210,879 (**0.80 %**); scRNA 57 / 21,579 (0.26 %); depth OR **8.69** per log10 counts (7.47–10.10) |
+| Cell-type enrichment | none after depth + cell-type adjustment (OR 0.76–1.24 vs PT) |
+| Co-detection (adjusted) | NPHS2 **2.58**, NPHS1 **2.11**, PDGFRB 1.77, TAGLN 1.30, MYH11 1.28, ACTA2 1.12 (ns) |
+| Donor-level snRNA (37 donors) | TAGLN 0.54, RGS5 0.50, MYH11 0.43; PDGFRB/NPHS1/NPHS2 ≈ 0 |
+| Verdict | source **still unresolved**; not a vascular/SMC readout; weak podocyte association |
+
 Artefacts for the numbers: `output/tables/09a_*…09f_*`, `separability_*`, `gate_robustness.csv`, `05c_gate_seed_stability.csv`, `10c_*`, `10d_*`, plus `Docs/CONSOLIDATED_RESULTS.md`, `Docs/BAP_AUDIT_2026-11-18.md`, `Docs/Findings_Ledger.csv` (15 graded claims), `AUDIT_2026-10-20.md` (37 findings + per-change log).
 
 ---
@@ -102,7 +114,7 @@ Artefacts for the numbers: `output/tables/09a_*…09f_*`, `separability_*`, `gat
 | P0 | **IF validation of the panel proteins** | user (wet lab) | `Manuscript/IF_validation_plan.md`: pre-specified criteria per target, MN 10–15 (PLA2R+/− split), FSGS 6–8, MCD 4–6, normal 4–5, lineage anchors, blinded per-glomerulus quantification. Order: **MYOZ2** (unresolved cellular source, strongest single gene) → TRPC6 → PPP1R3C → SLAMF8 (barely detected on 2 platforms). ICAM1 is out of the panel and needs nothing. |
 | P0b | **Submit the B2 / B7 data request** | user (long lead time) | `Manuscript/DATA_REQUESTS.md`: NIDDK Central Repository R4R, study DOI `10.58020/f2ae-n094`; DACC `NEPTUNE-STUDY@umich.edu`; ask for the subject→sample map in the same request. This is the only thing between the biomarker paper and a prognostic one — start early. |
 | P1 | **Submission to *EBioMedicine*** | agent + user | User: authors/affiliations/ORCIDs/CRediT (currently "to be confirmed"), funding statement, 3 suggested reviewers, sign-off on declarations. Agent on request: trim Summary 412 → ~330 words if the system enforces a cap; confirm exact caps (publisher PDF is Cloudflare-blocked, P-50); renumber citations if the author list changes. Checklist: `Manuscript/SUBMISSION_CHECKLIST.md`. The manuscript/figures are submission-formatted as of 2026-11-19. |
-| P1b | **Optional consolidation analyses — DEFERRED (user, 2026-11-18)** | agent on request | (a) **MYOZ2 provenance test** — correlate with ACTA2/MYH11/TAGLN/PDGFRB across the 4 cohorts + snRNA subset; converts "source unresolved" into a tested statement (cheap). (b) **third deconvolution method** (nu-SVR/CIBERSORT-style, or top-500 specific-gene signature) — BAP wants two methods (moderate). (c) leave-one-cohort-out meta on the 584 meta-DEGs, subtyping power/ARI bootstrap, RNA-seq cohort relatedness check (all cheap). **Not worth doing:** more GEO series (adds samples, not variables, re-imports the redundancy Phase 1 removed); raising the permutation count (cannot fix a null with median 0.537 at 21 ERCB cases). |
+| P1b | **Optional consolidation analyses — (a) done, (b)/(c) deferred** | agent on request | (a) **MYOZ2 provenance — done 2026-11-19** (`tools/moyz2_provenance.R`): bulk signal is **not** an SMC/perivascular readout, weak partly disease-driven podocyte association, 0.80 % snRNA detection with no cell-type enrichment → **`Docs/MYOZ2_PROVENANCE.md`**. (b) **third deconvolution method** (nu-SVR/CIBERSORT-style, or top-500 specific-gene signature) — BAP wants two methods (moderate). (c) leave-one-cohort-out meta on the 584 meta-DEGs, subtyping power/ARI bootstrap, RNA-seq cohort relatedness check (all cheap). **Not worth doing:** more GEO series (adds samples, not variables, re-imports the redundancy Phase 1 removed); raising the permutation count (cannot fix a null with median 0.537 at 21 ERCB cases). |
 | P2 | **Phase F subtypes** | deferred | Analysis done and **negative**; resume only with new data. Blocked on B2 (eGFR/UPCR/remission). PLA2R no longer blocks anything. |
 | P4 | **Clinical variables** | user | Route in `Manuscript/DATA_REQUESTS.md`. On arrival: `metadata/neptune_clinical.csv` → append to `wgcna_traits.csv` → re-run `08b`, update the trait-count assertion in `99_verify_phase_d.R`. |
 | B13 | `07b` doublets unseeded | agent on request | `scDblFinder()` has no `set.seed()`; only matters if `07b` is re-run (~25 min). Atlas numbers are frozen. |
@@ -120,7 +132,7 @@ Artefacts for the numbers: `output/tables/09a_*…09f_*`, `separability_*`, `gat
 - **Array-to-array transfer is the hard direction**; cross-platform transfer to RNA-seq is easier. Never revert to cohort-internal z-scoring to recover the higher old AUC (P-58, P-62).
 - **Tubulointerstitial = chance** (0.449 / 0.539). TI separates disease from donors, not MN from its mimics; there is **no TI MN module**. The TI null is the strongest specificity result — present it as such.
 - **FSGS is the hard comparator** (0.632 ERCB). Report per-diagnosis AUCs; do not claim a diagnostic multi-classifier (the multiclass model's balanced accuracy is 0.44) — it is MN **detection** with one decision boundary.
-- **MYOZ2** is the strongest single gene (0.903) but has **no resolvable kidney cellular source** (93.8 % of atlas cells zero). Not a probe artefact: bulk-detected, consistent in all four cohorts. State "tissue-level reproducibility with unresolved cellular source", flag IF first.
+- **MYOZ2** is the strongest single gene (0.903) but has **no resolvable kidney cellular source** (93.8 % of atlas cells zero). Not a probe artefact: bulk-detected, consistent in all four cohorts. State "tissue-level reproducibility with unresolved cellular source", flag IF first. **Provenance is now tested** (2026-11-19): the bulk signal is **not** a perivascular/SMC readout (SMC composite rho 0.01–0.45; 4/4 cohorts below the rule), and MYOZ2 remains unassignable at cell level (0.80 % of snRNA cells; depth OR 8.69 per log10 counts; no adjusted cell-type enrichment). A weak podocyte-content association (NPHS2 0.81 all-sample in LCM, but 0.40 within MN, ns) is partly disease-driven. **Do not upgrade to "podocyte-derived"** — see `Docs/MYOZ2_PROVENANCE.md`.
 - **SLAMF8** is detected in only 9.5 % (RNA-seq) / 27 % (LCM); the three-gene model without it is comparable (ERCB 0.845).
 - **Deconvolution** is fragile: two signature variants disagree on the dominant cell type in 1,314/1,328 samples. Report the filtered signature as primary, all-gene as sensitivity. pDC (97 cells) and Neutrophil (535) fractions are unreliable and excluded from traits/attribution.
 - **Subtypes are a negative result**; the array *k* = 2 split tracks technical quality (correlation, mean expression).
@@ -135,7 +147,7 @@ Artefacts for the numbers: `output/tables/09a_*…09f_*`, `separability_*`, `gat
 ## 5. Running, verifying, committing
 
 - **Verifiers (all must exit 0):** `99_verify_phase_a` 54, `phase_b` 86, `downstream` 32, `scrna` 42, `phase_d` 117, `phase_e` 106, `trackb` 37. Each ~5–20 s.
-- **Re-run orders:** `08a → 08b → 08c → 08d → 08e` (08f with `--force`), or the whole 08d-onward chain via `bash tools/rerun_from_08d.sh`; panel revisit = `09a → 09b → 09c → 09d → 09e → 09f` then `python3 tools/make_figures.py`; Track B = `10b → 10c → 10d → 99_verify_trackb.R`.
+- **Re-run orders:** `08a → 08b → 08c → 08d → 08e` (08f with `--force`), or the whole 08d-onward chain via `bash tools/rerun_from_08d.sh`; panel revisit = `09a → 09b → 09c → 09d → 09e → 09f` then `python3 tools/make_figures.py`; Track B = `10b → 10c → 10d → 99_verify_trackb.R`. **MYOZ2 provenance (P1b, not in the Paper 1 chain):** `Rscript tools/moyz2_provenance.R` (~4 min cold; reads the 232k-cell cache `work/scrna/09g_moyz2_cell_matrix.rds` afterwards; `--refresh` rebuilds it).
 - **Foreground shell caps at 2 min** — run `04c`, `04d`, `07b`, `07c`, `07d`, `08c`, `08d`, `08f`, `05c`, `10d` in the background and read the `.out` log (P-21).
 - **Figure rebuild** needs TeX Live + Ghostscript: `python3 tools/make_figures.py` (composites via `pdflatex`, embeds fonts via `gs`, staged through `/tmp` because `gs` cannot read this exfat volume). Assert `pdfinfo → Pages: 1` per plate. Main plates carry **5–6 decisive panels**; **S1–S6 carry 5 support panels each** (`panel_h` = 62 mm): S1 supports cohort/gate/atlas QC, S2–S3 the module figure, S4–S5 the panel figure, and S6 is the stand-alone negative subtyping result. Every panel is cited in order in Results (checked by a citation-order script).
 - **Manuscript rebuild:** `pandoc Manuscript/Paper1_manuscript.md --reference-doc=reference/tnr_fangsong_redcode.docx -o Manuscript/Paper1_manuscript.docx` (pandoc 3.8.3). Then refresh the submit copies: `rm -f Manuscript/Figures/*.pdf Manuscript/Figures/*.jpeg` and copy `output/figures/Fig*` plus `output/figures/supplementary/FigS*` into `Manuscript/Figures/` (24 files). Verify the DOCX with `pandoc Manuscript/Paper1_manuscript.docx -t plain` (expect 12 legends, Fig 1–6 + S1–S6).
@@ -216,6 +228,7 @@ Artefacts for the numbers: `output/tables/09a_*…09f_*`, `separability_*`, `gat
 - **P-68** Never type a number into a script: read it from the artefact with a `stopifnot()` and let the verifier assert reproduction (`abs(x − source) < 1e-6`).
 - **P-69** `check(isTRUE(x))` silently fails on vector predicates — wrap in `all()` / `any()`.
 - **P-70** A literature-derived registry needs a code-enforced inclusion rule (≥ 2 named genes, PMID or DOI, reported performance) plus an exclusion log with a reason per rejected candidate.
+- **P-71** `ggsave(device = "jpeg")` fails on this R 4.6.1 with `Graphics API version mismatch` (the string device routes through an incompatible raster backend; direct `grDevices::jpeg()` works). Pass `device = grDevices::jpeg` explicitly. Any R figure script rerun will hit this; `tools/make_figures.py` is Python and unaffected.
 
 ---
 
@@ -256,6 +269,7 @@ Artefacts for the numbers: `output/tables/09a_*…09f_*`, `separability_*`, `gat
 | `10b`, `10c`, `10d` | Track B: harmonised matrix cache, 7-rung attrition ladder, panel-size frontier |
 | `99_verify_*` (7 scripts) | 54 / 86 / 32 / 42 / 117 / 106 / 37 assertions |
 | `tools/make_figures.py`, `tools/make_environment_record.R`, `tools/rerun_*.sh` | plate compositor (~2–3 min), environment record, resume drivers |
+| `tools/moyz2_provenance.R` | P1b MYOZ2 provenance test (bulk correlation + snRNA detection); outside the Paper 1 pipeline, writes `09g_*` |
 
 **Cross-machine resume:** copy the project (at least `R/`, `metadata/`, `output/`, `reference/`, `Manuscript/`, `Docs/` and the `.rds` under `work/`) plus `MN/Datasets`; install R 4.6.x; rebuild `.Rlib` with `00d` → `02a` → `R CMD INSTALL -l .Rlib work/cdf/<pkg>` (×5, no network needed); run all seven verifiers; `scrna/extracted/` regenerates from `Rscript R/07a_scrna_manifest.R`; figure rebuild needs TeX Live + Ghostscript. **No API keys or credentials are used** (CIBERSORTx is an optional cross-check only and would need a licence token).
 

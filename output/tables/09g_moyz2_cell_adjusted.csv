@@ -1,0 +1,21 @@
+"model","term","n","n_myoz2_pos","odds_ratio","ci_low","ci_high","p"
+"MYOZ2 detection (ref: PT)","celltypeCD_PC",210879,130,0.897,0.736,1.093,0.2806
+"MYOZ2 detection (ref: PT)","celltypeDCT",210879,155,0.816,0.678,0.981,0.0309
+"MYOZ2 detection (ref: PT)","celltypeEndothelium",210879,104,0.921,0.742,1.143,0.4565
+"MYOZ2 detection (ref: PT)","celltypeFibroblast",210879,32,0.975,0.679,1.399,0.8891
+"MYOZ2 detection (ref: PT)","celltypeMast",210879,33,1.009,0.706,1.442,0.9591
+"MYOZ2 detection (ref: PT)","celltypeMesangium",210879,42,1.043,0.758,1.435,0.7959
+"MYOZ2 detection (ref: PT)","celltypePEC",210879,107,0.76,0.614,0.941,0.01187
+"MYOZ2 detection (ref: PT)","celltypePlasma",210879,12,1.221,0.685,2.177,0.4982
+"MYOZ2 detection (ref: PT)","celltypePodocyte",210879,64,1.244,0.954,1.622,0.1065
+"MYOZ2 detection (ref: PT)","celltypeTAL",210879,579,1.025,0.904,1.163,0.7008
+"MYOZ2 detection (ref: PT)","log_counts",210879,NA,8.685,7.465,10.105,2.37e-172
+"ACTA2 detection (adjusted)","MYOZ2+",210879,1686,1.12,0.93,1.349,0.2318
+"MYH11 detection (adjusted)","MYOZ2+",210879,1686,1.279,1.091,1.5,0.002422
+"TAGLN detection (adjusted)","MYOZ2+",210879,1686,1.302,1.081,1.569,0.005497
+"PDGFRB detection (adjusted)","MYOZ2+",210879,1686,1.766,1.499,2.08,1.03e-11
+"NPHS1 detection (adjusted)","MYOZ2+",210879,1686,2.113,1.807,2.47,6.767e-21
+"NPHS2 detection (adjusted)","MYOZ2+",210879,1686,2.584,2.188,3.052,5.262e-29
+"COL1A1 detection (adjusted)","MYOZ2+",210879,1686,1.152,0.9,1.475,0.2612
+"RGS5 detection (adjusted)","MYOZ2+",210879,1686,1.203,1.002,1.446,0.0479
+"PLVAP detection (adjusted)","MYOZ2+",210879,1686,1.077,0.872,1.329,0.4926

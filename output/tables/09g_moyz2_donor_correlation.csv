@@ -1,0 +1,19 @@
+"scope","gene","n_donors","rho","p"
+"all snRNA donors","ACTA2",37,0.362,0.02768
+"all snRNA donors","MYH11",37,0.4308,0.007778
+"all snRNA donors","TAGLN",37,0.5396,0.0005679
+"all snRNA donors","PDGFRB",37,-0.0166,0.9223
+"all snRNA donors","NPHS1",37,-0.0102,0.9522
+"all snRNA donors","NPHS2",37,-0.0612,0.7191
+"all snRNA donors","COL1A1",37,-0.0903,0.595
+"all snRNA donors","RGS5",37,0.5038,0.001478
+"all snRNA donors","PLVAP",37,0.0977,0.5652
+"MN snRNA donors","ACTA2",6,0.6,0.208
+"MN snRNA donors","MYH11",6,0.7143,0.1108
+"MN snRNA donors","TAGLN",6,0.9429,0.004805
+"MN snRNA donors","PDGFRB",6,0.6,0.208
+"MN snRNA donors","NPHS1",6,-0.0286,0.9572
+"MN snRNA donors","NPHS2",6,-0.3143,0.5441
+"MN snRNA donors","COL1A1",6,0.6571,0.1562
+"MN snRNA donors","RGS5",6,0.9429,0.004805
+"MN snRNA donors","PLVAP",6,0.5429,0.2657

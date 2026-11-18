@@ -11,7 +11,7 @@
 
 **Paper 1** (Phases 0, 1, A–E) is complete, re-derived under the audited pipeline and **frozen — add no methods to it**. Claims, figures, tables and seven verifiers are final.
 
-**Track B** is the live workstream: 6 published MN panels carried down a 7-rung attrition ladder (R1 apparent → R2 de-duplication → R3 nested CV → R4 transductive external → R5 harmonised external → R5r RNA-seq → R6 refit null). The pre-registered hypothesis (median R5 AUC < 0.70) was **falsified** and replaced by a stronger claim: panels do transfer, but **0/6 beats its own refit permutation null**, and external discrimination does not improve with panel size.
+**Track B** is the live workstream: **12** published MN panels carried down a 7-rung attrition ladder (R1 apparent → R2 de-duplication → R3 nested CV → R4 transductive external → R5 harmonised external → R5r RNA-seq → R6 refit null). The pre-registered hypothesis (median R5 AUC < 0.70) was tested on the original 6-panel registry and **falsified** (median 0.821). The registry was expanded to 12 panels on 2026-11-18 (B15): median R5 is now **0.674** (8/12 below 0.70), so transfer is real for some panels but far from uniform. The robust expanded claim is **0/12 beats its own refit permutation null** (*p* = 0.055–1.000), and external discrimination still does not improve with panel size.
 
 **Chain to restate on resume:** 13 accessions → 2,165 samples → 453 MN samples → **178 unique MN patients** → 7 non-redundant cohort sets → Phase A 54/54 → Phase B 86/86 → gate passes (nested CV 0.911–0.926, ERCB 0.861–0.922, *p* = 0.048) → subtypes **negative** → scRNA 432,378 cells → 236,107-cell atlas, 16 cell types → deconvolution 1,328 samples, 67/316 significant → Phase D modules **all preserved**, MN signal in pink + red → Phase E **four-gene panel**, ERCB 0.816 → recalibrated (Brier 0.845 → 0.096).
 
@@ -70,10 +70,11 @@ Every value below is script-generated and asserted by a verifier; if prose and t
 
 | Quantity | Value |
 |---|---|
-| Panels / ladder | **6** registered (P01–P06) × 7 rungs = **42 rows** (`output/tables/10c_attrition.csv`) |
-| Median AUC by rung | R1 0.785 / R3 0.747 / **R5 0.821** (range 0.67–0.89) |
-| Refit null | **0/6 significant** (*p* = 0.055–0.269); our own panel *p* = 0.11 sits in the same place |
-| Standardisation effect | R4 → R5 moves AUC by up to 0.22 **in both directions** |
+| Panels / ladder | **12** registered (P01–P12) × 7 rungs = **84 rows** (`output/tables/10c_attrition.csv`) |
+| Median AUC by rung | R1 **0.675** / R3 **0.625** / **R5 0.674** (range 0.359–0.893; **8/12 below 0.70**) |
+| Registry split (descriptive) | P01–P06 median R5 **0.821** vs P07–P12 **0.500** — the six added panels transfer worse |
+| Refit null | **0/12 significant** (*p* = 0.055–1.000); our own panel *p* = 0.11 sits in the same place |
+| Standardisation effect | R4 → R5 moves AUC by up to **0.105** **in both directions** |
 | Panel-size frontier | internal CV peaks at *K* ≈ 12 then overfits; external AUC **flat 0.767–0.858 from *K* = 2 to 20 and collapses at *K* = 50 (0.690)** |
 | Frontier identities | top-4 by moderated *t* = SULF2, MYOZ2, TRPC6, ARHGAP20 (shares only 2 with the locked panel); best external = 2-gene SULF2 + MYOZ2, 0.858 |
 
@@ -85,7 +86,7 @@ Artefacts for the numbers: `output/tables/09a_*…09f_*`, `separability_*`, `gat
 
 | # | Item | Owner | What to do / resume from |
 |---|---|---|---|
-| B15 | **Track B needs ≥ 10 panels** | user decision | Register holds 6; the bar is ≥ 10. Blocked by source format (paywalled supplements, single-gene papers), not effort. **Decide:** spend a session on PMC/publisher full-text + supplementary-table retrieval, or submit with 6 panels and a stated limitation. Rejected candidates are logged in `metadata/trackB_exclusions.csv`. |
+| B15 | **Track B panel registry** | **done 2026-11-18** | Expanded 6 → **12** panels (P07–P12: Luo 2026, Fan 2025, Gui 2024, Shao 2025, Hui 2025, Zhao 2026) from PubMed/PMC full text; **15 exclusions** logged with reasons in `metadata/trackB_exclusions.csv`; method in `metadata/trackB_retrieval_log.md`. The ≥ 10 bar is met. Remaining user decision: submit the 12-panel benchmark as is, or fund a further retrieval pass (no qualifying paywalled candidate is currently identified). |
 | P0 | **IF validation of the panel proteins** | user (wet lab) | `Manuscript/IF_validation_plan.md`: pre-specified criteria per target, MN 10–15 (PLA2R+/− split), FSGS 6–8, MCD 4–6, normal 4–5, lineage anchors, blinded per-glomerulus quantification. Order: **MYOZ2** (unresolved cellular source, strongest single gene) → TRPC6 → PPP1R3C → SLAMF8 (barely detected on 2 platforms). ICAM1 is out of the panel and needs nothing. |
 | P0b | **Submit the B2 / B7 data request** | user (long lead time) | `Manuscript/DATA_REQUESTS.md`: NIDDK Central Repository R4R, study DOI `10.58020/f2ae-n094`; DACC `NEPTUNE-STUDY@umich.edu`; ask for the subject→sample map in the same request. This is the only thing between the biomarker paper and a prognostic one — start early. |
 | P1 | **Submission to *EBioMedicine*** | agent + user | User: authors/affiliations/ORCIDs/CRediT (currently "to be confirmed"), funding statement, 3 suggested reviewers, sign-off on declarations. Agent on request: trim Summary 377 → ~330 words if the system enforces a cap; confirm exact caps (publisher PDF is Cloudflare-blocked, P-50); renumber citations if the author list changes. Checklist: `Manuscript/SUBMISSION_CHECKLIST.md`. |
@@ -114,7 +115,7 @@ Artefacts for the numbers: `output/tables/09a_*…09f_*`, `separability_*`, `gat
 - **Bulk ↔ pseudobulk concordance is weak** — best Pearson 0.29 (endothelium), 0.27 TAL, 0.15 podocyte, negative for B and T_NK; ~55–60 % direction agreement. A limit of comparing whole-tissue bulk with one cell type's pseudobulk, not a bug. Pseudobulk DE is hypothesis-grade (MN vs control 15 vs 10 donors; 6 MN donors in the reference cohort).
 - **No participant linkage** for GSE197307/GSE182380 (no id field). Never infer overlap from sample titles (P-2). `sample_metadata.csv`'s `gsm` column mixes 1,623 real `GSM####`, 473 `Sample_N` indices and 69 submitter ids — read `id_type` / `id_is_globally_unique`.
 - **PLA2R within-MN** (6 vs 6) is uninterpretable; the panel is antigen-independent (0.976 / 0.881 vs MCD).
-- **Track B is a pilot**: 6 panels, a falsified pre-registration, and a replacement claim that any small gene set rides the same axis. Panels are vindicated on performance, not gene identity.
+- **Track B now has 12 panels**, not 6. The pre-registration was falsified on the original 6; the expanded registry's median R5 is 0.674, but do **not** present that as confirmation of the pre-registered hypothesis — the registry was expanded after the fact. The defensible claims are: **0/12** panels beat their refit null; transfer is heterogeneous (P01–P06 median 0.821 vs P07–P12 0.500); panel size does not predict external AUC. Panels are vindicated on performance, not gene identity.
 - **Not claimed anywhere:** a PubMed/GEO systematic search ("Evidence before this study" was rewritten to state only the retrieved literature); EBioMedicine word/figure caps (unverified — mark "to confirm").
 
 ---
@@ -251,4 +252,4 @@ Artefacts for the numbers: `output/tables/09a_*…09f_*`, `separability_*`, `gat
 
 1. **Read `handoff.md` first**, then confirm the state by running the seven verifiers (expect **54 / 86 / 32 / 42 / 117 / 106 / 37**, all exit 0). Check for 0-byte outputs before trusting any resume (P-28), and re-derive any count you are about to quote (P-66).
 2. Do not quote pre-audit figures, do not add methods to Paper 1, do not hard-code a number a table already stores (P-68), and do not read `gsm` as a GEO accession for the RNA-seq cohorts.
-3. The two decisions waiting on the user are **B15** (Track B: ≥ 10 panels — full-text retrieval or submit with 6 + limitation) and **P1** (author list, funding, reviewers, declarations). Ask which to proceed with; everything else is either blocked externally (B2, B7) or wet-lab work (P0).
+3. **B15 is resolved** (12-panel registry, 2026-11-18); the open decision is whether the 12-panel benchmark ships as is. The remaining user decision is **P1** (author list, funding, reviewers, declarations). Ask which to proceed with; everything else is either blocked externally (B2, B7) or wet-lab work (P0).

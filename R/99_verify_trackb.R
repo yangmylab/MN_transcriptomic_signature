@@ -27,7 +27,7 @@ cat("=== Track B verifier ===\n\n")
 # --- register ---------------------------------------------------------------
 reg <- read.csv(file.path(meta_dir, "trackB_panel_register.csv"), stringsAsFactors = FALSE)
 
-check(nrow(reg) >= 5, "panel register holds at least 5 published panels", nrow(reg))
+check(nrow(reg) >= 10, "panel register holds at least 10 published panels (B15 bar)", nrow(reg))
 # Identifier rule: a panel must be traceable. PMID preferred; a DOI alone is acceptable (P06's PMID
 # was not retrievable from the source page, its DOI was). The gap is recorded in the row's note.
 check(all(nzchar(reg$pmid) | nzchar(reg$doi)), "every panel carries a PMID or a DOI", "")

@@ -1,0 +1,5 @@
+"contrast","genes","lfc_pearson","lfc_spearman","deg_combat","deg_raw","deg_overlap","deg_jaccard"
+"MN_vs_Control",7616,0.9986,0.9981,323,272,266,0.8085
+"MN_vs_FSGS",7616,0.9831,0.9678,0,0,0,0
+"MN_vs_MCD",7616,0.9831,0.9767,14,12,10,0.625
+"MN_vs_Other",7616,0.9994,0.9984,22,21,20,0.8696

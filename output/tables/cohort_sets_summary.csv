@@ -1,0 +1,8 @@
+"set","releases","genes","genes_symbol","samples","patients","MN","FSGS","MCD","Other","control","other_dx","role","MN_overlapping_discovery"
+"disc_glom_array","GSE200828",25582,24846,153,153,51,31,19,46,6,0,"discovery / external validation",51
+"disc_ti_array","GSE133288+GSE200818",25582,24846,269,269,51,78,63,72,5,0,"discovery / external validation",51
+"val_glom_array","GSE104948",19769,19401,196,196,21,18,14,0,26,117,"discovery / external validation",0
+"val_ti_array","GSE104954",19769,19401,195,195,18,13,13,0,26,125,"discovery / external validation",0
+"cross_glom_rnaseq","GSE197307",15739,14562,282,282,62,93,89,29,8,1,"independent RNA-seq cohort",NA
+"cross_ti_rnaseq","GSE182380",12605,12605,199,199,59,70,32,37,0,1,"independent RNA-seq cohort",NA
+"pla2r_lcm","GSE216841",20321,19591,34,34,12,0,14,0,8,0,"discovery / external validation",0

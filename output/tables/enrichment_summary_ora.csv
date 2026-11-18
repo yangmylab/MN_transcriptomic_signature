@@ -1,0 +1,31 @@
+"compartment","contrast","collection","n_terms","n_significant","top_term","top_padj"
+"Glom","MN_vs_Control","GO_BP",3353,675,"anatomical structure formation involved in morphogenesis",5.44e-07
+"Glom","MN_vs_Control","GO_CC",388,38,"cell surface",3.89e-07
+"Glom","MN_vs_Control","GO_MF",594,79,"solute:sodium symporter activity",1.14e-06
+"Glom","MN_vs_Control","Reactome",742,43,"REACTOME_DRUG_ADME",1.38e-05
+"Glom","MN_vs_Control","KEGG",133,17,"KEGG_GLYCINE_SERINE_AND_THREONINE_METABOLISM",0.000722
+"Glom","MN_vs_FSGS","GO_BP",962,614,"biomineral tissue development",0.00609
+"Glom","MN_vs_FSGS","GO_CC",64,2,"dense core granule",0.0331
+"Glom","MN_vs_FSGS","GO_MF",79,25,"hormone activity",0.0238
+"Glom","MN_vs_FSGS","Reactome",65,34,"REACTOME_KERATAN_SULFATE_DEGRADATION",0.172
+"Glom","MN_vs_FSGS","KEGG",23,22,"KEGG_CYTOKINE_CYTOKINE_RECEPTOR_INTERACTION",0.148
+"Glom","MN_vs_MCD","GO_BP",1413,10,"lipid transport",0.00616
+"Glom","MN_vs_MCD","GO_CC",142,7,"external encapsulating structure",0.00676
+"Glom","MN_vs_MCD","GO_MF",240,26,"lipid transporter activity",0.0071
+"Glom","MN_vs_MCD","Reactome",201,0,"REACTOME_ASPIRIN_ADME",0.406
+"Glom","MN_vs_MCD","KEGG",47,3,"KEGG_PPAR_SIGNALING_PATHWAY",0.0103
+"Glom","MN_vs_Other","GO_BP",535,188,"positive regulation of ion transmembrane transporter activity",0.035
+"Glom","MN_vs_Other","GO_CC",56,26,"cation channel complex",0.0735
+"Glom","MN_vs_Other","GO_MF",87,61,"metal ion transmembrane transporter activity",0.0896
+"Glom","MN_vs_Other","Reactome",53,34,"REACTOME_SIGNALING_BY_GPCR",0.13
+"Glom","MN_vs_Other","KEGG",12,12,"KEGG_CYTOKINE_CYTOKINE_RECEPTOR_INTERACTION",0.00643
+"Glom","MN_vs_nonMN","GO_BP",674,220,"biomineral tissue development",0.00427
+"Glom","MN_vs_nonMN","GO_CC",76,6,"cell surface",0.00682
+"Glom","MN_vs_nonMN","GO_MF",73,18,"collagen binding",0.135
+"Glom","MN_vs_nonMN","Reactome",88,51,"REACTOME_G_ALPHA_Q_SIGNALLING_EVENTS",0.16
+"Glom","MN_vs_nonMN","KEGG",15,13,"KEGG_CYTOKINE_CYTOKINE_RECEPTOR_INTERACTION",0.000417
+"TI","MN_vs_Control","GO_BP",2888,446,"leukocyte proliferation",0.00331
+"TI","MN_vs_Control","GO_CC",346,13,"external encapsulating structure",0.0706
+"TI","MN_vs_Control","GO_MF",495,9,"heme binding",0.0133
+"TI","MN_vs_Control","Reactome",618,4,"REACTOME_INTERFERON_ALPHA_BETA_SIGNALING",0.0485
+"TI","MN_vs_Control","KEGG",121,13,"KEGG_SYSTEMIC_LUPUS_ERYTHEMATOSUS",0.0356

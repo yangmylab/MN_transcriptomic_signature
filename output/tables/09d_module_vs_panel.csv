@@ -1,0 +1,7 @@
+"cohort","model","auc","ci_low","ci_high"
+"disc_glom_array","4-gene panel (locked)",0.9224,0.8779,0.9669
+"val_glom_array","4-gene panel (locked)",0.8156,0.7211,0.9101
+"cross_glom_rnaseq","4-gene panel (locked)",0.9006,0.8617,0.9394
+"disc_glom_array","3 module scores (pink+black+red)",0.8337,0.7617,0.9058
+"val_glom_array","3 module scores (pink+black+red)",0.7498,0.6471,0.8524
+"cross_glom_rnaseq","3 module scores (pink+black+red)",0.9038,0.8575,0.95

@@ -1,0 +1,3 @@
+"cohort","n","r2_score_on_PC1_5","auc_unadjusted","auc_adjusted_for_PC1_5","MN_term_p"
+"disc",147,0.3673,0.9224,0.9432,2.165e-08
+"ercb",170,0.2079,0.8156,0.9674,0.01276

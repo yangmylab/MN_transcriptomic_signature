@@ -1,0 +1,4 @@
+"compartment","test_set","comparison","n_modules","shared_genes","n_preserved","n_weak","n_not_preserved","median_Zsummary","max_Zsummary","n_permutations"
+"glom","val_glom_array","primary",11,5911,9,0,2,28.999,84.626,100
+"ti","val_ti_array","primary",9,5626,7,0,2,26.579,61.708,100
+"glom","cross_glom_rnaseq","secondary cross-platform",11,7574,9,0,2,26.563,90.13,50

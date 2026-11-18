@@ -1,0 +1,8 @@
+"check","value","n_test"
+"reference (discovery -> ERCB)",0.914,170
+"permutation null: median AUC",0.5,NA
+"permutation null: 95th percentile",0.6743,NA
+"empirical p",0.0476,NA
+"ERCB QC-flagged samples removed",0.9389,120
+"QC-flagged removed in both cohorts",0.9312,120
+"reverse direction (ERCB -> discovery)",0.7721,147

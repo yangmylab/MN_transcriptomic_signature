@@ -1,0 +1,8 @@
+"metric","value"
+"subtype-defining genes: array",200
+"subtype-defining genes: RNA-seq",702
+"shared defining genes",1
+"Jaccard of defining genes",0.0011
+"max cross-platform centroid correlation",0.4998
+"array stable partition",1
+"RNA-seq stable partition",0

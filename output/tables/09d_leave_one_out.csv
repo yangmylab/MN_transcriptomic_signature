@@ -1,0 +1,10 @@
+"model","n_genes","ERCB_auc","RNAseq_auc"
+"all 5 genes",4,0.8156,0.9003
+"without SLAMF8",3,0.845,0.8906
+"without TRPC6",3,0.8357,0.8893
+"without MYOZ2",3,0.7383,0.874
+"without PPP1R3C",3,0.8044,0.8986
+"only SLAMF8",1,0.5628,0.76
+"only TRPC6",1,0.7347,0.8281
+"only MYOZ2",1,0.9028,0.8758
+"only PPP1R3C",1,0.7801,0.7378

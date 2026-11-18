@@ -1,0 +1,7 @@
+"cohort","n","n_MN","n_nonMN","auc","ci_low","ci_high","youden_threshold","sensitivity","specificity","sens_at_0.5","spec_at_0.5","calibration_in_large","calibration_intercept","calibration_slope","genes_used"
+"Discovery (apparent, not independent)",147,51,96,0.9224,0.8779,0.9669,0.5814,0.7647,0.9271,0.7647,0.8854,0,-3.1974,6.1782,4
+"ERCB external",170,21,149,0.8156,0.7211,0.9101,0.9986,0.9048,0.6711,1,0,0.8588,-108.6599,107.3026,4
+"RNA-seq independent cohort",273,62,211,0.9006,0.8617,0.9394,0.0017,0.871,0.7725,0,1,-0.2148,-2.1115,97.6718,4
+"ERCB secondary endpoint (incl. donors)",196,21,175,0.8373,0.7493,0.9252,0.9986,0.9048,0.72,1,0,0.8727,-125.4462,124.0659,4
+"Discovery secondary endpoint (incl. donors)",153,51,102,0.9268,0.8846,0.969,0.359,0.8627,0.8333,0.7647,0.8922,4e-04,-3.2521,6.2631,4
+"Reference: gate elastic net (13,379 genes)",170,21,149,0.7654,0.6876,0.8433,NA,NA,NA,NA,NA,NA,NA,NA,13379

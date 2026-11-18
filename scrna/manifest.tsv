@@ -1,0 +1,9 @@
+dataset	accession	layer	archive	expected_samples	priority	format
+kidney_sn	GSE271188	kidney_snRNA	../Datasets/GSE271188_RAW.tar	37	tier1	10x
+kidney_sc	GSE171458	kidney_scRNA	../Datasets/GSE171458_RAW.tar	8	tier1	expression_matrix
+kidney_sc	GSE241302	kidney_scRNA	../Datasets/GSE241302_RAW.tar	4	tier1	10x
+spatial	GSE286184	xenium	scrna/raw/GSE286184/GSE286184_RAW.tar	22	tier2	xenium
+pbmc	GSE283826	pbmc_scRNA	scrna/raw/GSE283826/GSE283826_PBMC_with_annotation.rds.gz	9	tier2	rds
+pbmc	GSE341102	pbmc_scRNA	scrna/raw/GSE341102/GSE341102_RAW.tar	8	tier2	10x
+kidney_sc	GSE199850	kidney_scRNA	scrna/raw/GSE199850/GSE199850_RAW.tar	1	tier2	10x
+urine	GSE193512	urine_scRNA	scrna/raw/GSE193512/GSE193512_RAW.tar	2	tier2	10x

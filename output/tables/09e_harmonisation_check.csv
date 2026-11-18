@@ -1,0 +1,3 @@
+"cohort","auc_raw","auc_harmonised","cil_raw","cil_harmonised","score_range_raw","score_range_harmonised"
+"ERCB external",0.8156,0.8169,0.8588,0.1973,"0.7537-1.0000","0.0000-0.9872"
+"RNA-seq independent",0.9006,0.8986,-0.2148,0.1055,"0.0000-0.4052","0.0000-0.9904"

@@ -1,0 +1,401 @@
+"set","celltype","contrast","median_MN","median_ref","diff","p_value","n_MN","n_ref","testable","note","p_adj"
+"disc_glom_array","B","MN_vs_Control",0,0,0,0.219887205005116,51,6,TRUE,"",0.395460003308196
+"disc_glom_array","CD_PC","MN_vs_Control",0,0,0,NA,51,6,FALSE,"fraction 0 in both groups (cell type absent)",NA
+"disc_glom_array","DCT","MN_vs_Control",0,0,0,NA,51,6,FALSE,"fraction 0 in both groups (cell type absent)",NA
+"disc_glom_array","Endothelium","MN_vs_Control",0.1488,0.0855,0.0633,0.00561818139234127,51,6,TRUE,"",0.03170259499964
+"disc_glom_array","Fibroblast","MN_vs_Control",0.0588,0.1181,-0.0593,0.00188801797288583,51,6,TRUE,"",0.0142050876055219
+"disc_glom_array","Mast","MN_vs_Control",0,0,0,NA,51,6,FALSE,"fraction 0 in both groups (cell type absent)",NA
+"disc_glom_array","Mesangium","MN_vs_Control",0,0,0,NA,51,6,FALSE,"fraction 0 in both groups (cell type absent)",NA
+"disc_glom_array","Myeloid","MN_vs_Control",0.0097,0.0032,0.0065,0.166894793054235,51,6,TRUE,"",0.329617216282113
+"disc_glom_array","Neutrophil","MN_vs_Control",0.0231,0.0352,-0.0121,0.498413329370322,51,6,TRUE,"",0.661758874290007
+"disc_glom_array","pDC","MN_vs_Control",0.015,0.0444,-0.0294,0.000171709725862995,51,6,TRUE,"",0.00273948224319329
+"disc_glom_array","PEC","MN_vs_Control",0.0276,0.0541,-0.0265,0.0197848985817062,51,6,TRUE,"",0.0735532700214018
+"disc_glom_array","Plasma","MN_vs_Control",0,0,0,NA,51,6,FALSE,"fraction 0 in both groups (cell type absent)",NA
+"disc_glom_array","Podocyte","MN_vs_Control",0.6366,0.6147,0.022,0.134876204236872,51,6,TRUE,"",0.293937107164494
+"disc_glom_array","PT","MN_vs_Control",0.0347,0.0284,0.0063,0.322830637854504,51,6,TRUE,"",0.513646456383397
+"disc_glom_array","T_NK","MN_vs_Control",0,0,0,0.667035035027606,51,6,TRUE,"",0.807597973443385
+"disc_glom_array","TAL","MN_vs_Control",0,0,0,NA,51,6,FALSE,"fraction 0 in both groups (cell type absent)",NA
+"disc_glom_array","B","MN_vs_FSGS",0,0,0,0.946194131863228,51,31,TRUE,"",0.99498806271547
+"disc_glom_array","CD_PC","MN_vs_FSGS",0,0,0,NA,51,31,FALSE,"fraction 0 in both groups (cell type absent)",NA
+"disc_glom_array","DCT","MN_vs_FSGS",0,0,0,NA,51,31,FALSE,"fraction 0 in both groups (cell type absent)",NA
+"disc_glom_array","Endothelium","MN_vs_FSGS",0.1488,0.1575,-0.0087,0.101998548437056,51,31,TRUE,"",0.246042300046639
+"disc_glom_array","Fibroblast","MN_vs_FSGS",0.0588,0.0879,-0.0291,0.00214300558166421,51,31,TRUE,"",0.0157485991582765
+"disc_glom_array","Mast","MN_vs_FSGS",0,0,0,NA,51,31,FALSE,"fraction 0 in both groups (cell type absent)",NA
+"disc_glom_array","Mesangium","MN_vs_FSGS",0,0,0,NA,51,31,FALSE,"fraction 0 in both groups (cell type absent)",NA
+"disc_glom_array","Myeloid","MN_vs_FSGS",0.0097,0.0086,0.0011,0.469175788402424,51,31,TRUE,"",0.636307077833331
+"disc_glom_array","Neutrophil","MN_vs_FSGS",0.0231,0.0223,8e-04,0.954215108250979,51,31,TRUE,"",0.99498806271547
+"disc_glom_array","pDC","MN_vs_FSGS",0.015,0.0118,0.0031,0.0147476570598606,51,31,TRUE,"",0.0605228523495577
+"disc_glom_array","PEC","MN_vs_FSGS",0.0276,0.0441,-0.0165,0.0975301129355716,51,31,TRUE,"",0.242673351871186
+"disc_glom_array","Plasma","MN_vs_FSGS",0,0,0,0.208576751071563,51,31,TRUE,"",0.38822162386553
+"disc_glom_array","Podocyte","MN_vs_FSGS",0.6366,0.5874,0.0493,0.00493161671655495,51,31,TRUE,"",0.0288590904153957
+"disc_glom_array","PT","MN_vs_FSGS",0.0347,0.032,0.0027,0.666753531940732,51,31,TRUE,"",0.807597973443385
+"disc_glom_array","T_NK","MN_vs_FSGS",0,0,0,0.580915035171515,51,31,TRUE,"",0.734276604456795
+"disc_glom_array","TAL","MN_vs_FSGS",0,0,0,NA,51,31,FALSE,"fraction 0 in both groups (cell type absent)",NA
+"disc_glom_array","B","MN_vs_MCD",0,0,0,0.302124182085666,51,19,TRUE,"",0.492119801747786
+"disc_glom_array","CD_PC","MN_vs_MCD",0,0,0,NA,51,19,FALSE,"fraction 0 in both groups (cell type absent)",NA
+"disc_glom_array","DCT","MN_vs_MCD",0,0,0,NA,51,19,FALSE,"fraction 0 in both groups (cell type absent)",NA
+"disc_glom_array","Endothelium","MN_vs_MCD",0.1488,0.1832,-0.0344,0.00927490753190585,51,19,TRUE,"",0.0457948559387851
+"disc_glom_array","Fibroblast","MN_vs_MCD",0.0588,0.0714,-0.0125,0.209605241297696,51,19,TRUE,"",0.38822162386553
+"disc_glom_array","Mast","MN_vs_MCD",0,0,0,NA,51,19,FALSE,"fraction 0 in both groups (cell type absent)",NA
+"disc_glom_array","Mesangium","MN_vs_MCD",0,0,0,NA,51,19,FALSE,"fraction 0 in both groups (cell type absent)",NA
+"disc_glom_array","Myeloid","MN_vs_MCD",0.0097,8e-04,0.0089,0.15652746649339,51,19,TRUE,"",0.318875692659836
+"disc_glom_array","Neutrophil","MN_vs_MCD",0.0231,0.0173,0.0059,0.118425294987594,51,19,TRUE,"",0.269225850475393
+"disc_glom_array","pDC","MN_vs_MCD",0.015,0.0152,-2e-04,0.832645572797404,51,19,TRUE,"",0.927702008942034
+"disc_glom_array","PEC","MN_vs_MCD",0.0276,0.0329,-0.0053,0.228942323195857,51,19,TRUE,"",0.406436933313994
+"disc_glom_array","Plasma","MN_vs_MCD",0,0,0,NA,51,19,FALSE,"fraction 0 in both groups (cell type absent)",NA
+"disc_glom_array","Podocyte","MN_vs_MCD",0.6366,0.6089,0.0278,0.0357384594650378,51,19,TRUE,"",0.118877402010021
+"disc_glom_array","PT","MN_vs_MCD",0.0347,0.0433,-0.0086,0.163392961860436,51,19,TRUE,"",0.325434984047051
+"disc_glom_array","T_NK","MN_vs_MCD",0,0,0,0.120792398618263,51,19,TRUE,"",0.271449259300203
+"disc_glom_array","TAL","MN_vs_MCD",0,0,0,NA,51,19,FALSE,"fraction 0 in both groups (cell type absent)",NA
+"disc_glom_array","B","MN_vs_Other",0,0,0,0.290433649088353,51,46,TRUE,"",0.480508026763977
+"disc_glom_array","CD_PC","MN_vs_Other",0,0,0,NA,51,46,FALSE,"fraction 0 in both groups (cell type absent)",NA
+"disc_glom_array","DCT","MN_vs_Other",0,0,0,NA,51,46,FALSE,"fraction 0 in both groups (cell type absent)",NA
+"disc_glom_array","Endothelium","MN_vs_Other",0.1488,0.1563,-0.0075,0.513223939064836,51,46,TRUE,"",0.678572237424636
+"disc_glom_array","Fibroblast","MN_vs_Other",0.0588,0.0839,-0.0251,0.00165343709748359,51,46,TRUE,"",0.013040474875239
+"disc_glom_array","Mast","MN_vs_Other",0,0,0,NA,51,46,FALSE,"fraction 0 in both groups (cell type absent)",NA
+"disc_glom_array","Mesangium","MN_vs_Other",0,0,0,0.138299965656672,51,46,TRUE,"",0.296005534923811
+"disc_glom_array","Myeloid","MN_vs_Other",0.0097,0.0222,-0.0125,0.0656540148320477,51,46,TRUE,"",0.178850592128682
+"disc_glom_array","Neutrophil","MN_vs_Other",0.0231,0.0236,-4e-04,0.94807937873753,51,46,TRUE,"",0.99498806271547
+"disc_glom_array","pDC","MN_vs_Other",0.015,0.0115,0.0035,0.088192499757211,51,46,TRUE,"",0.225748292805908
+"disc_glom_array","PEC","MN_vs_Other",0.0276,0.0365,-0.0089,0.345200300916852,51,46,TRUE,"",0.530795866510906
+"disc_glom_array","Plasma","MN_vs_Other",0,0,0,0.138299965656672,51,46,TRUE,"",0.296005534923811
+"disc_glom_array","Podocyte","MN_vs_Other",0.6366,0.5825,0.0541,5.23586865863734e-06,51,46,TRUE,"",0.00033090689922588
+"disc_glom_array","PT","MN_vs_Other",0.0347,0.0373,-0.0026,0.936624034845086,51,46,TRUE,"",0.993198640976668
+"disc_glom_array","T_NK","MN_vs_Other",0,0,0,0.346947637517298,51,46,TRUE,"",0.530795866510906
+"disc_glom_array","TAL","MN_vs_Other",0,0,0,NA,51,46,FALSE,"fraction 0 in both groups (cell type absent)",NA
+"disc_ti_array","B","MN_vs_Control",0.1813,0.0901,0.0912,0.107604119137735,51,5,TRUE,"",0.252058592003816
+"disc_ti_array","CD_PC","MN_vs_Control",0,0,0,0.60627245413561,51,5,TRUE,"",0.757241484216809
+"disc_ti_array","DCT","MN_vs_Control",0,0,0,0.0988949984399082,51,5,TRUE,"",0.244147027398523
+"disc_ti_array","Endothelium","MN_vs_Control",0,0,0,1,51,5,TRUE,"",1
+"disc_ti_array","Fibroblast","MN_vs_Control",0.2621,0.3103,-0.0482,0.357854749810924,51,5,TRUE,"",0.538486194953581
+"disc_ti_array","Mast","MN_vs_Control",0,0,0,0.35720460075953,51,5,TRUE,"",0.538486194953581
+"disc_ti_array","Mesangium","MN_vs_Control",0,0,0,0.80220865636859,51,5,TRUE,"",0.91847078047998
+"disc_ti_array","Myeloid","MN_vs_Control",0.0298,0.0325,-0.0027,0.415620490846407,51,5,TRUE,"",0.59880838593857
+"disc_ti_array","Neutrophil","MN_vs_Control",0.0153,6e-04,0.0147,0.210161277263806,51,5,TRUE,"",0.38822162386553
+"disc_ti_array","pDC","MN_vs_Control",0.1594,0.2649,-0.1054,0.0215247488632279,51,5,TRUE,"",0.0772934163725001
+"disc_ti_array","PEC","MN_vs_Control",0,0,0,0.835928468499047,51,5,TRUE,"",0.927702008942034
+"disc_ti_array","Plasma","MN_vs_Control",0.0169,0.0264,-0.0095,0.80105937086971,51,5,TRUE,"",0.91847078047998
+"disc_ti_array","Podocyte","MN_vs_Control",0.0107,0.1462,-0.1355,0.0067257003729053,51,5,TRUE,"",0.0354220219639679
+"disc_ti_array","PT","MN_vs_Control",0.1154,0.0836,0.0318,0.328315934249598,51,5,TRUE,"",0.518739176114365
+"disc_ti_array","T_NK","MN_vs_Control",0.0049,0,0.0049,0.39830052382117,51,5,TRUE,"",0.582836420349856
+"disc_ti_array","TAL","MN_vs_Control",0,0,0,1,51,5,TRUE,"",1
+"disc_ti_array","B","MN_vs_FSGS",0.1813,0.4268,-0.2455,0.00139264883226294,51,78,TRUE,"",0.0119711980429244
+"disc_ti_array","CD_PC","MN_vs_FSGS",0,0,0,0.639324046300274,51,78,TRUE,"",0.7891656196519
+"disc_ti_array","DCT","MN_vs_FSGS",0,0,0,0.441435328900443,51,78,TRUE,"",0.617228158993539
+"disc_ti_array","Endothelium","MN_vs_FSGS",0,0,0,0.950173818376505,51,78,TRUE,"",0.99498806271547
+"disc_ti_array","Fibroblast","MN_vs_FSGS",0.2621,0.1785,0.0836,0.000173384952100841,51,78,TRUE,"",0.00273948224319329
+"disc_ti_array","Mast","MN_vs_FSGS",0,0,0,0.0517323356836699,51,78,TRUE,"",0.152107347414978
+"disc_ti_array","Mesangium","MN_vs_FSGS",0,0,0,0.22214704672126,51,78,TRUE,"",0.39660150714078
+"disc_ti_array","Myeloid","MN_vs_FSGS",0.0298,0,0.0298,0.00103742747254287,51,78,TRUE,"",0.0102445962913609
+"disc_ti_array","Neutrophil","MN_vs_FSGS",0.0153,0.0161,-8e-04,0.46519900808605,51,78,TRUE,"",0.633633131703413
+"disc_ti_array","pDC","MN_vs_FSGS",0.1594,0.1385,0.021,0.0113611035626091,51,78,TRUE,"",0.0505649116307673
+"disc_ti_array","PEC","MN_vs_FSGS",0,0,0,0.00402616384272231,51,78,TRUE,"",0.0249464269470637
+"disc_ti_array","Plasma","MN_vs_FSGS",0.0169,0,0.0169,0.04639816982746,51,78,TRUE,"",0.14516655114334
+"disc_ti_array","Podocyte","MN_vs_FSGS",0.0107,0,0.0107,0.050593417647625,51,78,TRUE,"",0.150825660157071
+"disc_ti_array","PT","MN_vs_FSGS",0.1154,0.0648,0.0505,0.00470054615762527,51,78,TRUE,"",0.0285648574194151
+"disc_ti_array","T_NK","MN_vs_FSGS",0.0049,0,0.0049,0.149046963510916,51,78,TRUE,"",0.309860792562168
+"disc_ti_array","TAL","MN_vs_FSGS",0,5e-04,-5e-04,0.000260974676658045,51,78,TRUE,"",0.00391271108606054
+"disc_ti_array","B","MN_vs_MCD",0.1813,0.074,0.1072,0.0033840740588742,51,63,TRUE,"",0.0213873480520849
+"disc_ti_array","CD_PC","MN_vs_MCD",0,0,0,0.836649499999246,51,63,TRUE,"",0.927702008942034
+"disc_ti_array","DCT","MN_vs_MCD",0,0,0,0.000349317944622785,51,63,TRUE,"",0.004415378820032
+"disc_ti_array","Endothelium","MN_vs_MCD",0,0,0,0.107683259242136,51,63,TRUE,"",0.252058592003816
+"disc_ti_array","Fibroblast","MN_vs_MCD",0.2621,0.2056,0.0565,0.0147237780730742,51,63,TRUE,"",0.0605228523495577
+"disc_ti_array","Mast","MN_vs_MCD",0,0,0,0.903522171150514,51,63,TRUE,"",0.974447119739121
+"disc_ti_array","Mesangium","MN_vs_MCD",0,0,0,0.274044463384732,51,63,TRUE,"",0.462941744664795
+"disc_ti_array","Myeloid","MN_vs_MCD",0.0298,0.0043,0.0254,0.00601676261415385,51,63,TRUE,"",0.0333560874749582
+"disc_ti_array","Neutrophil","MN_vs_MCD",0.0153,0.0314,-0.0161,0.0119771367241762,51,63,TRUE,"",0.0518462356827355
+"disc_ti_array","pDC","MN_vs_MCD",0.1594,0.1785,-0.0191,0.121121346713065,51,63,TRUE,"",0.271449259300203
+"disc_ti_array","PEC","MN_vs_MCD",0,4e-04,-4e-04,0.00169196034773671,51,63,TRUE,"",0.013040474875239
+"disc_ti_array","Plasma","MN_vs_MCD",0.0169,0.0386,-0.0217,0.0892127512550549,51,63,TRUE,"",0.225748292805908
+"disc_ti_array","Podocyte","MN_vs_MCD",0.0107,0.0385,-0.0278,0.156103227470534,51,63,TRUE,"",0.318875692659836
+"disc_ti_array","PT","MN_vs_MCD",0.1154,0.1641,-0.0487,0.0182566714226834,51,63,TRUE,"",0.0703549776776581
+"disc_ti_array","T_NK","MN_vs_MCD",0.0049,0.0366,-0.0317,0.00145455894214784,51,63,TRUE,"",0.0120958059399662
+"disc_ti_array","TAL","MN_vs_MCD",0,0,0,0.277377813166867,51,63,TRUE,"",0.463763962755186
+"disc_ti_array","B","MN_vs_Other",0.1813,0.5198,-0.3385,9.555899108354e-05,51,72,TRUE,"",0.00188729007389992
+"disc_ti_array","CD_PC","MN_vs_Other",0,0,0,1,51,72,TRUE,"",1
+"disc_ti_array","DCT","MN_vs_Other",0,0,0,0.398394515175851,51,72,TRUE,"",0.582836420349856
+"disc_ti_array","Endothelium","MN_vs_Other",0,0,0,0.763034065806322,51,72,TRUE,"",0.886466047039698
+"disc_ti_array","Fibroblast","MN_vs_Other",0.2621,0.1927,0.0693,0.000634406832139112,51,72,TRUE,"",0.00742490959096146
+"disc_ti_array","Mast","MN_vs_Other",0,0,0,0.0352628098124446,51,72,TRUE,"",0.11854306277375
+"disc_ti_array","Mesangium","MN_vs_Other",0,0,0,0.241327727515937,51,72,TRUE,"",0.4236642327502
+"disc_ti_array","Myeloid","MN_vs_Other",0.0298,0.0123,0.0175,0.0609966724817965,51,72,TRUE,"",0.169078495651296
+"disc_ti_array","Neutrophil","MN_vs_Other",0.0153,0.0071,0.0083,0.299208818417296,51,72,TRUE,"",0.492119801747786
+"disc_ti_array","pDC","MN_vs_Other",0.1594,0.119,0.0405,0.000109630589749887,51,72,TRUE,"",0.00203783919770379
+"disc_ti_array","PEC","MN_vs_Other",0,0,0,0.0495490191575853,51,72,TRUE,"",0.149746129704946
+"disc_ti_array","Plasma","MN_vs_Other",0.0169,0,0.0169,0.00117192336148242,51,72,TRUE,"",0.0108919935949542
+"disc_ti_array","Podocyte","MN_vs_Other",0.0107,0,0.0107,0.00164490168132492,51,72,TRUE,"",0.013040474875239
+"disc_ti_array","PT","MN_vs_Other",0.1154,0.0134,0.102,9.39653787985772e-05,51,72,TRUE,"",0.00188729007389992
+"disc_ti_array","T_NK","MN_vs_Other",0.0049,0,0.0049,0.0203711376629327,51,72,TRUE,"",0.0748520872265901
+"disc_ti_array","TAL","MN_vs_Other",0,0,0,0.00067949055332812,51,72,TRUE,"",0.00753744973822594
+"val_glom_array","B","MN_vs_Control",0,0,0,NA,21,26,FALSE,"fraction 0 in both groups (cell type absent)",NA
+"val_glom_array","CD_PC","MN_vs_Control",0,0,0,NA,21,26,FALSE,"fraction 0 in both groups (cell type absent)",NA
+"val_glom_array","DCT","MN_vs_Control",0,0,0,NA,21,26,FALSE,"fraction 0 in both groups (cell type absent)",NA
+"val_glom_array","Endothelium","MN_vs_Control",0.0346,0.0369,-0.0023,0.425630316222243,21,26,TRUE,"",0.600442767527808
+"val_glom_array","Fibroblast","MN_vs_Control",0.0015,0.0038,-0.0023,0.95720370590349,21,26,TRUE,"",0.99498806271547
+"val_glom_array","Mast","MN_vs_Control",0,0,0,NA,21,26,FALSE,"fraction 0 in both groups (cell type absent)",NA
+"val_glom_array","Mesangium","MN_vs_Control",0,0,0,NA,21,26,FALSE,"fraction 0 in both groups (cell type absent)",NA
+"val_glom_array","Myeloid","MN_vs_Control",0,0,0,NA,21,26,FALSE,"fraction 0 in both groups (cell type absent)",NA
+"val_glom_array","Neutrophil","MN_vs_Control",0.0235,0,0.0235,1.82224997544722e-05,21,26,TRUE,"",0.000709188817131532
+"val_glom_array","pDC","MN_vs_Control",0.0603,0.0664,-0.006,0.0170315923393102,21,26,TRUE,"",0.0676094473593895
+"val_glom_array","PEC","MN_vs_Control",0,7e-04,-7e-04,0.000272403936371303,21,26,TRUE,"",0.00391271108606054
+"val_glom_array","Plasma","MN_vs_Control",0,0,0,NA,21,26,FALSE,"fraction 0 in both groups (cell type absent)",NA
+"val_glom_array","Podocyte","MN_vs_Control",0.7306,0.7596,-0.029,0.0109612138965656,21,26,TRUE,"",0.050199182482822
+"val_glom_array","PT","MN_vs_Control",0.118,0.0928,0.0253,0.0028819318732211,21,26,TRUE,"",0.0189727181653723
+"val_glom_array","T_NK","MN_vs_Control",0,0,0,NA,21,26,FALSE,"fraction 0 in both groups (cell type absent)",NA
+"val_glom_array","TAL","MN_vs_Control",0,0,0,0.961787676302163,21,26,TRUE,"",0.996475100693388
+"val_glom_array","B","MN_vs_FSGS",0,0,0,0.178575336470073,21,18,TRUE,"",0.344084184905751
+"val_glom_array","CD_PC","MN_vs_FSGS",0,0,0,NA,21,18,FALSE,"fraction 0 in both groups (cell type absent)",NA
+"val_glom_array","DCT","MN_vs_FSGS",0,0,0,NA,21,18,FALSE,"fraction 0 in both groups (cell type absent)",NA
+"val_glom_array","Endothelium","MN_vs_FSGS",0.0346,0.0454,-0.0108,0.240430354630979,21,18,TRUE,"",0.4236642327502
+"val_glom_array","Fibroblast","MN_vs_FSGS",0.0015,0.0185,-0.017,0.273831109688393,21,18,TRUE,"",0.462941744664795
+"val_glom_array","Mast","MN_vs_FSGS",0,0,0,NA,21,18,FALSE,"fraction 0 in both groups (cell type absent)",NA
+"val_glom_array","Mesangium","MN_vs_FSGS",0,0,0,NA,21,18,FALSE,"fraction 0 in both groups (cell type absent)",NA
+"val_glom_array","Myeloid","MN_vs_FSGS",0,0,0,0.412955465587045,21,18,TRUE,"",0.59880838593857
+"val_glom_array","Neutrophil","MN_vs_FSGS",0.0235,0.0072,0.0163,0.0195180054779966,21,18,TRUE,"",0.0734248777505588
+"val_glom_array","pDC","MN_vs_FSGS",0.0603,0.0663,-0.006,0.0831679326905398,21,18,TRUE,"",0.217198898596782
+"val_glom_array","PEC","MN_vs_FSGS",0,0,0,0.386913229018492,21,18,TRUE,"",0.571329814812353
+"val_glom_array","Plasma","MN_vs_FSGS",0,0,0,NA,21,18,FALSE,"fraction 0 in both groups (cell type absent)",NA
+"val_glom_array","Podocyte","MN_vs_FSGS",0.7306,0.6959,0.0348,0.0688568447105138,21,18,TRUE,"",0.185972332722413
+"val_glom_array","PT","MN_vs_FSGS",0.118,0.1097,0.0084,0.459696625415464,21,18,TRUE,"",0.631583189701246
+"val_glom_array","T_NK","MN_vs_FSGS",0,0,0,NA,21,18,FALSE,"fraction 0 in both groups (cell type absent)",NA
+"val_glom_array","TAL","MN_vs_FSGS",0,0,0,0.868998683604284,21,18,TRUE,"",0.948825551400931
+"val_glom_array","B","MN_vs_MCD",0,0,0,NA,21,14,FALSE,"fraction 0 in both groups (cell type absent)",NA
+"val_glom_array","CD_PC","MN_vs_MCD",0,0,0,NA,21,14,FALSE,"fraction 0 in both groups (cell type absent)",NA
+"val_glom_array","DCT","MN_vs_MCD",0,0,0,NA,21,14,FALSE,"fraction 0 in both groups (cell type absent)",NA
+"val_glom_array","Endothelium","MN_vs_MCD",0.0346,0.0494,-0.0149,0.153714751215043,21,14,TRUE,"",0.317476218195775
+"val_glom_array","Fibroblast","MN_vs_MCD",0.0015,0.0043,-0.0028,0.812278283835484,21,14,TRUE,"",0.926642374339397
+"val_glom_array","Mast","MN_vs_MCD",0,0,0,NA,21,14,FALSE,"fraction 0 in both groups (cell type absent)",NA
+"val_glom_array","Mesangium","MN_vs_MCD",0,0,0,NA,21,14,FALSE,"fraction 0 in both groups (cell type absent)",NA
+"val_glom_array","Myeloid","MN_vs_MCD",0,0,0,0.8,21,14,TRUE,"",0.91847078047998
+"val_glom_array","Neutrophil","MN_vs_MCD",0.0235,0.0021,0.0214,0.00995107759213365,21,14,TRUE,"",0.0476445533199126
+"val_glom_array","pDC","MN_vs_MCD",0.0603,0.0764,-0.0161,0.0519860554456255,21,14,TRUE,"",0.152107347414978
+"val_glom_array","PEC","MN_vs_MCD",0,0,0,0.0382352941176471,21,14,TRUE,"",0.124560339599757
+"val_glom_array","Plasma","MN_vs_MCD",0,0,0,NA,21,14,FALSE,"fraction 0 in both groups (cell type absent)",NA
+"val_glom_array","Podocyte","MN_vs_MCD",0.7306,0.7549,-0.0243,0.102998567130097,21,14,TRUE,"",0.246572327372051
+"val_glom_array","PT","MN_vs_MCD",0.118,0.0862,0.0318,0.002388284898434,21,14,TRUE,"",0.016771067286781
+"val_glom_array","T_NK","MN_vs_MCD",0,0,0,NA,21,14,FALSE,"fraction 0 in both groups (cell type absent)",NA
+"val_glom_array","TAL","MN_vs_MCD",0,6e-04,-6e-04,0.822193360797607,21,14,TRUE,"",0.927702008942034
+"val_glom_array","B","MN_vs_Other",0,0,0,0.0207440609859392,21,117,TRUE,"",0.0753462445006526
+"val_glom_array","CD_PC","MN_vs_Other",0,0,0,NA,21,117,FALSE,"fraction 0 in both groups (cell type absent)",NA
+"val_glom_array","DCT","MN_vs_Other",0,0,0,NA,21,117,FALSE,"fraction 0 in both groups (cell type absent)",NA
+"val_glom_array","Endothelium","MN_vs_Other",0.0346,0.0244,0.0102,0.459547747841852,21,117,TRUE,"",0.631583189701246
+"val_glom_array","Fibroblast","MN_vs_Other",0.0015,0.0235,-0.022,0.0171163157871872,21,117,TRUE,"",0.0676094473593895
+"val_glom_array","Mast","MN_vs_Other",0,0,0,NA,21,117,FALSE,"fraction 0 in both groups (cell type absent)",NA
+"val_glom_array","Mesangium","MN_vs_Other",0,0,0,NA,21,117,FALSE,"fraction 0 in both groups (cell type absent)",NA
+"val_glom_array","Myeloid","MN_vs_Other",0,0,0,0.01790075056283,21,117,TRUE,"",0.0698350268870897
+"val_glom_array","Neutrophil","MN_vs_Other",0.0235,0.0241,-6e-04,0.61792163388065,21,117,TRUE,"",0.768752898843643
+"val_glom_array","pDC","MN_vs_Other",0.0603,0.047,0.0133,0.0497574165158838,21,117,TRUE,"",0.149746129704946
+"val_glom_array","PEC","MN_vs_Other",0,0,0,0.13897840136867,21,117,TRUE,"",0.296005534923811
+"val_glom_array","Plasma","MN_vs_Other",0,0,0,NA,21,117,FALSE,"fraction 0 in both groups (cell type absent)",NA
+"val_glom_array","Podocyte","MN_vs_Other",0.7306,0.6748,0.0559,5.02427708561903e-05,21,117,TRUE,"",0.00144333778095965
+"val_glom_array","PT","MN_vs_Other",0.118,0.1359,-0.0178,0.132165654060667,21,117,TRUE,"",0.290030185299796
+"val_glom_array","T_NK","MN_vs_Other",0,0,0,NA,21,117,FALSE,"fraction 0 in both groups (cell type absent)",NA
+"val_glom_array","TAL","MN_vs_Other",0,0.0016,-0.0016,0.815714209266198,21,117,TRUE,"",0.926686217008798
+"val_ti_array","B","MN_vs_Control",0.0675,0.0523,0.0152,0.872977104123615,18,26,TRUE,"",0.948825551400931
+"val_ti_array","CD_PC","MN_vs_Control",0,0,0,0.323467230443975,18,26,TRUE,"",0.513646456383397
+"val_ti_array","DCT","MN_vs_Control",0.0424,0.0011,0.0413,0.270943077655269,18,26,TRUE,"",0.462941744664795
+"val_ti_array","Endothelium","MN_vs_Control",0,0,0,0.220256204374185,18,26,TRUE,"",0.395460003308196
+"val_ti_array","Fibroblast","MN_vs_Control",0.1824,0.1719,0.0105,0.644945107437839,18,26,TRUE,"",0.793006435604502
+"val_ti_array","Mast","MN_vs_Control",0,0,0,0.818181818181818,18,26,TRUE,"",0.926686217008798
+"val_ti_array","Mesangium","MN_vs_Control",0,0,0,NA,18,26,FALSE,"fraction 0 in both groups (cell type absent)",NA
+"val_ti_array","Myeloid","MN_vs_Control",0,0.0021,-0.0021,0.472796989128553,18,26,TRUE,"",0.637056563619504
+"val_ti_array","Neutrophil","MN_vs_Control",0.0648,0.0494,0.0154,0.176847215169891,18,26,TRUE,"",0.34284490793672
+"val_ti_array","pDC","MN_vs_Control",0.2344,0.2036,0.0309,0.212539053571951,18,26,TRUE,"",0.38822162386553
+"val_ti_array","PEC","MN_vs_Control",0,0.0013,-0.0013,0.0105305497854224,18,26,TRUE,"",0.0496664736148279
+"val_ti_array","Plasma","MN_vs_Control",0,0.0173,-0.0173,0.0544724599289544,18,26,TRUE,"",0.157920159060088
+"val_ti_array","Podocyte","MN_vs_Control",0,0.1446,-0.1446,1.9663813871407e-05,18,26,TRUE,"",0.000709188817131532
+"val_ti_array","PT","MN_vs_Control",0.2614,0.1161,0.1454,0.000306147032749448,18,26,TRUE,"",0.00420619401516633
+"val_ti_array","T_NK","MN_vs_Control",0,6e-04,-6e-04,0.551219374565034,18,26,TRUE,"",0.70520373426134
+"val_ti_array","TAL","MN_vs_Control",0.01,0.0329,-0.023,0.0111444038490881,18,26,TRUE,"",0.0503090230901693
+"val_ti_array","B","MN_vs_FSGS",0.0675,0.2524,-0.1849,0.0615545537927132,18,13,TRUE,"",0.169141208682586
+"val_ti_array","CD_PC","MN_vs_FSGS",0,0,0,0.953058954393771,18,13,TRUE,"",0.99498806271547
+"val_ti_array","DCT","MN_vs_FSGS",0.0424,0,0.0424,0.524971828904854,18,13,TRUE,"",0.68834480470512
+"val_ti_array","Endothelium","MN_vs_FSGS",0,0,0,0.335483870967742,18,13,TRUE,"",0.527427379232868
+"val_ti_array","Fibroblast","MN_vs_FSGS",0.1824,0.2045,-0.0221,0.157419645743463,18,13,TRUE,"",0.318875692659836
+"val_ti_array","Mast","MN_vs_FSGS",0,0,0,1,18,13,TRUE,"",1
+"val_ti_array","Mesangium","MN_vs_FSGS",0,0,0,NA,18,13,FALSE,"fraction 0 in both groups (cell type absent)",NA
+"val_ti_array","Myeloid","MN_vs_FSGS",0,0,0,0.839629033409563,18,13,TRUE,"",0.927702008942034
+"val_ti_array","Neutrophil","MN_vs_FSGS",0.0648,0.0439,0.0209,0.0744289509380647,18,13,TRUE,"",0.19653056803838
+"val_ti_array","pDC","MN_vs_FSGS",0.2344,0.1901,0.0444,0.540405218200989,18,13,TRUE,"",0.697012444700051
+"val_ti_array","PEC","MN_vs_FSGS",0,0,0,0.995201017003019,18,13,TRUE,"",1
+"val_ti_array","Plasma","MN_vs_FSGS",0,0,0,0.488785284776966,18,13,TRUE,"",0.651713713035955
+"val_ti_array","Podocyte","MN_vs_FSGS",0,0,0,0.11598071931776,18,13,TRUE,"",0.26557903843777
+"val_ti_array","PT","MN_vs_FSGS",0.2614,0.115,0.1465,0.0135081525451197,18,13,TRUE,"",0.0576834622197004
+"val_ti_array","T_NK","MN_vs_FSGS",0,0,0,0.488785284776966,18,13,TRUE,"",0.651713713035955
+"val_ti_array","TAL","MN_vs_FSGS",0.01,0.0362,-0.0263,0.163259558675671,18,13,TRUE,"",0.325434984047051
+"val_ti_array","B","MN_vs_MCD",0.0675,0.0314,0.0361,0.557305814713308,18,13,TRUE,"",0.710115473586312
+"val_ti_array","CD_PC","MN_vs_MCD",0,0,0,0.658064516129032,18,13,TRUE,"",0.806001500375094
+"val_ti_array","DCT","MN_vs_MCD",0.0424,0.1421,-0.0996,0.0026269281076173,18,13,TRUE,"",0.0177384201647941
+"val_ti_array","Endothelium","MN_vs_MCD",0,0,0,0.838709677419355,18,13,TRUE,"",0.927702008942034
+"val_ti_array","Fibroblast","MN_vs_MCD",0.1824,0.1401,0.0423,0.0107934390796355,18,13,TRUE,"",0.0501577463112475
+"val_ti_array","Mast","MN_vs_MCD",0,0,0,1,18,13,TRUE,"",1
+"val_ti_array","Mesangium","MN_vs_MCD",0,0,0,NA,18,13,FALSE,"fraction 0 in both groups (cell type absent)",NA
+"val_ti_array","Myeloid","MN_vs_MCD",0,0,0,0.273311086392288,18,13,TRUE,"",0.462941744664795
+"val_ti_array","Neutrophil","MN_vs_MCD",0.0648,0.0677,-0.0029,0.532922023101959,18,13,TRUE,"",0.693995093192234
+"val_ti_array","pDC","MN_vs_MCD",0.2344,0.2605,-0.0261,0.0275741440460948,18,13,TRUE,"",0.0964096195119218
+"val_ti_array","PEC","MN_vs_MCD",0,0,0,0.995201017003019,18,13,TRUE,"",1
+"val_ti_array","Plasma","MN_vs_MCD",0,0,0,0.280151537134659,18,13,TRUE,"",0.465936240708169
+"val_ti_array","Podocyte","MN_vs_MCD",0,0,0,0.918212783009417,18,13,TRUE,"",0.983577082816867
+"val_ti_array","PT","MN_vs_MCD",0.2614,0.1934,0.068,0.275421037965131,18,13,TRUE,"",0.462941744664795
+"val_ti_array","T_NK","MN_vs_MCD",0,0.0069,-0.0069,0.198049362415566,18,13,TRUE,"",0.372521419781661
+"val_ti_array","TAL","MN_vs_MCD",0.01,0.0557,-0.0457,0.00710239107950269,18,13,TRUE,"",0.0367927144446369
+"val_ti_array","B","MN_vs_Other",0.0675,0.3618,-0.2943,9.42541571178664e-05,18,125,TRUE,"",0.00188729007389992
+"val_ti_array","CD_PC","MN_vs_Other",0,0,0,0.845600351324047,18,125,TRUE,"",0.931044289262714
+"val_ti_array","DCT","MN_vs_Other",0.0424,0,0.0424,0.0186747506989007,18,125,TRUE,"",0.0710990508536459
+"val_ti_array","Endothelium","MN_vs_Other",0,0,0,0.449443094836394,18,125,TRUE,"",0.625656466820708
+"val_ti_array","Fibroblast","MN_vs_Other",0.1824,0.1716,0.0108,0.385816948256088,18,125,TRUE,"",0.571329814812353
+"val_ti_array","Mast","MN_vs_Other",0,0,0,0.00894498781848063,18,125,TRUE,"",0.0448669230260298
+"val_ti_array","Mesangium","MN_vs_Other",0,0,0,0.600568526864041,18,125,TRUE,"",0.756094240992179
+"val_ti_array","Myeloid","MN_vs_Other",0,0,0,0.743961437860325,18,125,TRUE,"",0.87394726529317
+"val_ti_array","Neutrophil","MN_vs_Other",0.0648,0.0271,0.0377,0.00511067496302586,18,125,TRUE,"",0.0293631506966577
+"val_ti_array","pDC","MN_vs_Other",0.2344,0.16,0.0744,0.000691727982305546,18,125,TRUE,"",0.00753744973822594
+"val_ti_array","PEC","MN_vs_Other",0,0,0,0.26546964827391,18,125,TRUE,"",0.460681736005088
+"val_ti_array","Plasma","MN_vs_Other",0,0,0,0.00336573468298118,18,125,TRUE,"",0.0213873480520849
+"val_ti_array","Podocyte","MN_vs_Other",0,0,0,0.140958869790178,18,125,TRUE,"",0.296953352357975
+"val_ti_array","PT","MN_vs_Other",0.2614,0.0791,0.1823,3.52613569298832e-06,18,125,TRUE,"",0.000278564719746077
+"val_ti_array","T_NK","MN_vs_Other",0,0,0,0.0277635296695724,18,125,TRUE,"",0.0964096195119218
+"val_ti_array","TAL","MN_vs_Other",0.01,0.0464,-0.0365,0.00113638973392572,18,125,TRUE,"",0.0108817926036524
+"cross_glom_rnaseq","B","MN_vs_Control",0,0,0,0.753286151801831,62,8,TRUE,"",0.878891285314524
+"cross_glom_rnaseq","CD_PC","MN_vs_Control",0,0,0,0.631448442312378,62,8,TRUE,"",0.782500814787104
+"cross_glom_rnaseq","DCT","MN_vs_Control",0,0,0,NA,62,8,FALSE,"fraction 0 in both groups (cell type absent)",NA
+"cross_glom_rnaseq","Endothelium","MN_vs_Control",0.0505,0.0254,0.0251,0.0140544226660189,62,8,TRUE,"",0.0592159674994928
+"cross_glom_rnaseq","Fibroblast","MN_vs_Control",0.033,0.1176,-0.0846,0.000155372803396543,62,8,TRUE,"",0.00272765588185041
+"cross_glom_rnaseq","Mast","MN_vs_Control",0,0,0,NA,62,8,FALSE,"fraction 0 in both groups (cell type absent)",NA
+"cross_glom_rnaseq","Mesangium","MN_vs_Control",0,0,0,NA,62,8,FALSE,"fraction 0 in both groups (cell type absent)",NA
+"cross_glom_rnaseq","Myeloid","MN_vs_Control",0,0,0,0.371637218755183,62,8,TRUE,"",0.553949816635083
+"cross_glom_rnaseq","Neutrophil","MN_vs_Control",0,0,0,0.111007244813695,62,8,TRUE,"",0.257928598243585
+"cross_glom_rnaseq","pDC","MN_vs_Control",0.034,0.0424,-0.0084,0.0718915833544936,62,8,TRUE,"",0.192523223220508
+"cross_glom_rnaseq","PEC","MN_vs_Control",0,0,0,0.545239428935194,62,8,TRUE,"",0.700388859933014
+"cross_glom_rnaseq","Plasma","MN_vs_Control",0,0,0,0.0857757823116632,62,8,TRUE,"",0.222173337790865
+"cross_glom_rnaseq","Podocyte","MN_vs_Control",0.8472,0.7602,0.087,0.0080744096931622,62,8,TRUE,"",0.041153442952246
+"cross_glom_rnaseq","PT","MN_vs_Control",0,0,0,0.11287801875152,62,8,TRUE,"",0.26036097755825
+"cross_glom_rnaseq","T_NK","MN_vs_Control",0,0,0,NA,62,8,FALSE,"fraction 0 in both groups (cell type absent)",NA
+"cross_glom_rnaseq","TAL","MN_vs_Control",0,0,0,NA,62,8,FALSE,"fraction 0 in both groups (cell type absent)",NA
+"cross_glom_rnaseq","B","MN_vs_FSGS",0,0,0,0.536338295417982,62,93,TRUE,"",0.694602054721649
+"cross_glom_rnaseq","CD_PC","MN_vs_FSGS",0,0,0,0.714278072589608,62,93,TRUE,"",0.845362812503057
+"cross_glom_rnaseq","DCT","MN_vs_FSGS",0,0,0,NA,62,93,FALSE,"fraction 0 in both groups (cell type absent)",NA
+"cross_glom_rnaseq","Endothelium","MN_vs_FSGS",0.0505,0.079,-0.0285,0.0064310385812726,62,93,TRUE,"",0.0344442066386803
+"cross_glom_rnaseq","Fibroblast","MN_vs_FSGS",0.033,0.0953,-0.0622,1.48413907087258e-05,62,93,TRUE,"",0.000709188817131532
+"cross_glom_rnaseq","Mast","MN_vs_FSGS",0,0,0,NA,62,93,FALSE,"fraction 0 in both groups (cell type absent)",NA
+"cross_glom_rnaseq","Mesangium","MN_vs_FSGS",0,0,0,0.421785593600535,62,93,TRUE,"",0.59880838593857
+"cross_glom_rnaseq","Myeloid","MN_vs_FSGS",0,0,0,0.310899553059049,62,93,TRUE,"",0.503816711623895
+"cross_glom_rnaseq","Neutrophil","MN_vs_FSGS",0,0,0,0.0907576684276636,62,93,TRUE,"",0.227614470024934
+"cross_glom_rnaseq","pDC","MN_vs_FSGS",0.034,0.0336,4e-04,0.873760238790098,62,93,TRUE,"",0.948825551400931
+"cross_glom_rnaseq","PEC","MN_vs_FSGS",0,0,0,7.39283696561344e-05,62,93,TRUE,"",0.00188729007389992
+"cross_glom_rnaseq","Plasma","MN_vs_FSGS",0,0,0,0.00491681627582308,62,93,TRUE,"",0.0288590904153957
+"cross_glom_rnaseq","Podocyte","MN_vs_FSGS",0.8472,0.7532,0.0939,1.20481158383257e-09,62,93,TRUE,"",1.90360230245545e-07
+"cross_glom_rnaseq","PT","MN_vs_FSGS",0,0,0,0.753732716203278,62,93,TRUE,"",0.878891285314524
+"cross_glom_rnaseq","T_NK","MN_vs_FSGS",0,0,0,0.421785593600535,62,93,TRUE,"",0.59880838593857
+"cross_glom_rnaseq","TAL","MN_vs_FSGS",0,0,0,0.421785593600535,62,93,TRUE,"",0.59880838593857
+"cross_glom_rnaseq","B","MN_vs_MCD",0,0,0,0.51836768848752,62,89,TRUE,"",0.682517456508568
+"cross_glom_rnaseq","CD_PC","MN_vs_MCD",0,0,0,0.368238562007687,62,89,TRUE,"",0.551485239784025
+"cross_glom_rnaseq","DCT","MN_vs_MCD",0,0,0,NA,62,89,FALSE,"fraction 0 in both groups (cell type absent)",NA
+"cross_glom_rnaseq","Endothelium","MN_vs_MCD",0.0505,0.0879,-0.0374,8.83210934415944e-05,62,89,TRUE,"",0.00188729007389992
+"cross_glom_rnaseq","Fibroblast","MN_vs_MCD",0.033,0.0869,-0.0539,2.97677804079713e-05,62,89,TRUE,"",0.000940661860891894
+"cross_glom_rnaseq","Mast","MN_vs_MCD",0,0,0,NA,62,89,FALSE,"fraction 0 in both groups (cell type absent)",NA
+"cross_glom_rnaseq","Mesangium","MN_vs_MCD",0,0,0,NA,62,89,FALSE,"fraction 0 in both groups (cell type absent)",NA
+"cross_glom_rnaseq","Myeloid","MN_vs_MCD",0,0,0,0.101788728193236,62,89,TRUE,"",0.246042300046639
+"cross_glom_rnaseq","Neutrophil","MN_vs_MCD",0,0,0,0.000807082988720564,62,89,TRUE,"",0.00850127414785661
+"cross_glom_rnaseq","pDC","MN_vs_MCD",0.034,0.0361,-0.0021,0.300897115839722,62,89,TRUE,"",0.492119801747786
+"cross_glom_rnaseq","PEC","MN_vs_MCD",0,0,0,0.0478209541865807,62,89,TRUE,"",0.146712830319995
+"cross_glom_rnaseq","Plasma","MN_vs_MCD",0,0,0,2.01984156777968e-05,62,89,TRUE,"",0.000709188817131532
+"cross_glom_rnaseq","Podocyte","MN_vs_MCD",0.8472,0.745,0.1022,3.28677973726599e-10,62,89,TRUE,"",1.03862239697605e-07
+"cross_glom_rnaseq","PT","MN_vs_MCD",0,0,0,0.698164077308942,62,89,TRUE,"",0.837014971914526
+"cross_glom_rnaseq","T_NK","MN_vs_MCD",0,0,0,NA,62,89,FALSE,"fraction 0 in both groups (cell type absent)",NA
+"cross_glom_rnaseq","TAL","MN_vs_MCD",0,0,0,NA,62,89,FALSE,"fraction 0 in both groups (cell type absent)",NA
+"cross_glom_rnaseq","B","MN_vs_Other",0,0,0,0.603190449236258,62,29,TRUE,"",0.756381674439117
+"cross_glom_rnaseq","CD_PC","MN_vs_Other",0,0,0,0.339176147131935,62,29,TRUE,"",0.527978632973849
+"cross_glom_rnaseq","DCT","MN_vs_Other",0,0,0,NA,62,29,FALSE,"fraction 0 in both groups (cell type absent)",NA
+"cross_glom_rnaseq","Endothelium","MN_vs_Other",0.0505,0.0827,-0.0322,0.10548423039445,62,29,TRUE,"",0.250624186501099
+"cross_glom_rnaseq","Fibroblast","MN_vs_Other",0.033,0.0899,-0.0568,0.0004236875209678,62,29,TRUE,"",0.0051494329471471
+"cross_glom_rnaseq","Mast","MN_vs_Other",0,0,0,NA,62,29,FALSE,"fraction 0 in both groups (cell type absent)",NA
+"cross_glom_rnaseq","Mesangium","MN_vs_Other",0,0,0,NA,62,29,FALSE,"fraction 0 in both groups (cell type absent)",NA
+"cross_glom_rnaseq","Myeloid","MN_vs_Other",0,0,0,0.914889937507154,62,29,TRUE,"",0.983351089293404
+"cross_glom_rnaseq","Neutrophil","MN_vs_Other",0,0,0,0.924446167753154,62,29,TRUE,"",0.986908746655394
+"cross_glom_rnaseq","pDC","MN_vs_Other",0.034,0.0307,0.0033,0.163747349567978,62,29,TRUE,"",0.325434984047051
+"cross_glom_rnaseq","PEC","MN_vs_Other",0,0,0,0.0553447515977854,62,29,TRUE,"",0.158990377317274
+"cross_glom_rnaseq","Plasma","MN_vs_Other",0,0,0,0.0746318612803973,62,29,TRUE,"",0.19653056803838
+"cross_glom_rnaseq","Podocyte","MN_vs_Other",0.8472,0.7298,0.1174,2.74461351201793e-07,62,29,TRUE,"",2.89099289932556e-05
+"cross_glom_rnaseq","PT","MN_vs_Other",0,0,0,0.0399874730712737,62,29,TRUE,"",0.12763678273255
+"cross_glom_rnaseq","T_NK","MN_vs_Other",0,0,0,NA,62,29,FALSE,"fraction 0 in both groups (cell type absent)",NA
+"cross_glom_rnaseq","TAL","MN_vs_Other",0,0,0,NA,62,29,FALSE,"fraction 0 in both groups (cell type absent)",NA
+"cross_ti_rnaseq","B","MN_vs_FSGS",0,0,0,0.0327131076410766,59,70,TRUE,"",0.11115421521054
+"cross_ti_rnaseq","CD_PC","MN_vs_FSGS",0,0,0,0.0095513107398377,59,70,TRUE,"",0.0464340645198264
+"cross_ti_rnaseq","DCT","MN_vs_FSGS",0,0,0,0.713587125302253,59,70,TRUE,"",0.845362812503057
+"cross_ti_rnaseq","Endothelium","MN_vs_FSGS",0.0012,0,0.0012,0.985863304719549,59,70,TRUE,"",1
+"cross_ti_rnaseq","Fibroblast","MN_vs_FSGS",0.2608,0.3093,-0.0485,0.122691867585453,59,70,TRUE,"",0.273032606739459
+"cross_ti_rnaseq","Mast","MN_vs_FSGS",0.0298,0.006,0.0238,0.260671524138888,59,70,TRUE,"",0.455095036618169
+"cross_ti_rnaseq","Mesangium","MN_vs_FSGS",0,0,0,NA,59,70,FALSE,"fraction 0 in both groups (cell type absent)",NA
+"cross_ti_rnaseq","Myeloid","MN_vs_FSGS",0.0493,0.0614,-0.0121,0.139572230074835,59,70,TRUE,"",0.296005534923811
+"cross_ti_rnaseq","Neutrophil","MN_vs_FSGS",0,0,0,0.0608688740165328,59,70,TRUE,"",0.169078495651296
+"cross_ti_rnaseq","pDC","MN_vs_FSGS",0.3242,0.2994,0.0248,0.0452682423664141,59,70,TRUE,"",0.143047645877869
+"cross_ti_rnaseq","PEC","MN_vs_FSGS",0,0,0,0.0372666550843648,59,70,TRUE,"",0.122669406319368
+"cross_ti_rnaseq","Plasma","MN_vs_FSGS",0,0,0,0.73054384414288,59,70,TRUE,"",0.86138751772071
+"cross_ti_rnaseq","Podocyte","MN_vs_FSGS",0,0,0,0.173064283288141,59,70,TRUE,"",0.339678965956849
+"cross_ti_rnaseq","PT","MN_vs_FSGS",0.1397,0.0845,0.0552,0.00228505244642552,59,70,TRUE,"",0.0164108312061469
+"cross_ti_rnaseq","T_NK","MN_vs_FSGS",0,0,0,0.00139982614145886,59,70,TRUE,"",0.0119711980429244
+"cross_ti_rnaseq","TAL","MN_vs_FSGS",0.0065,0.021,-0.0145,0.0576929771947716,59,70,TRUE,"",0.162776614228106
+"cross_ti_rnaseq","B","MN_vs_MCD",0,0,0,0.682470439165644,59,32,TRUE,"",0.823132285405891
+"cross_ti_rnaseq","CD_PC","MN_vs_MCD",0,0,0,0.662714528873906,59,32,TRUE,"",0.807597973443385
+"cross_ti_rnaseq","DCT","MN_vs_MCD",0,0.0565,-0.0565,0.00140169091008925,59,32,TRUE,"",0.0119711980429244
+"cross_ti_rnaseq","Endothelium","MN_vs_MCD",0.0012,0.0045,-0.0033,0.418138840043566,59,32,TRUE,"",0.59880838593857
+"cross_ti_rnaseq","Fibroblast","MN_vs_MCD",0.2608,0.2338,0.0269,0.176801339907025,59,32,TRUE,"",0.34284490793672
+"cross_ti_rnaseq","Mast","MN_vs_MCD",0.0298,0.002,0.0279,0.218934707614638,59,32,TRUE,"",0.395460003308196
+"cross_ti_rnaseq","Mesangium","MN_vs_MCD",0,0,0,0.181930946087885,59,32,TRUE,"",0.348425327053162
+"cross_ti_rnaseq","Myeloid","MN_vs_MCD",0.0493,0.0281,0.0213,0.0116465939585999,59,32,TRUE,"",0.0511156068182996
+"cross_ti_rnaseq","Neutrophil","MN_vs_MCD",0,0,0,0.454478173861521,59,32,TRUE,"",0.629890802369476
+"cross_ti_rnaseq","pDC","MN_vs_MCD",0.3242,0.3198,0.0043,0.877792253635435,59,32,TRUE,"",0.949939562153416
+"cross_ti_rnaseq","PEC","MN_vs_MCD",0,0,0,0.347704887239739,59,32,TRUE,"",0.530795866510906
+"cross_ti_rnaseq","Plasma","MN_vs_MCD",0,0,0,0.266787207876364,59,32,TRUE,"",0.460681736005088
+"cross_ti_rnaseq","Podocyte","MN_vs_MCD",0,0,0,0.315372802245514,59,32,TRUE,"",0.508458191375421
+"cross_ti_rnaseq","PT","MN_vs_MCD",0.1397,0.137,0.0027,0.930448174415704,59,32,TRUE,"",0.98997179500122
+"cross_ti_rnaseq","T_NK","MN_vs_MCD",0,0,0,0.148189336753322,59,32,TRUE,"",0.309860792562168
+"cross_ti_rnaseq","TAL","MN_vs_MCD",0.0065,0.0101,-0.0036,0.357045577372642,59,32,TRUE,"",0.538486194953581
+"cross_ti_rnaseq","B","MN_vs_Other",0,0,0,0.317803067802299,59,37,TRUE,"",0.509775479317393
+"cross_ti_rnaseq","CD_PC","MN_vs_Other",0,0,0,0.00636380495161275,59,37,TRUE,"",0.0344442066386803
+"cross_ti_rnaseq","DCT","MN_vs_Other",0,0,0,0.19799573995958,59,37,TRUE,"",0.372521419781661
+"cross_ti_rnaseq","Endothelium","MN_vs_Other",0.0012,0,0.0012,0.0892991664580332,59,37,TRUE,"",0.225748292805908
+"cross_ti_rnaseq","Fibroblast","MN_vs_Other",0.2608,0.3399,-0.0791,0.0477196950991066,59,37,TRUE,"",0.146712830319995
+"cross_ti_rnaseq","Mast","MN_vs_Other",0.0298,0,0.0298,0.439294327334852,59,37,TRUE,"",0.616964477501392
+"cross_ti_rnaseq","Mesangium","MN_vs_Other",0,0,0,NA,59,37,FALSE,"fraction 0 in both groups (cell type absent)",NA
+"cross_ti_rnaseq","Myeloid","MN_vs_Other",0.0493,0.0699,-0.0206,0.0246332082959421,59,37,TRUE,"",0.0874617283316597
+"cross_ti_rnaseq","Neutrophil","MN_vs_Other",0,0,0,0.857338236756472,59,37,TRUE,"",0.940690565330018
+"cross_ti_rnaseq","pDC","MN_vs_Other",0.3242,0.2669,0.0573,0.000976362311245094,59,37,TRUE,"",0.0099525964630145
+"cross_ti_rnaseq","PEC","MN_vs_Other",0,0,0,0.699278330966566,59,37,TRUE,"",0.837014971914526
+"cross_ti_rnaseq","Plasma","MN_vs_Other",0,0,0,0.838261505805196,59,37,TRUE,"",0.927702008942034
+"cross_ti_rnaseq","Podocyte","MN_vs_Other",0,0,0,0.211785184330192,59,37,TRUE,"",0.38822162386553
+"cross_ti_rnaseq","PT","MN_vs_Other",0.1397,0.0991,0.0405,0.039447648643421,59,37,TRUE,"",0.127198540523684
+"cross_ti_rnaseq","T_NK","MN_vs_Other",0,0,0,0.0166473315539133,59,37,TRUE,"",0.0674430355261105
+"cross_ti_rnaseq","TAL","MN_vs_Other",0.0065,0.0295,-0.023,0.12441278227795,59,37,TRUE,"",0.274926148250575
+"pla2r_lcm","B","MN_vs_Control",0,0,0,NA,12,8,FALSE,"fraction 0 in both groups (cell type absent)",NA
+"pla2r_lcm","CD_PC","MN_vs_Control",0,0.0315,-0.0315,0.0312772882432325,12,8,TRUE,"",0.107430685705016
+"pla2r_lcm","DCT","MN_vs_Control",0,0,0,NA,12,8,FALSE,"fraction 0 in both groups (cell type absent)",NA
+"pla2r_lcm","Endothelium","MN_vs_Control",0,0,0,1,12,8,TRUE,"",1
+"pla2r_lcm","Fibroblast","MN_vs_Control",0.0032,0.0535,-0.0504,0.100261967135032,12,8,TRUE,"",0.245602958253257
+"pla2r_lcm","Mast","MN_vs_Control",0.0902,0,0.0902,0.000333412717313575,12,8,TRUE,"",0.0043899341112954
+"pla2r_lcm","Mesangium","MN_vs_Control",0,0,0,1,12,8,TRUE,"",1
+"pla2r_lcm","Myeloid","MN_vs_Control",0,0,0,NA,12,8,FALSE,"fraction 0 in both groups (cell type absent)",NA
+"pla2r_lcm","Neutrophil","MN_vs_Control",0,0,0,NA,12,8,FALSE,"fraction 0 in both groups (cell type absent)",NA
+"pla2r_lcm","pDC","MN_vs_Control",0.1076,0.1228,-0.0153,0.0573787409700722,12,8,TRUE,"",0.162776614228106
+"pla2r_lcm","PEC","MN_vs_Control",0,0,0,NA,12,8,FALSE,"fraction 0 in both groups (cell type absent)",NA
+"pla2r_lcm","Plasma","MN_vs_Control",0.0042,0.0115,-0.0073,0.422576804000953,12,8,TRUE,"",0.59880838593857
+"pla2r_lcm","Podocyte","MN_vs_Control",0.7746,0.7482,0.0264,0.343145193299992,12,8,TRUE,"",0.530795866510906
+"pla2r_lcm","PT","MN_vs_Control",0,0,0,0.8,12,8,TRUE,"",0.91847078047998
+"pla2r_lcm","T_NK","MN_vs_Control",0,0,0,NA,12,8,FALSE,"fraction 0 in both groups (cell type absent)",NA
+"pla2r_lcm","TAL","MN_vs_Control",0,0,0,NA,12,8,FALSE,"fraction 0 in both groups (cell type absent)",NA
+"pla2r_lcm","B","MN_vs_MCD",0,0,0,NA,12,14,FALSE,"fraction 0 in both groups (cell type absent)",NA
+"pla2r_lcm","CD_PC","MN_vs_MCD",0,0,0,0.339130434782609,12,14,TRUE,"",0.527978632973849
+"pla2r_lcm","DCT","MN_vs_MCD",0,0,0,NA,12,14,FALSE,"fraction 0 in both groups (cell type absent)",NA
+"pla2r_lcm","Endothelium","MN_vs_MCD",0,0.0135,-0.0135,0.00263830932830798,12,14,TRUE,"",0.0177384201647941
+"pla2r_lcm","Fibroblast","MN_vs_MCD",0.0032,0.002,0.0012,0.533673441916813,12,14,TRUE,"",0.693995093192234
+"pla2r_lcm","Mast","MN_vs_MCD",0.0902,0.0812,0.009,0.712554541971691,12,14,TRUE,"",0.845362812503057
+"pla2r_lcm","Mesangium","MN_vs_MCD",0,0,0,0.464347826086957,12,14,TRUE,"",0.633633131703413
+"pla2r_lcm","Myeloid","MN_vs_MCD",0,0,0,NA,12,14,FALSE,"fraction 0 in both groups (cell type absent)",NA
+"pla2r_lcm","Neutrophil","MN_vs_MCD",0,0,0,NA,12,14,FALSE,"fraction 0 in both groups (cell type absent)",NA
+"pla2r_lcm","pDC","MN_vs_MCD",0.1076,0.1061,0.0015,0.560449589446763,12,14,TRUE,"",0.711253294237659
+"pla2r_lcm","PEC","MN_vs_MCD",0,0,0,NA,12,14,FALSE,"fraction 0 in both groups (cell type absent)",NA
+"pla2r_lcm","Plasma","MN_vs_MCD",0.0042,0.0022,0.002,0.473760419147416,12,14,TRUE,"",0.637056563619504
+"pla2r_lcm","Podocyte","MN_vs_MCD",0.7746,0.7364,0.0382,0.193151371444547,12,14,TRUE,"",0.367685743231788
+"pla2r_lcm","PT","MN_vs_MCD",0,0,0,1,12,14,TRUE,"",1
+"pla2r_lcm","T_NK","MN_vs_MCD",0,0,0,NA,12,14,FALSE,"fraction 0 in both groups (cell type absent)",NA
+"pla2r_lcm","TAL","MN_vs_MCD",0,0,0,NA,12,14,FALSE,"fraction 0 in both groups (cell type absent)",NA

@@ -1,0 +1,3 @@
+"compartment","set","n_full","n_sensitivity","n_flagged_removed","modules_full","modules_sensitivity","gene_partition_ARI","gene_partition_ARI_nongrey","median_module_jaccard","n_modules_jaccard_gt_0.5","power"
+"glom","disc_glom_array",153,150,3,10,10,0.0056,-0.0035,0.0385,0,18
+"ti","disc_ti_array",269,240,29,8,7,-4e-04,-1e-04,0.0884,0,10

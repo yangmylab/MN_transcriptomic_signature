@@ -1,0 +1,6 @@
+"cohort","endpoint","n","n_MN","n_other","auc","ci_low","ci_high","note"
+"ERCB glomerular (reference)","MN vs other GN",170,21,149,0.8156,0.7211,0.9101,"same result as 09b, repeated for the table"
+"ERCB tubulointerstitial","MN vs other GN",169,18,151,0.4492,0.3096,0.5889,"compartment specificity: glomerular panel applied to TI"
+"RNA-seq tubulointerstitial","MN vs other GN",199,59,140,0.5386,0.4468,0.6304,"SLAMF8 absent on this platform -> scored at the discovery mean"
+"LCM glomeruli GSE216841 (third cohort)","MN vs other GN",26,12,14,0.9286,0.8244,1,"12 MN vs 14 MCD; PLA2R status NOT in the metadata (see B2/P-45)"
+"GSE99339 (ERCB patients, other CDF revision)","MN vs other GN",187,21,166,0.848,0.7585,0.9375,"annotation-robustness: same cohort, different Brainarray revision"

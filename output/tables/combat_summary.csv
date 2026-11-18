@@ -1,0 +1,3 @@
+"set","batches","samples","batch_silhouette_before","batch_silhouette_after","batch_r2_pc1to5_before","batch_r2_pc1to5_after","disease_silhouette_before","disease_silhouette_after","pc1_var_before","pc1_var_after","action","matrix_out"
+"disc_ti_array","GSE133288, GSE200818",269,0.097,-0.0329,0.1677,3e-04,-0.0351,-0.0327,16.9,17.5,"ComBat applied (accession as batch, group as covariate)","work/combat/disc_ti_array_expr_combat.rds"
+"disc_glom_array","GSE200828",153,NA,NA,NA,NA,NA,NA,NA,NA,"no ComBat: single series, no technical batch to remove","n/a"

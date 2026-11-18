@@ -1,0 +1,13 @@
+"model","K","cohort","auc","ci_low","ci_high","n_MN","n_other"
+"binary MN vs rest","50","ERCB (external)",0.9143,0.8625,0.9662,21,149
+"binary MN vs rest","50","RNA-seq (independent cohort)",0.9294,0.8939,0.965,62,211
+"binary MN vs rest","100","ERCB (external)",0.8613,0.783,0.9396,21,149
+"binary MN vs rest","100","RNA-seq (independent cohort)",0.9285,0.8954,0.9617,62,211
+"binary MN vs rest","200","ERCB (external)",0.8843,0.8096,0.959,21,149
+"binary MN vs rest","200","RNA-seq (independent cohort)",0.9299,0.8913,0.9685,62,211
+"binary MN vs rest","500","ERCB (external)",0.8613,0.7688,0.9538,21,149
+"binary MN vs rest","500","RNA-seq (independent cohort)",0.9282,0.8887,0.9678,62,211
+"binary MN vs rest","1000","ERCB (external)",0.9102,0.8476,0.9728,21,149
+"binary MN vs rest","1000","RNA-seq (independent cohort)",0.9276,0.8897,0.9655,62,211
+"binary MN vs rest","all","ERCB (external)",0.9217,0.8616,0.9818,21,149
+"binary MN vs rest","all","RNA-seq (independent cohort)",0.9391,0.9026,0.9755,62,211

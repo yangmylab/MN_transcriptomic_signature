@@ -1,0 +1,11 @@
+"compartment","contrast","cohorts","k_max","pooling","genes_pooled","meta_deg_up","meta_deg_down","meta_deg_total","meta_deg_i2_high","n_dl_fallback","median_i2_meta_deg","median_tau2_meta_deg"
+"Glom","MN_vs_Control","disc_glom_array+cross_glom_rnaseq",2,"random effects (REML)",7522,353,231,584,48,0,0,0
+"Glom","MN_vs_FSGS","disc_glom_array+cross_glom_rnaseq",2,"random effects (REML)",7522,16,2,18,5,0,50.4,0.0529
+"Glom","MN_vs_MCD","disc_glom_array+cross_glom_rnaseq",2,"random effects (REML)",7522,46,14,60,16,0,57.1,0.0783
+"Glom","MN_vs_Other","disc_glom_array+cross_glom_rnaseq",2,"random effects (REML)",7522,13,3,16,0,0,0,0
+"Glom","MN_vs_nonMN","disc_glom_array+cross_glom_rnaseq",2,"random effects (REML)",7522,18,0,18,9,0,75.6,0.0799
+"TI","MN_vs_Control","disc_ti_array",1,"single cohort (no pooling)",7616,242,81,323,0,0,NA,NA
+"TI","MN_vs_FSGS","disc_ti_array+cross_ti_rnaseq",2,"random effects (REML)",6438,0,2,2,0,0,0,0
+"TI","MN_vs_MCD","disc_ti_array+cross_ti_rnaseq",2,"random effects (REML)",6438,3,1,4,0,0,0,0
+"TI","MN_vs_Other","disc_ti_array+cross_ti_rnaseq",2,"random effects (REML)",6438,1,6,7,0,0,0,0
+"TI","MN_vs_nonMN","disc_ti_array+cross_ti_rnaseq",2,"random effects (REML)",6438,0,1,1,0,0,0,0

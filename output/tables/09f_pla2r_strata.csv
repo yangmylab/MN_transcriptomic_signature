@@ -1,0 +1,5 @@
+"stratum","n","n_MN","n_comparator","auc","ci_low","ci_high","median_score_MN","median_score_other"
+"MN vs MCD (all)",26,12,14,0.9286,0.8244,1,0.9983,0.8435
+"MN PLA2R+ vs MCD",20,6,14,0.9762,0.921,1,0.9996,0.8435
+"MN PLA2R- vs MCD",20,6,14,0.881,0.7117,1,0.9972,0.8435
+"within MN: PLA2R+ vs PLA2R-",12,6,6,0.8333,0.5536,1,0.9996,0.9972

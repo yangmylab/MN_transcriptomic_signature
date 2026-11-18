@@ -1,0 +1,145 @@
+"compartment","module","module_color","trait","cor","p","padj","trait_mad","cor_method","signif"
+"glom","9","magenta","Podocyte",-0.6545,4.54023873685257e-20,4.903e-18,0.05707,"bicor","***"
+"glom","8","pink","MN",0.5533,1.20204946291351e-13,6.491e-12,0,"pearson (zero MAD)","***"
+"glom","9","magenta","Myeloid",0.5463,2.80630016819436e-13,1.01e-11,0.01308,"bicor","***"
+"glom","7","black","Fibroblast",-0.5185,6.65712931154272e-12,1.797e-10,0.03521,"bicor","***"
+"glom","8","pink","Fibroblast",-0.4564,3.04721822274376e-09,5.714e-08,0.03521,"bicor","***"
+"glom","6","red","MN",0.4559,3.17471663656842e-09,5.714e-08,0,"pearson (zero MAD)","***"
+"glom","7","black","Podocyte",0.4104,1.37836248406876e-07,2.127e-06,0.05707,"bicor","***"
+"glom","8","pink","NonMN_GN",-0.3877,7.36337598902066e-07,9.941e-06,0,"pearson (zero MAD)","***"
+"glom","7","black","MN",0.3839,9.66083201897289e-07,1.159e-05,0,"pearson (zero MAD)","***"
+"glom","5","green","Endothelium",0.3761,1.66159947677342e-06,1.795e-05,0.0467,"bicor","***"
+"glom","6","red","NonMN_GN",-0.3696,2.57238468129831e-06,2.526e-05,0,"pearson (zero MAD)","***"
+"glom","1","turquoise","B",-0.3409,1.61836160889152e-05,0.0001457,0,"pearson (zero MAD)","***"
+"glom","4","yellow","Fibroblast",-0.3365,2.1076612820917e-05,0.0001751,0.03521,"bicor","***"
+"glom","3","brown","PEC",0.3333,2.54991498209903e-05,0.0001967,0.02359,"bicor","***"
+"glom","6","red","B",-0.3295,3.20088449622524e-05,0.0002294,0,"pearson (zero MAD)","***"
+"glom","6","red","PT",0.3284,3.39903821837319e-05,0.0002294,0.02895,"bicor","***"
+"glom","3","brown","Fibroblast",-0.3225,4.77885155991848e-05,0.0003036,0.03521,"bicor","***"
+"glom","6","red","Podocyte",0.3126,8.33958275362804e-05,0.0004992,0.05707,"bicor","***"
+"glom","5","green","B",-0.3117,8.78299330639841e-05,0.0004992,0,"pearson (zero MAD)","***"
+"glom","5","green","PEC",-0.3063,0.00011776723830844,0.0006359,0.02359,"bicor","***"
+"glom","1","turquoise","PT",0.2943,0.000221707335228775,0.00114,0.02895,"bicor","**"
+"glom","5","green","NonMN_GN",0.277,0.000526761227145607,0.002586,0,"pearson (zero MAD)","**"
+"glom","5","green","Podocyte",-0.266,0.000889719074940203,0.004178,0.05707,"bicor","**"
+"glom","4","yellow","PEC",0.2601,0.00116903265165331,0.005261,0.02359,"bicor","**"
+"glom","6","red","Fibroblast",-0.2546,0.00149625252279878,0.006464,0.03521,"bicor","**"
+"glom","9","magenta","T_NK",0.2412,0.0026717332953137,0.0111,0,"pearson (zero MAD)","*"
+"glom","8","pink","Podocyte",0.2306,0.00412608234334703,0.01622,0.05707,"bicor","*"
+"glom","3","brown","PT",0.2302,0.00420566901688728,0.01622,0.02895,"bicor","*"
+"glom","7","black","NonMN_GN",-0.2289,0.00443110930037176,0.0165,0,"pearson (zero MAD)","*"
+"glom","2","blue","Podocyte",0.2267,0.00483086818775477,0.01739,0.05707,"bicor","*"
+"glom","5","green","T_NK",0.2202,0.00622845329441244,0.0217,0,"pearson (zero MAD)","*"
+"glom","9","magenta","B",0.2192,0.0064940474622166,0.02192,0,"pearson (zero MAD)","*"
+"glom","2","blue","PT",0.2121,0.00848371542175981,0.02776,0.02895,"bicor","*"
+"glom","5","green","PT",0.21,0.00918837514831767,0.02919,0.02895,"bicor","*"
+"glom","9","magenta","NonMN_GN",0.209,0.00952768760288445,0.02933,0,"pearson (zero MAD)","*"
+"glom","5","green","Plasma",-0.2083,0.00977571430881561,0.02933,0,"pearson (zero MAD)","*"
+"glom","7","black","Plasma",-0.2039,0.0114649225939975,0.03284,0,"pearson (zero MAD)","*"
+"glom","5","green","MN",-0.2037,0.0115545574937815,0.03284,0,"pearson (zero MAD)","*"
+"glom","1","turquoise","PEC",-0.1971,0.0146197463360902,0.04049,0.02359,"bicor","*"
+"glom","7","black","T_NK",-0.1944,0.0160400606703578,0.04259,0,"pearson (zero MAD)","*"
+"glom","6","red","PEC",-0.1939,0.0163493050147311,0.04259,0.02359,"bicor","*"
+"glom","2","blue","Endothelium",-0.1934,0.0165866713072412,0.04259,0.0467,"bicor","*"
+"glom","4","yellow","B",0.1928,0.0169583004769019,0.04259,0,"pearson (zero MAD)","*"
+"glom","2","blue","PEC",0.1866,0.0209448731198098,0.05141,0.02359,"bicor",""
+"glom","6","red","Plasma",-0.1817,0.0246071916182159,0.05906,0,"pearson (zero MAD)",""
+"glom","3","brown","Plasma",0.1803,0.0257445194611508,0.06044,0,"pearson (zero MAD)",""
+"glom","5","green","Mesangium",0.1739,0.0315561569842601,0.07251,0,"pearson (zero MAD)",""
+"glom","7","black","PT",0.172,0.0334892366092289,0.07535,0.02895,"bicor",""
+"glom","2","blue","Plasma",0.1686,0.0372270997243253,0.08086,0,"pearson (zero MAD)",""
+"glom","9","magenta","PT",0.1684,0.037433902452463,0.08086,0.02895,"bicor",""
+"glom","8","pink","Plasma",-0.1659,0.0403999397528576,0.08513,0,"pearson (zero MAD)",""
+"glom","6","red","Mesangium",-0.1654,0.0409872643496197,0.08513,0,"pearson (zero MAD)",""
+"glom","1","turquoise","Plasma",-0.1597,0.0486655489946423,0.09849,0,"pearson (zero MAD)",""
+"glom","7","black","B",-0.1593,0.0492463225165338,0.09849,0,"pearson (zero MAD)",""
+"glom","9","magenta","Endothelium",-0.1533,0.05856672388753,0.115,0.0467,"bicor",""
+"glom","7","black","Endothelium",0.1465,0.0707736508858977,0.1365,0.0467,"bicor",""
+"glom","5","green","Myeloid",0.1457,0.0723620240817061,0.1371,0.01308,"bicor",""
+"glom","5","green","Fibroblast",0.1425,0.0789530245978081,0.147,0.03521,"bicor",""
+"glom","1","turquoise","Fibroblast",0.1397,0.0849626339546674,0.1555,0.03521,"bicor",""
+"glom","4","yellow","T_NK",-0.1371,0.0909698637834825,0.1637,0,"pearson (zero MAD)",""
+"glom","1","turquoise","Myeloid",0.1353,0.0953550604128152,0.1688,0.01308,"bicor",""
+"glom","6","red","Myeloid",0.1339,0.0988950967019219,0.1723,0.01308,"bicor",""
+"glom","8","pink","Myeloid",0.1305,0.108005574446989,0.1852,0.01308,"bicor",""
+"glom","7","black","Myeloid",-0.127,0.117750615758266,0.1987,0.01308,"bicor",""
+"glom","7","black","Mesangium",-0.1156,0.154900774974218,0.2574,0,"pearson (zero MAD)",""
+"glom","8","pink","Mesangium",-0.1147,0.158073308432843,0.2587,0,"pearson (zero MAD)",""
+"glom","4","yellow","Plasma",0.113,0.164435475313984,0.2651,0,"pearson (zero MAD)",""
+"glom","8","pink","PEC",-0.1122,0.167227617550387,0.2656,0.02359,"bicor",""
+"glom","8","pink","B",-0.1109,0.17220295924624,0.2695,0,"pearson (zero MAD)",""
+"glom","3","brown","Podocyte",0.1074,0.186488624026582,0.2836,0.05707,"bicor",""
+"glom","4","yellow","NonMN_GN",0.1069,0.188487798130904,0.2836,0,"pearson (zero MAD)",""
+"glom","4","yellow","Endothelium",0.1067,0.189099863382438,0.2836,0.0467,"bicor",""
+"glom","4","yellow","Mesangium",-0.1045,0.198557647688785,0.2938,0,"pearson (zero MAD)",""
+"glom","8","pink","PT",0.0983,0.226923391498671,0.3312,0.02895,"bicor",""
+"glom","1","turquoise","NonMN_GN",-0.0911,0.262884157029761,0.3786,0,"pearson (zero MAD)",""
+"glom","6","red","T_NK",-0.0902,0.26729712904928,0.3798,0,"pearson (zero MAD)",""
+"glom","4","yellow","Podocyte",0.0873,0.283510634093347,0.3977,0.05707,"bicor",""
+"glom","8","pink","Endothelium",0.085,0.296124941221064,0.41,0.0467,"bicor",""
+"glom","9","magenta","Plasma",0.0768,0.345333525211962,0.4721,0,"pearson (zero MAD)",""
+"glom","9","magenta","MN",-0.0751,0.355947975549986,0.4756,0,"pearson (zero MAD)",""
+"glom","8","pink","T_NK",-0.075,0.356665634093132,0.4756,0,"pearson (zero MAD)",""
+"glom","3","brown","Mesangium",-0.0742,0.362086390834836,0.4769,0,"pearson (zero MAD)",""
+"glom","1","turquoise","T_NK",0.0709,0.383807319539561,0.4994,0,"pearson (zero MAD)",""
+"glom","2","blue","T_NK",-0.0666,0.413441171353416,0.5316,0,"pearson (zero MAD)",""
+"glom","2","blue","Myeloid",-0.065,0.424452116268329,0.5393,0.01308,"bicor",""
+"glom","2","blue","MN",-0.0598,0.46298433626038,0.5784,0,"pearson (zero MAD)",""
+"glom","7","black","PEC",0.059,0.469122789390092,0.5784,0.02359,"bicor",""
+"glom","2","blue","Mesangium",-0.0587,0.471327846482336,0.5784,0,"pearson (zero MAD)",""
+"glom","3","brown","T_NK",0.0541,0.506845779520432,0.615,0,"pearson (zero MAD)",""
+"glom","9","magenta","PEC",-0.0517,0.525933100676474,0.6299,0.02359,"bicor",""
+"glom","3","brown","NonMN_GN",0.051,0.531528324441664,0.6299,0,"pearson (zero MAD)",""
+"glom","9","magenta","Mesangium",0.0485,0.551802536249921,0.6299,0,"pearson (zero MAD)",""
+"glom","2","blue","B",-0.0484,0.552580256260757,0.6299,0,"pearson (zero MAD)",""
+"glom","9","magenta","Fibroblast",-0.0482,0.553809263365552,0.6299,0.03521,"bicor",""
+"glom","1","turquoise","Endothelium",-0.0482,0.554036049072102,0.6299,0.0467,"bicor",""
+"glom","3","brown","Myeloid",-0.0438,0.591120790683719,0.665,0.01308,"bicor",""
+"glom","6","red","Endothelium",0.0426,0.600681364850225,0.6688,0.0467,"bicor",""
+"glom","2","blue","NonMN_GN",-0.0408,0.616960859516172,0.6799,0,"pearson (zero MAD)",""
+"glom","3","brown","MN",0.0363,0.655856444460599,0.7155,0,"pearson (zero MAD)",""
+"glom","4","yellow","MN",0.0347,0.670567940869957,0.7182,0,"pearson (zero MAD)",""
+"glom","4","yellow","Myeloid",-0.0345,0.671611353804661,0.7182,0.01308,"bicor",""
+"glom","1","turquoise","MN",0.0337,0.678810236198169,0.7187,0,"pearson (zero MAD)",""
+"glom","4","yellow","PT",-0.0317,0.69684769824097,0.7307,0.02895,"bicor",""
+"glom","1","turquoise","Mesangium",-0.0251,0.757742838594119,0.7869,0,"pearson (zero MAD)",""
+"glom","2","blue","Fibroblast",-0.0231,0.77657383318426,0.7988,0.03521,"bicor",""
+"glom","3","brown","Endothelium",-0.0167,0.837655522013433,0.8535,0.0467,"bicor",""
+"glom","3","brown","B",0.0114,0.888565749611961,0.8969,0,"pearson (zero MAD)",""
+"glom","1","turquoise","Podocyte",0.0067,0.934570984852923,0.9346,0.05707,"bicor",""
+"glom","1","turquoise","TAL",NA,NA,NA,0,"pearson (zero MAD)",NA
+"glom","2","blue","TAL",NA,NA,NA,0,"pearson (zero MAD)",NA
+"glom","3","brown","TAL",NA,NA,NA,0,"pearson (zero MAD)",NA
+"glom","4","yellow","TAL",NA,NA,NA,0,"pearson (zero MAD)",NA
+"glom","5","green","TAL",NA,NA,NA,0,"pearson (zero MAD)",NA
+"glom","6","red","TAL",NA,NA,NA,0,"pearson (zero MAD)",NA
+"glom","7","black","TAL",NA,NA,NA,0,"pearson (zero MAD)",NA
+"glom","8","pink","TAL",NA,NA,NA,0,"pearson (zero MAD)",NA
+"glom","9","magenta","TAL",NA,NA,NA,0,"pearson (zero MAD)",NA
+"glom","1","turquoise","DCT",NA,NA,NA,0,"pearson (zero MAD)",NA
+"glom","2","blue","DCT",NA,NA,NA,0,"pearson (zero MAD)",NA
+"glom","3","brown","DCT",NA,NA,NA,0,"pearson (zero MAD)",NA
+"glom","4","yellow","DCT",NA,NA,NA,0,"pearson (zero MAD)",NA
+"glom","5","green","DCT",NA,NA,NA,0,"pearson (zero MAD)",NA
+"glom","6","red","DCT",NA,NA,NA,0,"pearson (zero MAD)",NA
+"glom","7","black","DCT",NA,NA,NA,0,"pearson (zero MAD)",NA
+"glom","8","pink","DCT",NA,NA,NA,0,"pearson (zero MAD)",NA
+"glom","9","magenta","DCT",NA,NA,NA,0,"pearson (zero MAD)",NA
+"glom","1","turquoise","CD_PC",NA,NA,NA,0,"pearson (zero MAD)",NA
+"glom","2","blue","CD_PC",NA,NA,NA,0,"pearson (zero MAD)",NA
+"glom","3","brown","CD_PC",NA,NA,NA,0,"pearson (zero MAD)",NA
+"glom","4","yellow","CD_PC",NA,NA,NA,0,"pearson (zero MAD)",NA
+"glom","5","green","CD_PC",NA,NA,NA,0,"pearson (zero MAD)",NA
+"glom","6","red","CD_PC",NA,NA,NA,0,"pearson (zero MAD)",NA
+"glom","7","black","CD_PC",NA,NA,NA,0,"pearson (zero MAD)",NA
+"glom","8","pink","CD_PC",NA,NA,NA,0,"pearson (zero MAD)",NA
+"glom","9","magenta","CD_PC",NA,NA,NA,0,"pearson (zero MAD)",NA
+"glom","1","turquoise","Mast",NA,NA,NA,0,"pearson (zero MAD)",NA
+"glom","2","blue","Mast",NA,NA,NA,0,"pearson (zero MAD)",NA
+"glom","3","brown","Mast",NA,NA,NA,0,"pearson (zero MAD)",NA
+"glom","4","yellow","Mast",NA,NA,NA,0,"pearson (zero MAD)",NA
+"glom","5","green","Mast",NA,NA,NA,0,"pearson (zero MAD)",NA
+"glom","6","red","Mast",NA,NA,NA,0,"pearson (zero MAD)",NA
+"glom","7","black","Mast",NA,NA,NA,0,"pearson (zero MAD)",NA
+"glom","8","pink","Mast",NA,NA,NA,0,"pearson (zero MAD)",NA
+"glom","9","magenta","Mast",NA,NA,NA,0,"pearson (zero MAD)",NA

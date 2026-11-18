@@ -1,0 +1,8 @@
+"set","samples","flagged_outliers","flagged_pct","min_median_corr","decision","rationale"
+"cross_glom_rnaseq",282,7,2.5,0.188,"retain","User decision 2026-10-18: keep every sample; document flags only"
+"cross_ti_rnaseq",199,26,13.1,0.183,"retain","User decision 2026-10-18: keep every sample; document flags only"
+"disc_glom_array",153,3,2,0.458,"retain","User decision 2026-10-18: keep every sample; document flags only"
+"disc_ti_array",269,29,10.8,0.281,"retain","User decision 2026-10-18: keep every sample; document flags only"
+"pla2r_lcm",34,0,0,0.247,"retain","User decision 2026-10-18: keep every sample; document flags only"
+"val_glom_array",196,71,36.2,0.459,"retain","User decision 2026-10-18: keep every sample; document flags only"
+"val_ti_array",195,64,32.8,0.528,"retain","User decision 2026-10-18: keep every sample; document flags only"

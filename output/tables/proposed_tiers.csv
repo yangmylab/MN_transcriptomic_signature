@@ -1,0 +1,9 @@
+"tier","releases","n_samples","n_patients","MN","control_LD","FSGS","MCD","Other"
+"Discovery glom (microarray, NEPTUNE)","GSE200828+GSE108109",159,159,51,6,31,19,46
+"Discovery TI (microarray, NEPTUNE)","GSE133288+GSE200818+GSE108112",286,286,51,5,78,63,72
+"Validation glom (microarray, ERCB)","GSE104948+GSE99339",216,216,21,21,23,15,0
+"Validation TI (microarray, ERCB)","GSE104954+GSE99325",202,202,18,21,13,14,0
+"Cross-platform glom (RNA-seq, NEPTUNE)","GSE197307",282,282,62,8,93,89,29
+"Cross-platform TI (RNA-seq, NEPTUNE)","GSE182380",199,199,59,0,70,32,37
+"PLA2R sub-analysis (LCM-FFPE)","GSE216841",36,36,12,10,0,14,0
+"Peripheral cross-check (PBMC)","GSE73953",25,25,8,2,0,0,0

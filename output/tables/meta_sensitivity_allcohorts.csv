@@ -1,0 +1,11 @@
+"compartment","contrast","cohorts","k_max","primary_meta_degs","still_significant_allcohorts","allcohorts_meta_degs"
+"Glom","MN_vs_Control","disc_glom_array+cross_glom_rnaseq+val_glom_array",3,584,207,269
+"Glom","MN_vs_FSGS","disc_glom_array+cross_glom_rnaseq+val_glom_array",3,18,6,11
+"Glom","MN_vs_MCD","disc_glom_array+cross_glom_rnaseq+val_glom_array",3,60,24,33
+"Glom","MN_vs_Other","disc_glom_array+cross_glom_rnaseq+val_glom_array",3,16,6,9
+"Glom","MN_vs_nonMN","disc_glom_array+cross_glom_rnaseq+val_glom_array",3,18,12,16
+"TI","MN_vs_Control","disc_ti_array+val_ti_array",2,323,39,88
+"TI","MN_vs_FSGS","disc_ti_array+cross_ti_rnaseq+val_ti_array",3,2,0,0
+"TI","MN_vs_MCD","disc_ti_array+cross_ti_rnaseq+val_ti_array",3,4,1,1
+"TI","MN_vs_Other","disc_ti_array+cross_ti_rnaseq+val_ti_array",3,7,3,4
+"TI","MN_vs_nonMN","disc_ti_array+cross_ti_rnaseq+val_ti_array",3,1,0,0

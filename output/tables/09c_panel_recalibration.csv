@@ -1,0 +1,3 @@
+"half","version","calibration_in_large","calibration_slope","brier","auc"
+"held-out ERCB","before recalibration",0.8619,1054.8236,0.8446,0.8432
+"held-out ERCB","after recalibration",-0.0029,5.2939,0.0959,0.8432

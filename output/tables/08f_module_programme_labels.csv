@@ -1,0 +1,17 @@
+"compartment","module","n_genes","programme_label","label_collection","label_padj","second_term","third_term","n_significant_terms","MN_bicor","MN_padj","MN_adjusted_padj"
+"glom","turquoise",2304,"REACTOME_TRNA_PROCESSING_IN_THE_NUCLEUS","Reactome",0.0015,"REACTOME_TRNA_PROCESSING","REACTOME_HCMV_EARLY_EVENTS",59,0.0337,0.719,0.759
+"glom","blue",405,"organic acid metabolic process","GO_BP",2.38e-55,"oxoacid metabolic process","carboxylic acid metabolic process",449,-0.0598,0.578,0.563
+"glom","brown",384,"mitochondrial inner membrane","GO_CC",2.36e-24,"organelle inner membrane","mitochondrial membrane",255,0.0363,0.716,0.563
+"glom","yellow",309,"ribonucleoprotein complex","GO_CC",0.00552,"REACTOME_AGGREPHAGY","REACTOME_SELECTIVE_AUTOPHAGY",16,0.0347,0.718,0.563
+"glom","green",233,"transmembrane signaling receptor activity","GO_MF",2.24e-17,"blood vessel development","vasculature development",348,-0.2037,0.0328,0.0654
+"glom","red",144,"metal ion transmembrane transporter activity","GO_MF",0.00604,"signaling receptor activity","molecular transducer activity",19,0.4559,5.71e-08,0.000656
+"glom","black",113,"anchoring junction","GO_CC",0.000477,"Z disc","focal adhesion",46,0.3839,1.16e-05,0.1
+"glom","pink",84,"cell surface","GO_CC",2.85e-05,"calcium ion binding","external encapsulating structure",36,0.5533,6.49e-12,1.01e-05
+"glom","magenta",81,"inflammatory response","GO_BP",2.09e-14,"defense response to symbiont","positive regulation of immune system process",491,-0.0751,0.476,0.893
+"ti","turquoise",1829,"REACTOME_TRANSLATION","Reactome",3.6e-24,"ribosomal subunit","mitochondrial inner membrane",365,-0.0984,0.158,0.941
+"ti","blue",1743,"chromatin organization","GO_BP",7.16e-19,"chromatin remodeling","nuclear body",269,0.0774,0.274,0.941
+"ti","brown",1279,"small molecule catabolic process","GO_BP",3.7e-45,"carboxylic acid metabolic process","oxoacid metabolic process",343,-0.0226,0.746,0.941
+"ti","yellow",829,"signaling receptor binding","GO_MF",7.7e-20,"external encapsulating structure","extracellular matrix",1150,-0.0015,0.98,0.941
+"ti","green",445,"REACTOME_VESICLE_MEDIATED_TRANSPORT","Reactome",0.000229,"REACTOME_MEMBRANE_TRAFFICKING","neuron projection",51,0.1114,0.112,0.941
+"ti","red",194,"regulation of cell adhesion","GO_BP",7.28e-07,"cell-cell adhesion","positive regulation of cell adhesion",254,-0.0939,0.181,0.941
+"ti","black",147,"carboxylic acid metabolic process","GO_BP",4.98e-08,"oxoacid metabolic process","organic acid metabolic process",82,0.0745,0.288,0.941

@@ -1,0 +1,8 @@
+"compartment","module","module_color","adj_logFC_MN","t","p","padj","covars_adjusted"
+"ti","7","black",0.0125,1.4,0.161725536970854,0.9413,"Podocyte+Fibroblast+Myeloid"
+"ti","5","green",0.0078,0.87,0.38432411460871,0.9413,"Podocyte+Fibroblast+Myeloid"
+"ti","3","brown",0.0069,0.774,0.438932773496113,0.9413,"Podocyte+Fibroblast+Myeloid"
+"ti","2","blue",-0.0026,-0.296,0.767141321555345,0.9413,"Podocyte+Fibroblast+Myeloid"
+"ti","6","red",0.001,0.111,0.911772545904955,0.9413,"Podocyte+Fibroblast+Myeloid"
+"ti","4","yellow",8e-04,0.094,0.925029918790698,0.9413,"Podocyte+Fibroblast+Myeloid"
+"ti","1","turquoise",7e-04,0.074,0.941317413644154,0.9413,"Podocyte+Fibroblast+Myeloid"

@@ -1,0 +1,7 @@
+"model","K","nested_cv_auc_mean","nested_cv_auc_sd","nested_cv_auc_min","nested_cv_auc_max","n_evaluations","repeats"
+"binary MN vs rest","50",0.9107,0.0568,0.7662,1,50,10
+"binary MN vs rest","100",0.9165,0.0527,0.7619,1,50,10
+"binary MN vs rest","200",0.9131,0.048,0.7706,0.9895,50,10
+"binary MN vs rest","500",0.9152,0.0496,0.7532,1,50,10
+"binary MN vs rest","1000",0.9187,0.0484,0.8052,0.9947,50,10
+"binary MN vs rest","all",0.9262,0.0491,0.7889,1,50,10

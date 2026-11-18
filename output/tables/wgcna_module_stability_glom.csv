@@ -1,0 +1,10 @@
+"module","size_full","best_match","size_match","jaccard","frac_recovered"
+"turquoise",2304,"turquoise",2333,0.1722,0.2938
+"blue",405,"blue",380,0.077,0.1383
+"brown",384,"turquoise",2333,0.0488,0.3255
+"yellow",309,"turquoise",2333,0.0406,0.3301
+"green",233,"turquoise",2333,0.0334,0.3519
+"red",144,"turquoise",2333,0.017,0.2847
+"black",113,"brown",322,0.0165,0.0619
+"pink",84,"green",192,0.0147,0.0476
+"magenta",81,"blue",380,0.0385,0.2099

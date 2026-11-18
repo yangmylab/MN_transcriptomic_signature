@@ -1,0 +1,33 @@
+"set","compartment","role","contrast","n_case","n_ref","genes_tested","deg_up","deg_down","deg_total"
+"disc_glom_array","Glom","discovery","MN_vs_Control",51,6,7882,648,256,904
+"disc_glom_array","Glom","discovery","MN_vs_FSGS",51,31,7882,6,0,6
+"disc_glom_array","Glom","discovery","MN_vs_MCD",51,19,7882,32,0,32
+"disc_glom_array","Glom","discovery","MN_vs_Other",51,46,7882,16,1,17
+"disc_glom_array","Glom","discovery","MN_vs_nonMN",51,102,7882,14,0,14
+"disc_ti_array","TI","discovery","MN_vs_Control",51,5,7616,242,81,323
+"disc_ti_array","TI","discovery","MN_vs_FSGS",51,78,7616,0,0,0
+"disc_ti_array","TI","discovery","MN_vs_MCD",51,63,7616,10,4,14
+"disc_ti_array","TI","discovery","MN_vs_Other",51,72,7616,0,22,22
+"disc_ti_array","TI","discovery","MN_vs_nonMN",51,218,7616,0,1,1
+"val_glom_array","Glom","independent validation","MN_vs_Control",21,26,11180,705,1497,2202
+"val_glom_array","Glom","independent validation","MN_vs_FSGS",21,18,11180,272,739,1011
+"val_glom_array","Glom","independent validation","MN_vs_MCD",21,14,11180,121,168,289
+"val_glom_array","Glom","independent validation","MN_vs_Other",21,117,11180,67,143,210
+"val_glom_array","Glom","independent validation","MN_vs_nonMN",21,175,11180,120,273,393
+"val_ti_array","TI","independent validation","MN_vs_Control",18,26,9493,397,1405,1802
+"val_ti_array","TI","independent validation","MN_vs_FSGS",18,13,9493,0,0,0
+"val_ti_array","TI","independent validation","MN_vs_MCD",18,13,9493,46,23,69
+"val_ti_array","TI","independent validation","MN_vs_Other",18,125,9493,22,26,48
+"val_ti_array","TI","independent validation","MN_vs_nonMN",18,177,9493,41,48,89
+"cross_glom_rnaseq","Glom","independent RNA-seq cohort","MN_vs_Control",62,8,13487,825,712,1537
+"cross_glom_rnaseq","Glom","independent RNA-seq cohort","MN_vs_FSGS",62,93,13487,84,50,134
+"cross_glom_rnaseq","Glom","independent RNA-seq cohort","MN_vs_MCD",62,89,13487,357,330,687
+"cross_glom_rnaseq","Glom","independent RNA-seq cohort","MN_vs_Other",62,29,13487,34,23,57
+"cross_glom_rnaseq","Glom","independent RNA-seq cohort","MN_vs_nonMN",62,219,13487,136,54,190
+"cross_ti_rnaseq","TI","independent RNA-seq cohort","MN_vs_FSGS",59,70,11863,1,1,2
+"cross_ti_rnaseq","TI","independent RNA-seq cohort","MN_vs_MCD",59,32,11863,7,0,7
+"cross_ti_rnaseq","TI","independent RNA-seq cohort","MN_vs_Other",59,37,11863,0,0,0
+"cross_ti_rnaseq","TI","independent RNA-seq cohort","MN_vs_nonMN",59,139,11863,0,0,0
+"pla2r_lcm","Glom","PLA2R sub-analysis","MN_vs_Control",12,8,19591,950,1098,2048
+"pla2r_lcm","Glom","PLA2R sub-analysis","MN_vs_MCD",12,14,19591,722,799,1521
+"pla2r_lcm","Glom","PLA2R sub-analysis","MN_vs_nonMN",12,22,19591,700,767,1467

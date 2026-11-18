@@ -1,0 +1,5 @@
+"gene","boruta","lasso","svm","n_methods_freq","mean_frequency","is_hub","hub_module","hub_kME","module_Z","is_metaDEG","meta_contrast","meta_logFC","meta_padj","gate_min_K","top_celltype","celltype_tau","n_evidence"
+"SLAMF8",1,0.88,0.86,3,0.9133,FALSE,NA,NA,NA,TRUE,"MN_vs_nonMN",1.0165,1.303e-17,"50","B",0.7632,3
+"TRPC6",1,0.8,0.54,2,0.78,FALSE,NA,NA,NA,TRUE,"MN_vs_nonMN",1.1698,2.612e-24,"50","Podocyte",0.8338,3
+"MYOZ2",1,0.68,0.4,2,0.6933,TRUE,"pink",0.8071,21.418,TRUE,"MN_vs_MCD",2.2113,2.035e-31,"50","pDC",1,3
+"PPP1R3C",0.8,0.6,0.02,2,0.4733,FALSE,NA,NA,NA,TRUE,"MN_vs_Control",1.3505,1.85e-09,"50","Mesangium",0.4398,2

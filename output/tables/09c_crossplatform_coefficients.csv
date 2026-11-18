@@ -1,0 +1,5 @@
+"gene","coef_discovery_fit","coef_rnaseq_fit","sign_concordant"
+"SLAMF8",1.0398,0.6117,TRUE
+"TRPC6",1.2246,1.0377,TRUE
+"MYOZ2",1.1999,1.8308,TRUE
+"PPP1R3C",0.9509,0.2785,TRUE

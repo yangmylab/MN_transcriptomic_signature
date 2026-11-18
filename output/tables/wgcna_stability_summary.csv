@@ -1,0 +1,3 @@
+"compartment","soft_power","n_modules_full","median_split_jaccard","median_split_ME_cor","drop_flagged_jaccard","drop_flagged_ME_cor","verdict"
+"glom",18,9,0.2919,0.961,0.5518,0.9942,"axes reproducible, membership not"
+"ti",10,7,0.3155,0.9191,0.5529,0.9831,"reproducible"

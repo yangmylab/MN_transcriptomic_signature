@@ -1,0 +1,5 @@
+"gene","coefficient","odds_ratio","OR_low","OR_high","p","selection_frequency_mean","methods","module","kME","meta_contrast","meta_logFC","top_celltype","celltype_tau","module_programme","module_programme_2nd"
+"SLAMF8",1.0398,2.8286,1.2815,6.2437,0.01006,0.9133,3,NA,NA,"MN_vs_nonMN",1.0165,"B",0.7632,NA,NA
+"TRPC6",1.2246,3.4029,1.0593,10.9314,0.03971,0.78,2,NA,NA,"MN_vs_nonMN",1.1698,"Podocyte",0.8338,NA,NA
+"MYOZ2",1.1999,3.3197,1.195,9.2228,0.02136,0.6933,2,"pink",0.8071,"MN_vs_MCD",2.2113,"pDC",1,"cell surface","calcium ion binding"
+"PPP1R3C",0.9509,2.588,1.3076,5.1222,0.006337,0.4733,2,NA,NA,"MN_vs_Control",1.3505,"Mesangium",0.4398,NA,NA

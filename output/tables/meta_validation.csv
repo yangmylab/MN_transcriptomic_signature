@@ -1,0 +1,11 @@
+"compartment","contrast","validation_set","genes_in_common","meta_degs_tested","replicated_adjP05_samesign","replicated_adjP05_samesign_pct","sign_concordance_all_genes_pct","lfc_pearson_all_genes"
+"Glom","MN_vs_Control","val_glom_array",5794,456,252,55.3,54.9,0.304
+"Glom","MN_vs_FSGS","val_glom_array",5794,16,6,37.5,55.5,0.192
+"Glom","MN_vs_MCD","val_glom_array",5794,46,18,39.1,55.8,0.269
+"Glom","MN_vs_Other","val_glom_array",5794,12,10,83.3,52.7,0.331
+"Glom","MN_vs_nonMN","val_glom_array",5794,17,14,82.4,53.9,0.257
+"TI","MN_vs_Control","val_ti_array",5486,216,70,32.4,47,0.242
+"TI","MN_vs_FSGS","val_ti_array",4966,2,0,0,52.5,0.263
+"TI","MN_vs_MCD","val_ti_array",4966,2,1,50,54.9,0.142
+"TI","MN_vs_Other","val_ti_array",4966,7,4,57.1,52.8,0.335
+"TI","MN_vs_nonMN","val_ti_array",4966,1,0,0,51,0.133

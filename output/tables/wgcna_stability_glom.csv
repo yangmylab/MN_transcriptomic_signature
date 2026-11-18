@@ -1,0 +1,5 @@
+"compartment","perturbation","n_samples_ref","n_samples_alt","power_ref","power_alt","power_full","n_modules_ref","n_modules_alt","median_best_jaccard","max_best_jaccard","median_best_ME_cor","max_best_ME_cor","n_modules_jaccard_gt_0.5"
+"glom","split1",75,78,18,20,18,12,8,0.2919,0.6049,0.961,0.995,2
+"glom","split2",75,78,16,14,18,11,15,0.4004,0.5892,0.9893,0.9934,4
+"glom","split3",75,78,16,20,18,11,10,0.1896,0.5954,0.9138,0.9949,1
+"glom","drop_flagged",153,150,18,14,18,9,13,0.5518,0.8629,0.9942,0.9994,6

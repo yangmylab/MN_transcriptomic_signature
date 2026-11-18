@@ -166,8 +166,21 @@ quantified by standard pipelines; P02 loses COL10A1; P01 loses FOSB), and the pa
 overlap (CCND1 is shared by P02/P03; ZFP36 by P01/P05) — consistent with finding 1.
 
 ### 3.4 Secondary analyses (cheap, high value)
-- **Panel-size frontier**: nested CV at K = 2, 3, 4, 6, 8, 12, 20 → external AUC. Answers "why four
-  genes when 19k scores higher?" for our own panel *and* for the field.
+- **Panel-size frontier — DONE 2026-11-18** (`R/10d_panel_size_frontier.R`, `output/tables/10d_panel_size_frontier.csv`,
+  figure in `output/models_trackb/`). Genes ranked by moderated *t* **inside every fold** (no leakage),
+  K = 2…50, plus the locked panel read directly from `09a`/`09b`. Result:
+
+  | K | 2 | 3 | 4 | 6 | 8 | 12 | 20 | 50 |
+  |---|---|---|---|---|---|---|---|---|
+  | internal CV AUC | 0.791 | 0.829 | 0.838 | 0.856 | 0.873 | **0.875** | 0.825 | 0.785 |
+  | external ERCB AUC | **0.858** | 0.826 | 0.821 | 0.802 | 0.767 | 0.827 | 0.843 | 0.690 |
+
+  **The answer to "why four genes":** external discrimination is *flat* from K = 2 to K = 20
+  (0.767–0.858, no trend) and **collapses at K = 50** (0.690), while internal CV peaks at K ≈ 12 and
+  then overfits. Four genes sits inside the external plateau, so parsimony costs nothing measurable —
+  and adding genes does not buy external performance either. The three-method locked panel is also
+  vindicated against a purely statistical choice: at the same K it matches the best top-4 (CV 0.846
+  vs 0.838; ERCB 0.816 vs 0.821), so the biological-selection machinery did not degrade the model.
 - **Design checklist**: derive 8–10 rules from the ladder (de-duplicate; state the standardisation;
   outer loop for selection; independent cohort; permutation null; compartment declared; report CI;
   report n patients not samples). Publish as a boxed table — that is what reviewers and editors cite.

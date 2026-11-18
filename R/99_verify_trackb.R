@@ -93,11 +93,42 @@ check(all(c("R1", "R3", "R5", "perm_p") %in% names(summ)), "summary carries R1/R
 check(all(abs(summ$drop_R1_R5 - (summ$R1 - summ$R5)) < 1e-6),
       "drop_R1_R5 is arithmetically consistent with the rungs", "")
 
+# --- panel-size frontier (10d) ----------------------------------------------
+fr <- read.csv(file.path(tab_dir, "10d_panel_size_frontier.csv"), stringsAsFactors = FALSE)
+
+check(nrow(fr) == 9, "panel-size frontier covers 8 K values plus the locked reference", nrow(fr))
+tk <- fr[is.na(fr$locked_panel), ]
+check(nrow(tk) == 8 && !any(duplicated(tk$K)), "top-K curve has one row per K", paste(sort(tk$K), collapse = ","))
+check(any(!is.na(fr$locked_panel)), "locked four-gene panel appears as a reference row", "")
+
+# the locked panel must match the tables it was read from (09a CV, 09b external), not a transcription
+cv_l <- read.csv(file.path(tab_dir, "09a_panel_cv_summary.csv"), stringsAsFactors = FALSE)
+ext_l <- read.csv(file.path(tab_dir, "09b_panel_external.csv"), stringsAsFactors = FALSE)
+lock <- fr[!is.na(fr$locked_panel), ]
+check(abs(lock$cv_auc_mean - cv_l$mean_auc[cv_l$method == "lasso"]) < 1e-6,
+      "locked panel CV AUC reproduces 09a exactly", "")
+check(abs(lock$ercb_auc - ext_l$auc[ext_l$cohort == "ERCB external"]) < 1e-6,
+      "locked panel ERCB AUC reproduces 09b exactly", "")
+
+# the two claims the frontier is used to support
+check(tk$cv_auc_mean[tk$K == 12] > tk$cv_auc_mean[tk$K == 50],
+      "internal CV peaks before K = 50 (larger panels overfit)",
+      paste(round(tk$cv_auc_mean[tk$K == 12], 3), ">", round(tk$cv_auc_mean[tk$K == 50], 3)))
+check(tk$ercb_auc[tk$K == 50] < tk$ercb_auc[tk$K == 4],
+      "external ERCB degrades from K = 4 to K = 50",
+      paste(round(tk$ercb_auc[tk$K == 4], 3), "->", round(tk$ercb_auc[tk$K == 50], 3)))
+check(abs(lock$cv_auc_mean - tk$cv_auc_mean[tk$K == 4]) < 0.05,
+      "three-method locked panel is within 0.05 CV AUC of the best top-4",
+      sprintf("%.4f vs %.4f", lock$cv_auc_mean, tk$cv_auc_mean[tk$K == 4]))
+
 # --- figure + 0-byte guard ---------------------------------------------------
-for (ext in c("pdf", "jpeg")) {
-  f <- file.path(fig_dir, paste0("10c_attrition.", ext))
-  check(file.exists(f) && file.size(f) > 0, sprintf("attrition figure exists as %s", toupper(ext)),
-        if (file.exists(f)) paste(round(file.size(f) / 1024), "kB") else "missing")
+for (stem in c("10c_attrition", "10d_panel_size_frontier")) {
+  for (ext in c("pdf", "jpeg")) {
+    f <- file.path(fig_dir, paste0(stem, ".", ext))
+    check(file.exists(f) && file.size(f) > 0,
+          sprintf("%s exists as %s", stem, toupper(ext)),
+          if (file.exists(f)) paste(round(file.size(f) / 1024), "kB") else "missing")
+  }
 }
 
 cat(sprintf("\n=========== %d passed, %d failed ===========\n", n_pass, n_fail))

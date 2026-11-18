@@ -1166,6 +1166,34 @@ non-coding RNAs).
 `Paper1_strategy_v2_2026-11-18.md` §3.3 now records the falsification verbatim and §3.5 carries the
 pilot table and the revised N1/N2 rows. Next: expand the register to ≥10 panels before submission.
 
+### 2.26 Track B — panel-size frontier: "why four genes?" answered (2026-11-18) ✅
+
+`R/10d_panel_size_frontier.R` → `output/tables/10d_panel_size_frontier.csv` +
+`output/models_trackb/10d_panel_size_frontier.{pdf,jpeg}`. Genes ranked by moderated *t* **inside every
+fold** (no leakage), K = 2…50, external bars lock each K on full discovery. The locked panel's CV and
+ERCB values are **read from `09a_panel_cv_summary.csv` and `09b_panel_external.csv`** with `stopifnot`
+guards — not transcribed (a first draft hard-coded them from memory; that was caught and replaced).
+
+| K | 2 | 3 | 4 | 6 | 8 | 12 | 20 | 50 |
+|---|---|---|---|---|---|---|---|---|
+| internal CV | 0.791 | 0.829 | 0.838 | 0.856 | 0.873 | **0.875** | 0.825 | 0.785 |
+| external ERCB | **0.858** | 0.826 | 0.821 | 0.802 | 0.767 | 0.827 | 0.843 | 0.690 |
+
+**Findings.** External discrimination is flat from K = 2 to K = 20 and **collapses at K = 50** (0.690),
+while internal CV peaks at K ≈ 12 and then overfits — so four genes sits inside the external plateau and
+adding genes buys nothing externally. The three-method locked panel matches a purely statistical top-4
+at the same K (CV 0.846 vs 0.838; ERCB 0.816 vs 0.821), i.e. the biological selection did not degrade
+the model. This is the figure that answers a reviewer's "why four when your 19k model scores 0.922?".
+
+**Verifier:** `99_verify_trackb.R` extended to **37 assertions**, green — including that the locked-panel
+row reproduces 09a/09b exactly, that CV peaks before K = 50, that ERCB degrades from K = 4 to K = 50, and
+that both Track B figures exist as PDF+JPEG.
+
+**Environment note for the deferred adoption tests:** `BayesPrism` and `MuSiC` are **installed**;
+`decoupleR`, `InstaPrism` and Python `tabpfn` are **not** (checked across all `~/envs/*`). So the
+two-method deconvolution (G6) can proceed without provisioning; the TabPFN and decoupleR tests need the
+user to install packages first.
+
 
 ---
 

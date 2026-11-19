@@ -34,6 +34,7 @@ PANEL_WORD = {3: "three", 4: "four", 5: "five", 6: "six"}.get(N_PANEL, str(N_PAN
 # (panel pdf, sub-label, width fraction of the text block)
 FIGURES = {
     "Fig1_study_design_and_QC": {
+        "label": "Figure 1.",
         "title": "Cohort design and analytical independence",
         "cols": 2,
         "panels": [
@@ -45,6 +46,7 @@ FIGURES = {
         ],
     },
     "Fig2_discovery_and_meta": {
+        "label": "Figure 2.",
         "title": "Differential expression and random-effects meta-analysis",
         "cols": 2,
         "panels": [
@@ -57,6 +59,7 @@ FIGURES = {
         ],
     },
     "Fig3_separability_gate": {
+        "label": "Figure 3.",
         "title": "Separability of MN from its mimics, and why a DEG count hides it",
         "cols": 2,
         "panels": [
@@ -68,6 +71,7 @@ FIGURES = {
         ],
     },
     "Fig4_WGCNA_modules": {
+        "label": "Figure 4.",
         "title": "Glomerular co-expression modules, trait association and ERCB preservation",
         "cols": 2,
         "panels": [
@@ -79,6 +83,7 @@ FIGURES = {
         ],
     },
     "Fig5_biomarker_panel": {
+        "label": "Figure 5.",
         "title": f"A {PANEL_WORD}-gene glomerular panel for MN",
         "cols": 2,
         "panels": [
@@ -90,6 +95,7 @@ FIGURES = {
         ],
     },
     "Fig6_atlas_and_deconvolution": {
+        "label": "Figure 6.",
         "title": "Kidney single-cell atlas and bulk deconvolution",
         "cols": 2,
         "panels": [
@@ -102,6 +108,7 @@ FIGURES = {
     },
     # ---------------- supplementary ----------------
     "FigS1_bulk_cohort_qc": {
+        "label": "Figure S1.",
         "title": "Bulk cohort expression quality control",
         "cols": 2,
         "panels": [
@@ -112,6 +119,7 @@ FIGURES = {
         ],
     },
     "FigS2_cohort_and_singlecell_qc": {
+        "label": "Figure S2.",
         "title": "Cohort QC, gate stability and single-cell annotation",
         "cols": 2,
         "panels": [
@@ -123,6 +131,7 @@ FIGURES = {
         ],
     },
     "FigS3_WGCNA_stability_and_hubs": {
+        "label": "Figure S3.",
         "title": "Module reproducibility, hub genes and annotation detail",
         "cols": 2,
         "panels": [
@@ -134,6 +143,7 @@ FIGURES = {
         ],
     },
     "FigS4_functional_profiling": {
+        "label": "Figure S4.",
         "title": "Functional profiling of the glomerular MN signature",
         "cols": 2,
         "panels": [
@@ -145,6 +155,7 @@ FIGURES = {
         ],
     },
     "FigS5_panel_robustness": {
+        "label": "Figure S5.",
         "title": "Panel robustness, calibration and transfer",
         "cols": 2,
         "panels": [
@@ -156,6 +167,7 @@ FIGURES = {
         ],
     },
     "FigS6_localisation_and_pla2r": {
+        "label": "Figure S6.",
         "title": "Where the panel genes sit, panel sensitivity and PLA2R stratum",
         "cols": 2,
         "panels": [
@@ -167,6 +179,7 @@ FIGURES = {
         ],
     },
     "FigS7_subtypes_negative": {
+        "label": "Figure S7.",
         "title": "Exploratory molecular subtyping is not reproducible",
         "cols": 2,
         "panels": [
@@ -251,7 +264,7 @@ def build(name, spec, dest):
 
     def write_tex(page_mm):
         body = [PREAMBLE % {"height": page_mm},
-                r"{\bfseries\large %s}\par\vspace{2mm}" % spec["title"], "\n"]
+                r"{\bfseries\large %s %s.}\par\vspace{2mm}" % (spec["label"], spec["title"]), "\n"]
         for i, (path, label, w) in enumerate(spec["panels"]):
             body.append(r"\panel{%s}{%s}{%.3f}{%d}" % (path, label, frac * w, ph))
             body.append("\n\\vspace{3mm}\n")

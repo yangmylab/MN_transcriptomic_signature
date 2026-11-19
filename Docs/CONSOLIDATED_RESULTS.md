@@ -88,9 +88,10 @@ What it is **not**:
 
 ## 6. Negative results, reported as findings
 
-1. **Subtyping does not reproduce.** Stable *k* = 2 in the array cohort (PAC 0.0015), no stable
-   partition in RNA-seq (PAC 0.215), subtype genes Jaccard 0.007, and the array split tracks technical
-   covariates (median sample correlation 0.686 vs 0.638, *p* = 4 × 10⁻⁴).
+1. **Subtyping does not reproduce.** Stable *k* = 2 in the array cohort (PAC 0.00077), no stable
+   partition in RNA-seq (minimum PAC 0.211), only 1 shared subtype-defining gene (Jaccard 0.0011),
+   and the array split tracks technical covariates (median sample correlation 0.686 vs 0.638,
+   *p* = 4 × 10⁻⁴).
 2. **Tubulointerstitial DE replicates poorly** (32 %) and is null against FSGS in every cohort.
 3. **The strict permutation null for the panel fails** (*p* = 0.11).
 

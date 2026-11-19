@@ -1,282 +1,416 @@
-# Handoff — Paper 1 (frozen) + Track B (active)
+# Handoff — Project Handoff Document
 
-**Project:** machine-learning biomarker discovery for membranous nephropathy (MN) from multi-cohort bulk transcriptomics, plus Track B — a leakage-audited benchmark of *published* MN panels.
-**Project root:** `/run/media/meng/MY_Data/MN/Paper_1` — scripts resolve the root from `R/_lib.R` (override `PAPER1_PROJ`).
-**Data root:** `/run/media/meng/MY_Data/MN/Datasets` (shared with Paper_2/Paper_3) — `R/_lib.R` sets `DATA`; override `PAPER1_DATA`. The GEO inputs live outside the project.
-**Last updated:** 2026-11-19. **This file keeps only what a future session needs** (current numbers, open work, claim limits, pitfalls, environment). The full session-by-session record is in git: `git show 9230c6a:handoff.md`.
+**Project:** machine-learning biomarker discovery for membranous nephropathy (MN) from multi-cohort bulk transcriptomics, plus Track B, a leakage-audited benchmark of published MN panels.
 
----
-
-## 1. Where things stand
-
-**Objective.** Deliver a submission-ready manuscript reporting a compartment-resolved glomerular transcriptomic signature and a four-gene classifier for membranous nephropathy, with every claim externally validated; plus Track B, a leakage-audited benchmark of published MN panels. Success criteria are the seven passing verifiers, the frozen Paper 1 claim set, and a submission package (manuscript, figures, declarations).
-
-**Paper 1** (Phases 0, 1, A–E) is complete, re-derived under the audited pipeline and **frozen — add no methods to it**. Claims, figures, tables and seven verifiers are final. The manuscript was **re-composed on 2026-11-19** without changing any analysis or claim: 12 plates / 61 panels, main figures carry only decisive discovery evidence, and S1–S6 carry the supporting QC/robustness/sensitivity material. Every panel is cited in order in Results (1A→1F … 6A→6E, S1A→S6E).
-
-**Track B** is the live workstream: **12** published MN panels carried down a 7-rung attrition ladder (R1 apparent → R2 de-duplication → R3 nested CV → R4 transductive external → R5 harmonised external → R5r RNA-seq → R6 refit null). The pre-registered hypothesis (median R5 AUC < 0.70) was tested on the original 6-panel registry and **falsified** (median 0.821). The registry was expanded to 12 panels on 2026-11-18 (B15): median R5 is now **0.674** (8/12 below 0.70), so transfer is real for some panels but far from uniform. The robust expanded claim is **0/12 beats its own refit permutation null** (*p* = 0.055–1.000), and external discrimination still does not improve with panel size.
-
-**Chain to restate on resume:** 13 accessions → 2,165 samples → 453 MN samples → **178 unique MN patients** → 7 non-redundant cohort sets → Phase A 54/54 → Phase B 86/86 → gate passes (nested CV 0.911–0.926, ERCB 0.861–0.922, *p* = 0.048) → subtypes **negative** → scRNA 432,378 cells → 236,107-cell atlas, 16 cell types → deconvolution 1,328 samples, 67/316 significant → Phase D modules **all preserved**, MN signal in pink + red → Phase E **four-gene panel**, ERCB 0.816 → recalibrated (Brier 0.845 → 0.096).
-
-**Verified state (re-derived 2026-11-19, not copied):** seven verifiers exit 0 — **54 / 86 / 32 / 42 / 117 / 106 / 37**; **12 plates** (main Fig 1–6: 5, 6, 5, 5, 5, 5 panels = 31; supplementary S1–S6: 5 each = 30; **61 panels**), each one page, 0 non-embedded fonts; **186 figure PDFs / 186 rasters**; **240 result CSVs** (121 at `output/tables/` top level, 2026-11-19 after the P1b provenance test); **52 files in `R/`** (44 pipeline + 7 verifiers + `_lib.R`; Track B = `10b`, `10c`, `10d`, `99_verify_trackb`; the P1b test is `tools/moyz2_provenance.R`, outside the pipeline); project ~32 GB.
-
-**Version control:** git since 2026-11-18; `git log` is authoritative. `core.fileMode`/`core.autocrlf` = `false` (exfat). `work/`, `.Rlib/`, `scrna/extracted/`, `logs/` and five bulk CSVs > 3 MB are gitignored as regenerable — a checkout alone is not a reproducible run. Commit `handoff.md` at every checkpoint.
+- **Project root:** `/run/media/meng/MY_Data/MN/Paper_1`
+- **Shared data root:** `/run/media/meng/MY_Data/MN/Datasets`
+- **Branch:** `master`
+- **Last updated:** 2026-11-19
+- **Current stage:** Paper 1 analyses frozen; manuscript package recomposed and verified; Track B active.
+- **Checkpoint review:** no evidence of an interrupted, unrecorded analysis session.
 
 ---
 
-## 2. Numbers that must be quoted (current only)
+## 1. Objective (What we are doing)
 
-Every value below is script-generated and asserted by a verifier; if prose and table disagree, the table wins. Do **not** resurrect the pre-audit numbers (five-gene panel, ERCB 0.88, gate 0.866–0.915, "724 genes by DL fallback") — they are wrong, not alternative.
+- Deliver a submission-ready manuscript reporting a compartment-resolved glomerular transcriptomic signature and a four-gene classifier for MN, with every claim externally validated.
+- Preserve the audited Paper 1 claim set: interpretability and transportability, not superiority over the whole-transcriptome gate, no prognostic claim, and no unsupported subtype or cell-of-origin claim.
+- Complete Track B, a leakage-audited benchmark of published MN panels, with explicit attrition, external transfer and refit-permutation analyses.
+- Success criteria are seven passing verifiers, the frozen Paper 1 results, a logically organized manuscript and figure package, and submission declarations completed by the user.
 
-**Paper 1 — locked results**
+## 2. Completed Items (What has been done)
 
-| Block | Quantity | Value |
-|---|---|---|
-| Design | accessions / samples / MN samples / unique MN patients | 13 / 2,165 / 453 / **178** |
-| Design | cohort sets | 7 (2 discovery array, 2 ERCB validation, 2 RNA-seq cross-platform, 1 LCM) |
-| QC | flagged samples | 200, **retained** (annotation only, policy frozen) |
-| Phase B | glom meta-DEGs (Ctrl / FSGS / MCD / Other / nonMN) | **584 / 18 / 60 / 16 / 18** |
-| Phase B | TI meta-DEGs (same contrasts) | **323 / 2 / 4 / 7 / 1**; MN vs Control is *k* = 1 (no TI donors in RNA-seq) |
-| Phase B | DL fallback count | **0** everywhere (the "724 genes" claim was wrong) |
-| Phase B | ERCB replication of meta-DEGs | 55.3 % glom / 32.4 % TI (MN vs Control) |
-| Gate | nested CV (10 × 5, disjoint) | **0.911–0.926** |
-| Gate | external ERCB across *K* | **0.861–0.922** (*K* = all 0.9217, CI 0.862–0.982) |
-| Gate | RNA-seq independent / secondary endpoint (incl. donors) | **0.928–0.939** / **0.9007** |
-| Gate | permutation null median / 95th / *p* | 0.500 / 0.674 / **0.048** |
-| Gate | QC-flagged removed / reverse direction | 0.939 / 0.772 |
-| Gate | partition stability (10 RNG streams) | *K* = 1000 **0.9003–0.9032**; *K* = all **0.9118–0.9281** |
-| Gate | per-diagnosis ERCB AUC | 0.71–0.98 (FSGS 0.83, FSGS_MCD 0.71, RPGN 0.95, DN 0.89) |
-| Subtypes | verdict | **negative** (array *k* = 2, PAC 0.0015 but technically confounded; RNA-seq none; Jaccard 0.007) |
-| scRNA | cells / atlas / cell types | 432,378 / 236,107 × 2,019 genes / **16** |
-| Deconvolution | samples / degenerate fits / significant comparisons | 1,328 / **0** / **67 of 316** |
-| Deconvolution | signature fragility | filtered vs all-gene signature disagree on dominant cell type in **1,314 / 1,328** |
-| Deconvolution | podocyte | rich vs **other nephropathies** *p* = 3.3e-4; **not** vs healthy glomeruli (*p* = 0.29) |
-| Phase D | modules / preservation | 9 glom (power 18) + 7 TI (power 10); **all real modules preserved** (median Z 29.0 / 26.6); grey + gold fail |
-| Phase D | MN modules | **pink** 84 genes adj *p* = 1.0e-5; **red** 144 genes adj *p* = 6.6e-4 (both survive composition adjustment) |
-| Phase D | hubs → core candidate space | 708 hubs → **515-gene core** (3,279 with provenance) |
-| Phase E | panel | **SLAMF8, TRPC6, MYOZ2, PPP1R3C** (287 ERCB-measurable core genes, nested 10 × 5) |
-| Phase E | nested CV (LASSO / SVM-RFE / Boruta) | 0.846 / 0.843 / 0.814 |
-| Phase E | discovery apparent | 0.922 (0.878–0.967) |
-| Phase E | **ERCB external** | **0.816 (0.721–0.910)** |
-| Phase E | RNA-seq / LCM / other-CDF / incl. donors | 0.901 / 0.929 / 0.848 / 0.837 |
-| Phase E | tubulointerstitium (ERCB / RNA-seq) | **0.449 / 0.539** — chance; compartment specificity |
-| Phase E | label-permutation *p* / refit-permutation *p* | **0.005** / **0.11 — NOT significant; say so** |
-| Phase E | three-gene model (no SLAMF8) | ERCB **0.845 (0.753–0.937)**, RNA-seq 0.891, LCM 0.941 |
-| Phase E | single genes | MYOZ2 alone 0.903; worst leave-one-out 0.738 (without MYOZ2) |
-| Phase E | calibration-in-the-large / Brier | +0.862 → **−0.003** / 0.845 → **0.096** |
-| Phase E | cross-platform transfer (RNA-seq → ERCB) | AUC 0.850, **4/4 coefficient signs** concordant |
-| Phase E | per-comparator ERCB | FSGS **0.632**, FSGS_MCD 0.484, RPGN 0.714, DN 0.722, MCD 0.878, SLE 0.872, IgAN 0.940, HT 0.959, TMD 0.968 |
-| Phase E | PLA2R | 0.976 (PLA2R+) / 0.881 (PLA2R−) vs MCD; **0.833 within MN, 6 vs 6 → uninterpretable** |
-| Manuscript | Summary / main text (Intro+Results+Discussion) / references | 412 words / 3,929 words / 44 verified |
+### 2.1 Paper 1 analysis chain — complete and frozen
 
-**Manuscript and figures — current architecture (2026-11-19)**
+The verified chain is:
 
-| Item | State |
+**13 accessions → 2,165 samples → 453 MN samples → 178 unique MN patients → 7 non-redundant cohort sets → Phase A 54/54 → Phase B 86/86 → separability gate passed → subtypes negative → 432,378 cells → 236,107-cell atlas, 16 cell types → deconvolution 1,328 samples, 67/316 significant → preserved WGCNA modules → four-gene panel, ERCB AUC 0.816 → recalibrated Brier 0.096.**
+
+Paper 1 must not gain new methods. Current script-generated values are:
+
+| Block | Current verified value |
 |---|---|
-| Plates | **12** — main Fig 1–6 (5, 6, 5, 5, 5, 5 panels = 31) + supplementary S1–S6 (5 each = 30) = **61 panels**; each one page, fonts embedded |
-| Main logic | Fig 1 cohort independence · Fig 2 DEG/meta · Fig 3 separability gate · Fig 4 modules · Fig 5 four-gene panel · Fig 6 atlas/deconvolution |
-| Supplementary logic | S1 supports Fig 1/3/6 (cohort QC, gate stability, atlas annotation, scRNA sample QC); S2–S3 support Fig 4 (network detail, functional profiling); S4–S5 support Fig 5 (calibration/robustness, localisation/sensitivity/PLA2R); S6 is the stand-alone negative subtyping result |
-| Citation order | Checked programmatically: 61/61 cited, all figures monotonic, main 1→6 and supplementary S1→S6 in first-citation order |
-| Submission copies | `Manuscript/Figures/` holds 24 files (12 PDF + 12 JPEG); it duplicates `output/figures/` and is **untracked** — regenerate with the copy commands in §5 |
+| Design | 13 accessions; 2,165 samples; 453 MN samples; **178 unique patients**; 7 cohort sets |
+| QC | 200 flagged samples retained as annotation only |
+| Glomerular meta-DEGs | Control 584; FSGS 18; MCD 60; Other 16; non-MN 18 |
+| TI meta-DEGs | Control 323; FSGS 2; MCD 4; Other 7; non-MN 1; TI control has *k* = 1 |
+| DL fallback | **0**; never resurrect the incorrect “724 genes” statement |
+| ERCB replication | 55.3% glomerular / 32.4% TI for MN versus control |
+| Gate | Nested-CV AUC 0.911–0.926; external ERCB 0.861–0.922; RNA-seq 0.928–0.939 |
+| Gate robustness | Permutation null median 0.500, 95th 0.674, *p* = 0.048; QC-removed 0.939; reverse 0.772 |
+| Gate partition stability | *K* = 1000: 0.9003–0.9032; all: 0.9118–0.9281 |
+| Subtypes | Negative: array *k* = 2, PAC 0.00077 but technically confounded; RNA-seq minimum PAC 0.211 and no stable partition; 1 shared defining gene, Jaccard 0.0011 |
+| scRNA atlas | 432,378 retained cells; 236,107 × 2,019 genes; 16 cell types |
+| Deconvolution | 1,328 samples; 0 degenerate fits; 67/316 significant comparisons |
+| Signature fragility | Filtered and all-gene signatures disagree on dominant cell type in 1,314/1,328 samples |
+| Podocyte result | Rich versus other nephropathies, adjusted *p* = 3.3e-4; not versus healthy glomeruli, *p* = 0.29 |
+| Modules | 9 glomerular (power 18) + 7 TI (power 10); all real modules preserved; grey and gold fail |
+| MN modules | Pink 84 genes, adjusted *p* = 1.0e-5; red 144 genes, adjusted *p* = 6.6e-4 |
+| Candidate space | 708 hubs → 515-gene core; 3,279 with provenance |
+| Locked panel | **SLAMF8, TRPC6, MYOZ2, PPP1R3C** |
+| Candidate accounting | 515 cross-compartment core → 353 glomerular → 66 excluded for <95% ERCB coverage → **287 tested** |
+| Nested CV | LASSO 0.846; SVM-RFE 0.843; Boruta 0.814 |
+| Panel external performance | ERCB **0.816 (0.721–0.910)**; RNA-seq 0.901; LCM 0.929; alternative CDF 0.848; including donors 0.837 |
+| Compartment specificity | ERCB TI 0.449; RNA-seq TI 0.539 — chance in both |
+| Permutation tests | ERCB-label *p* = 0.005; strict refit *p* = **0.11, not significant** |
+| Three-gene sensitivity | ERCB 0.845 (0.753–0.937); RNA-seq 0.891; LCM 0.941 |
+| Single genes | MYOZ2 0.903; worst leave-one-out 0.738 without MYOZ2 |
+| Calibration | Intercept +0.862 → −0.003; Brier 0.845 → 0.096 |
+| Cross-platform transfer | AUC 0.850; all four coefficient signs concordant |
+| Comparator limitation | FSGS 0.632; FSGS_MCD 0.484; do not claim a diagnostic multiclassifier |
+| PLA2R | PLA2R+ 0.976 / PLA2R− 0.881 versus MCD; within-MN 0.833 on 6 versus 6 is uninterpretable |
 
-**Track B — current**
+The gate outperforms the panel in ERCB (0.922 versus 0.816); the panel’s role is compact interpretability and transportability, not superiority.
 
-| Quantity | Value |
-|---|---|
-| Panels / ladder | **12** registered (P01–P12) × 7 rungs = **84 rows** (`output/tables/10c_attrition.csv`) |
-| Median AUC by rung | R1 **0.675** / R3 **0.625** / **R5 0.674** (range 0.359–0.893; **8/12 below 0.70**) |
-| Registry split (descriptive) | P01–P06 median R5 **0.821** vs P07–P12 **0.500** — the six added panels transfer worse |
-| Refit null | **0/12 significant** (*p* = 0.055–1.000); our own panel *p* = 0.11 sits in the same place |
-| Standardisation effect | R4 → R5 moves AUC by up to **0.105** **in both directions** |
-| Panel-size frontier | internal CV peaks at *K* ≈ 12 then overfits; external AUC **flat 0.767–0.858 from *K* = 2 to 20 and collapses at *K* = 50 (0.690)** |
-| Frontier identities | top-4 by moderated *t* = SULF2, MYOZ2, TRPC6, ARHGAP20 (shares only 2 with the locked panel); best external = 2-gene SULF2 + MYOZ2, 0.858 |
+### 2.2 Manuscript and figures — recomposed and verified
 
-**MYOZ2 provenance (2026-11-19, P1b — a tested statement, not a Paper 1 method)**
+- The manuscript is at `Manuscript/Paper1_manuscript.md` and `Manuscript/Paper1_manuscript.docx`.
+- Current architecture is **13 plates / 65 panels**:
+  - Main Fig 1–6 contain 5, 6, 5, 5, 5 and 5 panels (31 total).
+  - Fig S1 contains four routine bulk-cohort PCA panels; S2–S7 contain five each (34 total).
+- Main Fig 1 is now **cohort design and analytical independence**, not a PCA collection:
+  - A: study flow and patient-level de-duplication.
+  - B: patient redundancy and release containment.
+  - C: glomerular allocation and independence.
+  - D: ComBat before/after PCA.
+  - E: quantitative batch R² and silhouette with disease structure preserved.
+- Routine discovery/ERCB/RNA-seq/LCM PCA moved to **Fig S1A–D**; previous S1–S6 became S2–S7.
+- Fig 2 order is control meta-analysis → representative forests → disease mimics → cross-cohort concordance.
+- Panel-specific supplementary results are grouped with Fig 5 before the atlas.
+- All **65/65** panels are cited and interpreted in first-appearance order in Results: main 1→6, supplementary S1→S7, letters sequential within each plate.
+- `Manuscript/Figures/` contains **26 files** (13 PDF + 13 JPEG), byte-identical to `output/figures/`.
+- Every plate is one page, has embedded fonts and passes the 5-point glyph audit.
+- All 44 references are cited; the reference sequence is 1–44.
+- The DOCX has a live PAGE footer, passes OfficeCLI schema validation, and renders as **18 pages without a blank or orphaned final page**.
+- Current text size: Summary 390 whitespace tokens; Introduction + Results + Discussion 3,674 whitespace tokens.
 
-| Quantity | Value |
-|---|---|
-| Bulk SMC/perivascular (4 cohorts) | ACTA2/MYH11/TAGLN/PDGFRB rho 0.14–0.32; SMC composite 0.01–0.45; **does not track in 4/4 cohorts**, both sample sets |
-| Bulk podocyte | NPHS2 0.35 / 0.28 / 0.53 / 0.81 (discovery/ERCB/RNA-seq/LCM, all samples); 0.31–0.52 within MN except LCM 0.40 (ns, n = 12) — **partly disease-driven** |
-| snRNA MYOZ2+ cells | 1,686 / 210,879 (**0.80 %**); scRNA 57 / 21,579 (0.26 %); depth OR **8.69** per log10 counts (7.47–10.10) |
-| Cell-type enrichment | none after depth + cell-type adjustment (OR 0.76–1.24 vs PT) |
-| Co-detection (adjusted) | NPHS2 **2.58**, NPHS1 **2.11**, PDGFRB 1.77, TAGLN 1.30, MYH11 1.28, ACTA2 1.12 (ns) |
-| Donor-level snRNA (37 donors) | TAGLN 0.54, RGS5 0.50, MYH11 0.43; PDGFRB/NPHS1/NPHS2 ≈ 0 |
-| Verdict | source **still unresolved**; not a vascular/SMC readout; weak podocyte association |
+### 2.3 Track B — active but fully computed
 
-Artefacts for the numbers: `output/tables/09a_*…09f_*`, `separability_*`, `gate_robustness.csv`, `05c_gate_seed_stability.csv`, `10c_*`, `10d_*`, plus `Docs/CONSOLIDATED_RESULTS.md`, `Docs/BAP_AUDIT_2026-11-18.md`, `Docs/Findings_Ledger.csv` (15 graded claims), `AUDIT_2026-10-20.md` (37 findings + per-change log).
+- The registry contains **12 published panels**, expanded from six on 2026-11-18; 15 exclusions have reasons in `metadata/trackB_exclusions.csv` and methods in `metadata/trackB_retrieval_log.md`.
+- The seven-rung ladder (R1 apparent → R2 de-duplication → R3 nested CV → R4 transductive external → R5 harmonised external → R5r RNA-seq → R6 refit null) is complete: **12 × 7 = 84 rows** in `output/tables/10c_attrition.csv`.
+- The original six-panel preregistered hypothesis was **falsified** (median R5 0.821). The expanded, post-hoc registry has median R5 **0.674** (8/12 below 0.70), which must not be presented as confirmation of the original preregistration.
+- Registry split is descriptive: P01–P06 median R5 0.821 versus P07–P12 0.500; transfer is heterogeneous.
+- The robust expanded claim is **0/12 panels beating their refit null** (*p* = 0.055–1.000). Our own four-gene panel has *p* = 0.11 in the same context.
+- R4 → R5 changes AUC by up to 0.105 in either direction.
+- Internal CV peaks near *K* ≈ 12; external AUC is approximately flat at 0.767–0.858 from *K* = 2 to 20 and falls at *K* = 50 (0.690).
+- Best external two-gene frontier is SULF2 + MYOZ2, AUC 0.858.
 
----
+### 2.4 MYOZ2 provenance — completed as a separate P1b test
 
-## 3. Open work
+`Rscript tools/moyz2_provenance.R` and `Docs/MYOZ2_PROVENANCE.md` established:
 
-| # | Item | Owner | What to do / resume from |
-|---|---|---|---|
-| B15 | **Track B panel registry** | **done 2026-11-18** | Expanded 6 → **12** panels (P07–P12: Luo 2026, Fan 2025, Gui 2024, Shao 2025, Hui 2025, Zhao 2026) from PubMed/PMC full text; **15 exclusions** logged with reasons in `metadata/trackB_exclusions.csv`; method in `metadata/trackB_retrieval_log.md`. The ≥ 10 bar is met. Remaining user decision: submit the 12-panel benchmark as is, or fund a further retrieval pass (no qualifying paywalled candidate is currently identified). |
-| P0 | **IF validation of the panel proteins** | user (wet lab) | `Manuscript/IF_validation_plan.md`: pre-specified criteria per target, MN 10–15 (PLA2R+/− split), FSGS 6–8, MCD 4–6, normal 4–5, lineage anchors, blinded per-glomerulus quantification. Order: **MYOZ2** (unresolved cellular source, strongest single gene) → TRPC6 → PPP1R3C → SLAMF8 (barely detected on 2 platforms). ICAM1 is out of the panel and needs nothing. |
-| P0b | **Submit the B2 / B7 data request** | user (long lead time) | `Manuscript/DATA_REQUESTS.md`: NIDDK Central Repository R4R, study DOI `10.58020/f2ae-n094`; DACC `NEPTUNE-STUDY@umich.edu`; ask for the subject→sample map in the same request. This is the only thing between the biomarker paper and a prognostic one — start early. |
-| P1 | **Submission to *EBioMedicine*** | agent + user | User: authors/affiliations/ORCIDs/CRediT (currently "to be confirmed"), funding statement, 3 suggested reviewers, sign-off on declarations. Agent on request: trim Summary 412 → ~330 words if the system enforces a cap; confirm exact caps (publisher PDF is Cloudflare-blocked, P-50); renumber citations if the author list changes. Checklist: `Manuscript/SUBMISSION_CHECKLIST.md`. The manuscript/figures are submission-formatted as of 2026-11-19. |
-| P1b | **Optional consolidation analyses — (a) done, (b)/(c) deferred** | agent on request | (a) **MYOZ2 provenance — done 2026-11-19** (`tools/moyz2_provenance.R`): bulk signal is **not** an SMC/perivascular readout, weak partly disease-driven podocyte association, 0.80 % snRNA detection with no cell-type enrichment → **`Docs/MYOZ2_PROVENANCE.md`**. (b) **third deconvolution method** (nu-SVR/CIBERSORT-style, or top-500 specific-gene signature) — BAP wants two methods (moderate). (c) leave-one-cohort-out meta on the 584 meta-DEGs, subtyping power/ARI bootstrap, RNA-seq cohort relatedness check (all cheap). **Not worth doing:** more GEO series (adds samples, not variables, re-imports the redundancy Phase 1 removed); raising the permutation count (cannot fix a null with median 0.537 at 21 ERCB cases). |
-| P2 | **Phase F subtypes** | deferred | Analysis done and **negative**; resume only with new data. Blocked on B2 (eGFR/UPCR/remission). PLA2R no longer blocks anything. |
-| P4 | **Clinical variables** | user | Route in `Manuscript/DATA_REQUESTS.md`. On arrival: `metadata/neptune_clinical.csv` → append to `wgcna_traits.csv` → re-run `08b`, update the trait-count assertion in `99_verify_phase_d.R`. |
-| B13 | `07b` doublets unseeded | agent on request | `scDblFinder()` has no `set.seed()`; only matters if `07b` is re-run (~25 min). Atlas numbers are frozen. |
-| B14 | Missing parallelism waivers | agent, low priority | Most pipeline scripts lack a `# Parallelism: not needed — <reason>` line; style/protocol only. Do not parallelise settled steps (summation-order risk). |
-| B16 | Adoption-test packages absent | user (install) | `decoupleR`, `InstaPrism`, Python `tabpfn` are **not** installed; `BayesPrism`, `MuSiC`, `hdWGCNA` **are**. So the two-method deconvolution (G6) can start; TabPFN and decoupleR cannot. |
-| P5 | GSE73953 (PBMC, Agilent) | agent, optional | Never normalised; add an Agilent branch to `02b` (8 MN samples, low priority). |
-| P7 | Wire Paper_2 / Paper_3 to `MN/Datasets` | user, when they start | Paper_2 needs 5 tier-2 accessions (`GSE286184`, `GSE283826`, `GSE341102`, `GSE199850`, `GSE193512`); Paper_3 needs eQTL/GWAS summary stats instead. Keep `Datasets/manifest.tsv`'s `projects` column current. |
+- Bulk MYOZ2 does **not** track the SMC/perivascular programme in all four cohorts; SMC composite rho 0.01–0.45.
+- NPHS2 association is partly disease-driven; within-MN associations are weak and not consistently significant.
+- snRNA detects MYOZ2 in 1,686/210,879 cells (0.80%); scRNA detects 57/21,579 (0.26%). Depth OR is 8.69 per log10 counts (7.47–10.10).
+- There is no cell-type enrichment after depth and cell-type adjustment.
+- Verdict remains **tissue-level reproducibility with unresolved cellular source**. It is not a vascular/SMC readout and must not be upgraded to “podocyte-derived”.
 
----
+### 2.5 Verification completed at this checkpoint
 
-## 4. Claim limits (do not overstate)
+| Verifier | Result |
+|---|---:|
+| `99_verify_phase_a.R` | 54 passed, 0 failed |
+| `99_verify_phase_b.R` | 86 passed, 0 failed |
+| `99_verify_downstream.R` | 32 passed, 0 failed |
+| `99_verify_scrna.R` | 42 passed, 0 failed |
+| `99_verify_phase_d.R` | 117 passed, 0 failed |
+| `99_verify_phase_e.R` | 106 passed, 0 failed |
+| `99_verify_trackb.R` | 37 passed, 0 failed |
 
-- **The gate model beats the panel** in ERCB (0.922 vs 0.816). The panel's claim is interpretability and transportability, **not** superiority.
-- The **refit-permutation null is not significant** (*p* = 0.11, 21 ERCB cases). Report both nulls; never claim 0.05 significance for the strict one.
-- **Array-to-array transfer is the hard direction**; cross-platform transfer to RNA-seq is easier. Never revert to cohort-internal z-scoring to recover the higher old AUC (P-58, P-62).
-- **Tubulointerstitial = chance** (0.449 / 0.539). TI separates disease from donors, not MN from its mimics; there is **no TI MN module**. The TI null is the strongest specificity result — present it as such.
-- **FSGS is the hard comparator** (0.632 ERCB). Report per-diagnosis AUCs; do not claim a diagnostic multi-classifier (the multiclass model's balanced accuracy is 0.44) — it is MN **detection** with one decision boundary.
-- **MYOZ2** is the strongest single gene (0.903) but has **no resolvable kidney cellular source** (93.8 % of atlas cells zero). Not a probe artefact: bulk-detected, consistent in all four cohorts. State "tissue-level reproducibility with unresolved cellular source", flag IF first. **Provenance is now tested** (2026-11-19): the bulk signal is **not** a perivascular/SMC readout (SMC composite rho 0.01–0.45; 4/4 cohorts below the rule), and MYOZ2 remains unassignable at cell level (0.80 % of snRNA cells; depth OR 8.69 per log10 counts; no adjusted cell-type enrichment). A weak podocyte-content association (NPHS2 0.81 all-sample in LCM, but 0.40 within MN, ns) is partly disease-driven. **Do not upgrade to "podocyte-derived"** — see `Docs/MYOZ2_PROVENANCE.md`.
-- **SLAMF8** is detected in only 9.5 % (RNA-seq) / 27 % (LCM); the three-gene model without it is comparable (ERCB 0.845).
-- **Deconvolution** is fragile: two signature variants disagree on the dominant cell type in 1,314/1,328 samples. Report the filtered signature as primary, all-gene as sensitivity. pDC (97 cells) and Neutrophil (535) fractions are unreliable and excluded from traits/attribution.
-- **Subtypes are a negative result**; the array *k* = 2 split tracks technical quality (correlation, mean expression).
-- **Bulk ↔ pseudobulk concordance is weak** — best Pearson 0.29 (endothelium), 0.27 TAL, 0.15 podocyte, negative for B and T_NK; ~55–60 % direction agreement. A limit of comparing whole-tissue bulk with one cell type's pseudobulk, not a bug. Pseudobulk DE is hypothesis-grade (MN vs control 15 vs 10 donors; 6 MN donors in the reference cohort).
-- **No participant linkage** for GSE197307/GSE182380 (no id field). Never infer overlap from sample titles (P-2). `sample_metadata.csv`'s `gsm` column mixes 1,623 real `GSM####`, 473 `Sample_N` indices and 69 submitter ids — read `id_type` / `id_is_globally_unique`.
-- **PLA2R within-MN** (6 vs 6) is uninterpretable; the panel is antigen-independent (0.976 / 0.881 vs MCD).
-- **Track B now has 12 panels**, not 6. The pre-registration was falsified on the original 6; the expanded registry's median R5 is 0.674, but do **not** present that as confirmation of the pre-registered hypothesis — the registry was expanded after the fact. The defensible claims are: **0/12** panels beat their refit null; transfer is heterogeneous (P01–P06 median 0.821 vs P07–P12 0.500); panel size does not predict external AUC. Panels are vindicated on performance, not gene identity.
-- **Not claimed anywhere:** a PubMed/GEO systematic search ("Evidence before this study" was rewritten to state only the retrieved literature); EBioMedicine word/figure caps (unverified — mark "to confirm").
+Additional verified state: 191 figure PDFs / 191 rasters; 240 result CSVs (121 at `output/tables/` top level); 52 files in `R/`; no zero-byte outputs.
 
----
+## 3. Current Blockers (Where we are stuck)
 
-## 5. Running, verifying, committing
+### 3.1 P0 — Protein-level validation is not yet performed
 
-- **Verifiers (all must exit 0):** `99_verify_phase_a` 54, `phase_b` 86, `downstream` 32, `scrna` 42, `phase_d` 117, `phase_e` 106, `trackb` 37. Each ~5–20 s.
-- **Re-run orders:** `08a → 08b → 08c → 08d → 08e` (08f with `--force`), or the whole 08d-onward chain via `bash tools/rerun_from_08d.sh`; panel revisit = `09a → 09b → 09c → 09d → 09e → 09f` then `python3 tools/make_figures.py`; Track B = `10b → 10c → 10d → 99_verify_trackb.R`. **MYOZ2 provenance (P1b, not in the Paper 1 chain):** `Rscript tools/moyz2_provenance.R` (~4 min cold; reads the 232k-cell cache `work/scrna/09g_moyz2_cell_matrix.rds` afterwards; `--refresh` rebuilds it).
-- **Foreground shell caps at 2 min** — run `04c`, `04d`, `07b`, `07c`, `07d`, `08c`, `08d`, `08f`, `05c`, `10d` in the background and read the `.out` log (P-21).
-- **Figure rebuild** needs TeX Live + Ghostscript: `python3 tools/make_figures.py` (composites via `pdflatex`, embeds fonts via `gs`, staged through `/tmp` because `gs` cannot read this exfat volume). Assert `pdfinfo → Pages: 1` per plate. Main plates carry **5–6 decisive panels**; **S1–S6 carry 5 support panels each** (`panel_h` = 62 mm): S1 supports cohort/gate/atlas QC, S2–S3 the module figure, S4–S5 the panel figure, and S6 is the stand-alone negative subtyping result. Every panel is cited in order in Results (checked by a citation-order script).
-- **Manuscript rebuild:** `pandoc Manuscript/Paper1_manuscript.md --reference-doc=reference/tnr_fangsong_redcode.docx -o Manuscript/Paper1_manuscript.docx` (pandoc 3.8.3). Then refresh the submit copies: `rm -f Manuscript/Figures/*.pdf Manuscript/Figures/*.jpeg` and copy `output/figures/Fig*` plus `output/figures/supplementary/FigS*` into `Manuscript/Figures/` (24 files). Verify the DOCX with `pandoc Manuscript/Paper1_manuscript.docx -t plain` (expect 12 legends, Fig 1–6 + S1–S6).
-- **`handoff.docx` in the project root is stale** — `handoff.md` is the only source; do not regenerate or read the `.docx`.
-- **Mount drift:** the volume alternates `/run/media/{meng,yang}/MY_Data`. `R/_lib.R`, the `00*_download*.sh` helpers and `tools/rerun_*.sh` are path-independent — keep it that way (P-59).
+- **Symptom:** no IF/protein validation of the four-gene panel; MYOZ2 cellular origin remains unresolved.
+- **Impact:** limits translational claims and biological interpretation, especially for MYOZ2 and low-detection SLAMF8.
+- **Already tried:** bulk reproducibility checks, atlas localisation, donor-level pseudobulk and the dedicated MYOZ2 provenance analysis. These did not identify a defensible cell of origin.
+- **Owner / dependency:** user wet lab. Resume from `Manuscript/IF_validation_plan.md`; priority MYOZ2 → TRPC6 → PPP1R3C → SLAMF8. ICAM1 is not in the locked panel.
 
----
+### 3.2 P0b — Clinical outcomes and subject-to-sample mapping are missing
 
-## 6. Pitfalls (never repeat)
+- **Symptom:** eGFR, UPCR, remission/relapse and a subject→sample map are unavailable in downloaded public files.
+- **Impact:** prevents prognostic modelling, subtype–outcome analysis and definitive participant linkage.
+- **Already tried:** local metadata review; PLA2R was recovered only for GSE216841 (6 positive, 6 negative), which is insufficient for stratum-level inference.
+- **Owner / dependency:** user must submit the long-lead request described in `Manuscript/DATA_REQUESTS.md`: NIDDK Central Repository R4R, study DOI `10.58020/f2ae-n094`, DACC `NEPTUNE-STUDY@umich.edu`, including the subject→sample map.
 
-- **P-1** Compute patient-level overlap across *all* releases before merging any matrix (13 releases → 178 patients; 4 releases 100 % contained in another).
-- **P-2** Never infer cross-cohort overlap from sample titles. Check for a participant field, check whether ids are contiguous 1..n (local), inspect the per-disease overlap table. No field → state "patient linkage unavailable", treat cohorts as independent.
-- **P-3** `affy` cannot process HuGene-2.1-ST. Use `oligo` + Brainarray probe indices (`02b`).
-- **P-4** `preprocessCore::rcModelPLM()$Estimates` has length `nrow + ncol`; it is not the sample-effect vector. Use `stats::medpolish()` `overall + col` (gave r = 0.986).
-- **P-5** Never `match()` per gene against the 1.02 M-row probe index (436 s). Build one lookup vector.
-- **P-6** Never process a 244-array ST cohort in one gulp (12.1 GB RSS). Chunked two-pass quantile, `CHUNK = 40`.
+### 3.3 P1 — Submission metadata and exact journal limits are incomplete
+
+- **Symptom:** authors, affiliations, ORCIDs, CRediT roles, funding wording, three suggested reviewers and declaration sign-off are still 【To be confirmed — user】. Exact EBioMedicine caps are also 【To be confirmed — user/editor】.
+- **Impact:** the package cannot be submitted without inventing metadata or risking a format violation.
+- **Already tried:** manuscript and figures are fully formatted and verified. Publisher guideline PDF retrieval was Cloudflare-blocked; no cap has been guessed.
+- **Owner / dependency:** user supplies metadata; agent can then update `Manuscript/Paper1_manuscript.md`, references, cover letter and `Manuscript/SUBMISSION_CHECKLIST.md`.
+
+### 3.4 Track B registry decision is unresolved
+
+- **Symptom:** the user must decide whether to ship the 12-panel benchmark or fund another literature-retrieval pass.
+- **Impact:** changes the scope and timing of the Track B manuscript, not the computed results.
+- **Already tried:** 12 qualifying panels and 15 reasoned exclusions are registered; no qualifying paywalled candidate is currently identified.
+- **Owner / dependency:** user decision. Resume from `metadata/trackB_panel_register.csv` and `metadata/trackB_retrieval_log.md`.
+
+### 3.5 Optional independent deconvolution and adoption tests are limited by packages
+
+- **Symptom:** `decoupleR`, `InstaPrism` and Python `tabpfn` are absent. `BayesPrism`, `MuSiC` and `hdWGCNA` are installed.
+- **Impact:** a third deconvolution method is possible but TabPFN/decoupleR adoption tests cannot start until installation.
+- **Already tried:** NNLS with filtered and all-gene signatures; fragility is documented rather than hidden.
+- **Owner / dependency:** user installation if those tests are desired. Any third deconvolution is optional P1b sensitivity work, not an addition to frozen Paper 1.
+
+### 3.6 Deferred / low-priority issues
+
+- **P2 subtypes:** already negative and must not be reopened without new clinical data; no technical bug.
+- **B13:** `scDblFinder()` lacks `set.seed()` in `07b`; matters only if the atlas is rerun (~25 min). Current atlas is frozen.
+- **B14:** many scripts lack a `# Parallelism: not needed — <reason>` waiver; documentation/style only. Do not parallelise settled steps and risk summation-order changes.
+- **P5:** GSE73953 PBMC/Agilent remains unnormalised; optional eight-MN-sample branch in `02b`.
+- **P7:** Paper_2 and Paper_3 are not yet wired to the shared dataset manifest; handle only when those projects start.
+
+## 4. Next Steps (What to do next)
+
+1. **P0 — Start IF validation**
+   - **Owner:** user wet lab.
+   - **Trigger:** laboratory scheduling; no further computational dependency.
+   - **Resume:** `Manuscript/IF_validation_plan.md`, target order MYOZ2 → TRPC6 → PPP1R3C → SLAMF8, with blinded per-glomerulus quantification and prespecified lineage anchors.
+
+2. **P0b — Submit the B2/B7 request now**
+   - **Owner:** user.
+   - **Trigger:** immediate, because of long lead time.
+   - **Resume:** `Manuscript/DATA_REQUESTS.md`. On arrival, write `metadata/neptune_clinical.csv`, append to `wgcna_traits.csv`, rerun `08b`, and update the trait-count assertion in `R/99_verify_phase_d.R`.
+
+3. **P1 — Finish the EBioMedicine submission package**
+   - **Owner:** user for metadata; agent for document updates on request.
+   - **Trigger:** before journal submission.
+   - **Dependencies:** blocker 3.3.
+   - **Resume:** `Manuscript/SUBMISSION_CHECKLIST.md`, `Manuscript/Paper1_manuscript.md`, `Manuscript/Cover_letter.md`, and `Manuscript/references.tsv`. Confirm caps; trim the Summary only if the live submission system requires it. Renumber citations if the author list changes.
+
+4. **P1 — Decide whether Track B ships at 12 panels**
+   - **Owner:** user.
+   - **Trigger:** before Track B manuscript finalisation.
+   - **Resume:** `metadata/trackB_panel_register.csv` and `metadata/trackB_exclusions.csv`. If another retrieval is funded, resume from `metadata/trackB_retrieval_log.md`, then rerun `10b → 10c → 10d → 99_verify_trackb.R`.
+
+5. **P1b — Optional consolidation only if explicitly requested**
+   - **Owner:** agent.
+   - **Trigger:** user elects a third deconvolution method or sensitivity analyses.
+   - **Resume:** `R/07f_deconvolution.R`, `Docs/BAP_AUDIT_2026-11-18.md`, and installed BayesPrism/MuSiC options. Other cheap options are leave-one-cohort-out meta-analysis, subtype power/ARI bootstrap and RNA-seq relatedness checks. Do not add GEO series or increase permutation counts merely to seek a more favourable result.
+
+6. **P2 — Reopen Phase F only with new clinical data**
+   - **Owner:** user supplies data; agent reruns on request.
+   - **Trigger:** arrival of eGFR/UPCR/remission or other genuinely new molecular data.
+   - **Resume:** current negative results in `output/tables/subtype_*` and the updated negative-subtype legend in `Manuscript/Paper1_manuscript.md`.
+
+7. **P2 — Housekeeping only when relevant**
+   - Seed `scDblFinder` before any `07b` rerun; add parallelism waivers without changing settled computation; install adoption-test packages only if requested; add the Agilent PBMC branch only if prioritised. Paper_2 needs GSE286184, GSE283826, GSE341102, GSE199850 and GSE193512; Paper_3 needs eQTL/GWAS summary statistics. Keep `Datasets/manifest.tsv` current.
+
+## 5. Pitfalls & Anti-patterns (Never repeat these)
+
+### 5.1 Claim limits that must not be overstated
+
+- The gate beats the panel in ERCB; never claim panel superiority.
+- The strict refit-permutation null is not significant (*p* = 0.11). Report both nulls.
+- Array-to-array transfer is the hard direction. Never restore cohort-internal z-scoring to recover old AUCs.
+- Tubulointerstitial discrimination is chance (0.449/0.539); there is no TI MN module.
+- FSGS is the hard comparator (0.632). The multiclass balanced accuracy is 0.44, so this is MN detection, not a diagnostic multiclassifier.
+- MYOZ2 has tissue-level reproducibility with unresolved cellular source, not a proven podocyte or SMC origin.
+- SLAMF8 detection is only 9.5% in RNA-seq and 27% in LCM; report the three-gene sensitivity model.
+- Deconvolution is fragile; use the filtered signature as primary, all-gene as sensitivity, and exclude pDC/neutrophil from traits and attribution.
+- Subtypes are a negative result; the array split tracks technical quality.
+- Bulk↔pseudobulk concordance is weak (best Pearson 0.29); pseudobulk DE is hypothesis-grade.
+- GSE197307/GSE182380 have no participant linkage. Never infer overlap from titles; use `id_type` and `id_is_globally_unique`.
+- Within-MN PLA2R (6 versus 6) is uninterpretable; do not claim PLA2R tracking.
+- Expanded Track B is post hoc. Do not present its median R5 0.674 as preregistered confirmation.
+- Do not claim a systematic PubMed/GEO search or an unverified EBioMedicine cap.
+
+### 5.2 Technical pitfalls to carry forward
+
+- **P-1** Compute patient overlap across all releases before merging any matrix.
+- **P-2** Never infer cross-cohort overlap from sample titles. Check participant fields, local 1..n indices and per-disease overlap tables; absent linkage means independent cohorts.
+- **P-3** Use `oligo` + Brainarray indices for HuGene-2.1-ST, not `affy`.
+- **P-4** `preprocessCore::rcModelPLM()$Estimates` is not the sample-effect vector; use `stats::medpolish()` overall + column effects.
+- **P-5** Never `match()` each gene against the 1.02M-row probe index; build one lookup vector.
+- **P-6** Chunk large ST cohorts (`CHUNK = 40`) instead of processing 244 arrays at once.
 - **P-7** CDF package names must end in `cdf`.
-- **P-8** `make.cdf.package()` only *builds* a source package (then `R CMD INSTALL -l .Rlib`) and resolves input through `getwd()` — pass a bare filename after `setwd()`.
-- **P-9** Do not derive array platform from the series matrix (two-platform releases share GSM ids). Read each CEL header (`affyio::read.celfile.header`).
-- **P-10** Do not `rbind()` two platforms: align on the gene union, `NA`-fill, and drop incomplete genes before PCA *and* before limma (`lmFit` with `NA` → `sigma = NA` → `eBayes` dies).
-- **P-11** Do not redirect stdout to the file the script's `writeLines()` writes.
-- **P-12** Do not assume count-style filenames hold counts (`GSE216841_MNd_ncounts_annot.txt.gz` is normalised decimals plus text columns).
-- **P-13** Do not use raw donor integers as patient ids — namespace them (`LD-<n>`).
-- **P-14** Data acquisition is manual: never download datasets; present a request list. (Package installs and MSigDB GMT annotation were fetched directly and are not covered.)
-- **P-15** `topTable(coef = "MN - Control")` does not work on `~0 + group`; use `makeContrasts()` + `contrasts.fit()`.
-- **P-16** An `mclapply` worker that throws returns a `try-error`, not `NULL`; `do.call(rbind, …)` then recycles the error message into the table. Filter on `is.data.frame(z) && nrow(z) == 1` and `tryCatch` the model call.
-- **P-17** `metafor::rma(method = "REML")` may not converge → wrap, fall back to `"DL"`, count and report the fallbacks.
-- **P-18** `enrichplot::gseaplot2()` rejects `fgsea` results; use `fgsea::plotEnrichment`.
-- **P-19** `msigdbr` ≥ 26 downloads on first use; parse the pre-fetched GMTs in `work/msigdb/` instead.
-- **P-20** Verifier figure assertions must scope to the generating step's filename prefix, never "every PDF in a directory".
-- **P-21** The foreground shell caps at 2 minutes regardless of the requested timeout — use `run_in_background`.
-- **P-22** `pROC::roc()` needs a 2-level response; ERCB codes MN as `MGN` in `disease_raw`.
-- **P-23** `apply()` over an `sapply()`-built centroid matrix has no dimnames; set `colnames()` explicitly.
-- **P-24** PAC (≤ 0.1) is the stability gate, not silhouette.
-- **P-25** A stable split can be a technical split — test median sample correlation, mean expression and detection rate against every cluster.
-- **P-26** `geom_text(stat = "count")` rejects `fill`; precompute `as.data.frame(table(...))`.
-- **P-27** Python `str.replace()` with a missing anchor fails silently — assert the anchor exists, and assert on the result (P-52).
-- **P-28** A 0-byte file passes `file.exists()`. Check `file.size() > 0`; `find <dir> -size 0` after any crash.
-- **P-29** Seurat 5 `merge()` keeps per-sample layers → call `JoinLayers()` immediately. `AddModuleScore`'s `ctrl` is drawn from every bin, so it must sit below the **smallest** bin (2,019-gene atlas: compute bins exactly).
-- **P-30** `merge()` renames colliding barcodes (`_1`, `_2`) → rename with a sample prefix before merging and rebuild the identical key downstream.
-- **P-31** `do.call(cbind, …)` on named vectors of unequal length aligns by **position** → align on the union, fill 0.
-- **P-32** NNLS returns corner solutions unless scaled: (a) quantile-normalise mixtures **together with** the signature columns (never to the signature *mean*), then unit-sum both; (b) filter to τ > 0.5 cell-type-specific genes; (c) compute τ on the **CPM scale before** column normalisation.
-- **P-33** API traps: `[.DGEList` has no `drop`; `ncol()` on Seurat 5 is a double; `wilcox.test()` of two all-zero groups returns `NaN` (flag `testable = FALSE`).
-- **P-34** This volume is **exfat**: no hardlinks/symlinks, case-insensitive; **`ln -f` deletes the destination first — never use it**; atomic temp-file+link writers (including `write_file`) fail — write with a plain shell heredoc; `mv` within the volume is instant; copying onto exfat **dereferences symlinks** (duplicates, new inodes — catch with `du` vs `ls -l`).
-- **P-35** WGCNA 1.74 `modulePreservation`: `referenceNetworks` = numeric index; own modules via `multiColor = list(colours, NA)`; `multiData` = two-level `list(set = list(data = samples × genes))`; no `includeModules`/`verbose`; output is the `.qual` family (`calculateQvalue = TRUE`); statistics carry no labels — map back by `moduleSize` and assert the mapping is unambiguous.
-- **P-36** `bicorAndPvalue()` returns `$bicor` (`corAndPvalue(method = "bicor")` does not exist). `mad()` = 0 when > half the values are identical → record the correlation method per pair.
-- **P-37** A module colour vector must be named by **gene** (`colnames(dat)`), never by sample.
-- **P-38** A split-half stability test must re-select the soft power inside each half; report Jaccard **and** eigengene bicor separately (axes can be near-perfect while membership is 0.3).
-- **P-39** `numericLabels = TRUE` makes `signedKME` return `kME_ME1` — renormalise names and `stopifnot` that no own-gene kME is `NA` (otherwise hub selection silently returns 0 genes).
-- **P-40** `bulk_deg_celltype_attribution.csv` is keyed `meta_<Glom|TI>_<contrast>`; build the full key and print join counts.
-- **P-41** A panel gene must be measurable in every validation cohort (GPC6 was NA in 125/196 ERCB samples) — make ≥ 95 % coverage a **selection** constraint (and assert it in the verifier), never a post-hoc drop.
-- **P-42** Never report sens/spec at the Youden point of a low-prevalence cohort. Report a fixed 0.5 threshold, calibration-in-the-large and slope; describe the model as a *discrimination* biomarker.
-- **P-43** Build each permutation-null summary from its own distribution (and include `null_max`), never reuse one row's quantiles.
-- **P-44** `pROC`'s "No case observation" can mean the **predictor** is `NA` — check `sum(is.na(score))` first.
-- **P-45** On a genes × samples matrix use row-wise summaries (`rowMeans`, `apply(…, 1, sd)`). A suspiciously exact AUC of 0.500 means the design matrix went constant.
-- **P-46** GSE99339 is split by platform and codes MN as **`MGN`**. When a cohort parses to zero cases, print the filename token census.
-- **P-47** `merge()` renames colliding columns (`note.x`/`note.y`) → give derived columns distinct names.
-- **P-48** GEO `!Sample_characteristics_ch1` is one line per field group, each a per-sample vector: iterate over lines, match `length(line)` to the sample count, assign by position. The join key may be `!Sample_description` (submitter ids, not GSM).
-- **P-49** `gs` cannot read `/run/media` (stage through `/tmp`), and R's `pdf()` leaves Helvetica un-embedded → run `gs -dPDFSETTINGS=/prepress -dEmbedAllFonts=true -dSubsetFonts=true` over each plate and verify with `pdffonts`.
-- **P-50** Publisher guideline PDFs are Cloudflare-403; read a live open-access article's JATS XML via Europe PMC `fullTextXML` instead, and never quote a cap you could not read.
-- **P-51** Never hand-type a citation: fetch by DOI/PMID and assert the title; keep `Manuscript/references.tsv` as the only source.
-- **P-52** When a script assembles prose, assert on the assembled text (e.g. `'..' not in text`), not just that it ran.
-- **P-53** A nested CV must draw its fold partition once per repeat, outside the fold function; verify pairwise test-set overlap = 0, not the AUC.
-- **P-54** `tryCatch(error=)` misses warnings — metafor reports non-convergence as a **warning** and still returns a fit. Use `withCallingHandlers`, record a per-gene flag, report the count; treat any uncounted fallback claim as unverified.
-- **P-55** Never quantile-normalise a signature matrix together with its mixtures (it flattens the specificity the τ filter preserves) — see P-32 for the correct scaling.
-- **P-56** A new column must be added to **every** branch of a per-gene builder (grep all `return(data.frame(`) — then assert identical column sets.
-- **P-57** `reshape()`'s `varying` must come from an explicit allow-list, never "everything except these".
-- **P-58** Fixing a transductive standardisation **will** lower external AUC. Never revert to cohort-internal scaling.
+- **P-8** `make.cdf.package()` builds a source package; install it and pass a bare filename after `setwd()`.
+- **P-9** Read CEL headers for platform identity, not series-matrix metadata shared across platforms.
+- **P-10** Align platform gene unions with NA fill and drop incomplete genes before PCA and limma; never naively `rbind()`.
+- **P-11** Never redirect stdout to the file a script writes with `writeLines()`.
+- **P-12** Count-style filenames may contain normalised decimals and text columns, not raw counts.
+- **P-13** Namespace living donors as `LD-<n>`; never use raw donor integers as globally unique IDs.
+- **P-14** Data acquisition is manual: never download datasets; present a request list. Package/MSigDB annotation fetching is separate.
+- **P-15** On `~0 + group`, use `makeContrasts()` + `contrasts.fit()`, not `topTable(coef = "MN - Control")`.
+- **P-16** An `mclapply` error returns `try-error`, not NULL; filter valid one-row data frames and wrap model calls in `tryCatch`.
+- **P-17** `metafor::rma(method = "REML")` may not converge; wrap and count DL fallbacks.
+- **P-18** Use `fgsea::plotEnrichment`, not `enrichplot::gseaplot2()` for fgsea results.
+- **P-19** Parse prefetched GMTs in `work/msigdb/`; avoid first-use `msigdbr` downloads.
+- **P-20** Scope verifier figure assertions to the generating step’s filename prefix.
+- **P-21** Foreground shells cap at two minutes; run long jobs in the background and inspect `.out` logs.
+- **P-22** ERCB codes MN as `MGN`; `pROC::roc()` needs a two-level response.
+- **P-23** Set centroid-matrix `colnames()` explicitly after `sapply()`.
+- **P-24** PAC ≤ 0.1 is the subtype stability gate, not silhouette.
+- **P-25** Stable splits can be technical; test correlation, mean expression and detection rate against clusters.
+- **P-26** Precompute counts for text labels; `geom_text(stat = "count")` rejects `fill`.
+- **P-27** Missing string-replacement anchors fail silently; assert both anchor and assembled result.
+- **P-28** `file.exists()` accepts zero-byte files; check `file.size() > 0` and run `find <dir> -size 0` after crashes.
+- **P-29** Call `JoinLayers()` immediately after Seurat 5 `merge()`; compute AddModuleScore controls below the smallest atlas bin.
+- **P-30** Prefix barcodes before merging and rebuild the same key downstream to avoid `_1`, `_2` collisions.
+- **P-31** Align named vectors on the union and fill zero before `cbind()`; never align unequal vectors by position.
+- **P-32** NNLS needs correct scaling: joint quantile normalisation, unit sums, τ > 0.5 filtering, and τ computed on CPM before column normalisation.
+- **P-33** `[.DGEList` has no `drop`; Seurat `ncol()` can be double; all-zero Wilcoxon groups return NaN and must be marked untestable.
+- **P-34** exfat has no hardlinks/symlinks and is case-insensitive. Never use `ln -f`; use `mv` within the volume and stage link-atomic writers through safe paths.
+- **P-35** WGCNA 1.74 `modulePreservation` requires numeric reference indices, two-level `multiData`, `multiColor`, `.qual` output and unambiguous module-size mapping.
+- **P-36** `bicorAndPvalue()` returns `$bicor`; `mad()` can be zero with >50% identical values, so record the correlation method per pair.
+- **P-37** Name module colour vectors by gene, never by sample.
+- **P-38** Split-half tests must reselect soft power in each half and report Jaccard separately from eigengene bicor.
+- **P-39** With numeric labels, normalise `kME_ME1` names and assert no own-gene kME is NA.
+- **P-40** Build full `meta_<Glom|TI>_<contrast>` attribution keys and print join counts.
+- **P-41** Require ≥95% ERCB coverage at panel selection and assert it; never drop nonmeasurable genes post hoc.
+- **P-42** Do not report Youden sens/spec for a low-prevalence cohort; use a fixed 0.5 threshold, calibration and slope, and describe discrimination rather than a risk instrument.
+- **P-43** Summarise each permutation null from its own distribution, including `null_max`.
+- **P-44** “No case observation” can mean NA predictors; check `sum(is.na(score))` first.
+- **P-45** Use row-wise summaries on genes × samples matrices; an exact AUC 0.500 can indicate a constant design.
+- **P-46** GSE99339 is split by platform and codes MN as `MGN`; inspect filename tokens when parsing yields zero cases.
+- **P-47** Avoid `merge()` collisions such as `note.x/note.y` by naming derived columns distinctly.
+- **P-48** GEO characteristic lines are per-field vectors; match line length to sample count and assign by position. `!Sample_description` can contain submitter IDs.
+- **P-49** Ghostscript cannot read `/run/media`; stage through `/tmp`, embed all fonts and verify with `pdffonts`.
+- **P-50** Publisher PDFs can be Cloudflare-403; use live open-access JATS XML and never quote an unread cap.
+- **P-51** Never hand-type citations; resolve DOI/PMID and assert title. `Manuscript/references.tsv` is the only source.
+- **P-52** Assert on assembled prose, not just on successful script completion.
+- **P-53** Draw each nested-CV partition once per repeat and prove test folds are disjoint, rather than checking only AUC.
+- **P-54** `tryCatch(error=)` misses metafor warnings; use `withCallingHandlers`, record per-gene flags and report counts.
+- **P-55** Do not quantile-normalise a signature with its mixtures; it destroys the specificity retained by τ filtering.
+- **P-56** Add a new column to every branch of a per-gene builder and assert identical column sets.
+- **P-57** `reshape()` varying columns must come from an explicit allow-list.
+- **P-58** Fixing transductive standardisation can lower external AUC; never revert to cohort-internal scaling.
 - **P-59** Drivers must resolve `ROOT="${PAPER1_PROJ:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)}"` and be tested from an unrelated cwd.
-- **P-60** Data-driven labels and filenames must be derived (`length(panel)`), never hard-coded; name outputs by role.
-- **P-61** Verify a composed figure by measurement: `gs -sDEVICE=bbox` page sizing, trailing blank band scan, ink box vs MediaBox, `pdftotext` title check. Compute axis windows from the data.
-- **P-62** "Use training statistics" is **not** a cross-platform transfer: check the standardised |z| median ≈ 1 first, then quantile-map (label-blind) onto the reference distribution before applying training μ/σ.
-- **P-63** A re-run is not a re-derivation: grep every script for a private copy of a changed rule (`zscore(`, `std(`, `scale(`) and print a reconciliation of two scripts' version of the same quantity.
-- **P-64** Content-driven page sizing can shrink a plate onto a second page: assert `pdfinfo → Pages: 1`, regrow from the row budget, delete `<plate>-N.jpg` leftovers.
-- **P-65** A key column that doubles as provenance must carry `id_type` / `id_is_globally_unique`, asserted in the verifier.
-- **P-66** Counts in prose go stale the moment an artefact is added — re-derive from the filesystem when you touch the file, and write "as of <date>".
-- **P-67** Calibrate any checker against a known value before reporting it; parse CSVs with a real reader (`pdffonts`' `emb` column is `$(NF-4)`, not `$4`).
-- **P-68** Never type a number into a script: read it from the artefact with a `stopifnot()` and let the verifier assert reproduction (`abs(x − source) < 1e-6`).
-- **P-69** `check(isTRUE(x))` silently fails on vector predicates — wrap in `all()` / `any()`.
-- **P-70** A literature-derived registry needs a code-enforced inclusion rule (≥ 2 named genes, PMID or DOI, reported performance) plus an exclusion log with a reason per rejected candidate.
-- **P-71** `ggsave(device = "jpeg")` fails on this R 4.6.1 with `Graphics API version mismatch` (the string device routes through an incompatible raster backend; direct `grDevices::jpeg()` works). Pass `device = grDevices::jpeg` explicitly. Any R figure script rerun will hit this; `tools/make_figures.py` is Python and unaffected.
+- **P-60** Derive labels and filenames from data (for example `length(panel)`), never hard-code panel size.
+- **P-61** Verify composed figures by measurement: bbox sizing, trailing blank bands, ink box/MediaBox, title text and data-derived windows.
+- **P-62** Training statistics alone are not cross-platform transfer; first check |z| median, then label-blind quantile-map before training μ/σ.
+- **P-63** A rerun is not re-derivation: grep for private copies of changed scaling rules and reconcile duplicate quantities.
+- **P-64** Content-driven page sizing can create a second page; assert one page and delete `<plate>-N.jpg` leftovers.
+- **P-65** Provenance keys require `id_type` and `id_is_globally_unique`, asserted in verifiers.
+- **P-66** Re-derive counts from the filesystem whenever artefacts change and state “as of <date>”.
+- **P-67** Calibrate checkers against known values and parse CSVs with a real reader; `pdffonts` embedding is `$(NF-4)`.
+- **P-68** Never type a number into a script when an artefact supplies it; read it and assert reproduction.
+- **P-69** `check(isTRUE(x))` fails on vector predicates; wrap with `all()` or `any()`.
+- **P-70** A literature registry needs code-enforced inclusion (≥2 named genes, PMID/DOI, reported performance) and a reason for every exclusion.
+- **P-71** `ggsave(device = "jpeg")` fails on R 4.6.1; use `device = grDevices::jpeg`. `tools/make_figures.py` is unaffected.
+- **P-72** Never infer a panel’s content from its filename or an older legend. Inspect title, axes and source table before citing: meta versus discovery, top-40 versus full set, discovery versus all sets, centroid versus overlap, and blocks versus stable subtypes.
+- **P-73** Correct code does not prove current output. After label changes, rerun and inspect regenerated CSVs and figures; the stale “all 5 genes” artefact was corrected by rerunning `09d` and its verifier.
+- **P-74** Main figures must defend claims, not merely show routine QC. Keep design, independence and harmonisation in main Fig 1 and routine PCA in the supplement. When inserting a supplementary plate, renumber downstream references in descending order, update Results and legends together, and delete superseded files.
 
----
+## 6. Key Resources & Environment Info
 
-## 7. Environment
+### 6.1 Repository and path configuration
 
-**Compute:** Linux amd64; 20 threads; 61 GB RAM; 1.8 TB free on the volume; project ~32 GB (`work/` 23 GB, `.Rlib` 4.2 GB, `scrna/` 3.3 GB, `output/` ~650 MB); shared `Datasets` 18 GB; **exfat** (P-34). `work/cel/` (16 GB) and `work/rma_cache/` (1.1 GB) are deletable once `work/rma/` is final.
+- Branch: `master`; git log is authoritative. `core.fileMode` and `core.autocrlf` are `false` for exfat.
+- Project root: `/run/media/meng/MY_Data/MN/Paper_1`.
+- Data root: `/run/media/meng/MY_Data/MN/Datasets`, shared with Paper_2/Paper_3.
+- `R/_lib.R` resolves the root and data paths. Overrides: `PAPER1_PROJ` and `PAPER1_DATA`.
+- The mount can alternate `/run/media/{meng,yang}/MY_Data`; keep scripts path-independent.
+- `work/`, `.Rlib/`, `scrna/extracted/`, `logs/` and five bulk CSVs >3 MB are gitignored as regenerable. A checkout alone is not a reproducible run.
+- No API keys or credentials are used. CIBERSORTx would require a licence token only if requested as an optional cross-check.
 
-**R 4.6.1** with two libraries: `<PROJ>/.Rlib` (prepended by `_lib.R`; makecdfenv, the 5 Brainarray CDFs, oligo, WGCNA 1.74, ConsensusClusterPlus, caret, glmnet, randomForest, xgboost, Boruta, metafor 5.2.1, msigdbr, rms, babelgene) and the user library `/home/meng/R/x86_64-pc-linux-gnu-library/4.6` (~1,701 pkgs; Seurat 5.6.0, scDblFinder 1.26.9, harmony 2.0.5, muscat, nnls, limma, edgeR, DESeq2, sva, clusterProfiler, fgsea, ComplexHeatmap, survival). `pandoc` at `/usr/bin/pandoc`. **Absent:** ReactomePA, immunedeconv/xCell/quanTIseq, msigdbdf, liana, decoupleR, InstaPrism, tabpfn. Mirrors: TUNA CRAN/Bioconductor. Reproducibility record: `environment/renv.lock` (1,669 pkgs) + `environment/README.md`; regenerate with `Rscript tools/make_environment_record.R`.
+### 6.2 Languages and packages
 
-**Key paths**
+- **R 4.6.1**, Bioconductor 3.23.
+- **Python 3.14.4**; plotting/composition uses the project’s Python + LaTeX/TikZ workflow rather than matplotlib.
+- **Pandoc 3.8.3**, **OfficeCLI 1.0.144**, TeX Live, Ghostscript and LibreOffice are used for manuscript/figure production and QA.
+- Two R libraries:
+  - `<PROJ>/.Rlib`: makecdfenv, five Brainarray CDFs, oligo, WGCNA 1.74, ConsensusClusterPlus, caret, glmnet, randomForest, xgboost, Boruta, metafor 5.2.1, msigdbr, rms, babelgene.
+  - `/home/meng/R/x86_64-pc-linux-gnu-library/4.6`: ~1,701 packages, including Seurat 5.6.0, scDblFinder 1.26.9, harmony 2.0.5, muscat, nnls, limma, edgeR, DESeq2, sva, clusterProfiler, fgsea, ComplexHeatmap and survival.
+- Installed optional packages: BayesPrism, MuSiC, hdWGCNA.
+- Absent: ReactomePA, immunedeconv/xCell/quanTIseq, msigdbdf, liana, decoupleR, InstaPrism, tabpfn.
+- Mirrors: TUNA CRAN/Bioconductor; China-network preference is ghproxy/Aliyun where applicable.
+
+### 6.3 Reproducibility record and restoration
+
+- Lockfile: `environment/renv.lock` (1,669 packages).
+- Environment notes: `environment/README.md`, `environment/sessionInfo.txt`, `environment/packages_*.csv`.
+- Regenerate the record with `Rscript tools/make_environment_record.R`.
+- `renv` is a reproducibility record and is not activated at runtime.
+- Restore on another machine:
+
+```r
+install.packages("renv")
+renv::restore(lockfile = "environment/renv.lock")
+```
+
+- Rebuild local Brainarray CDFs from GEO archives (no network needed):
+
+```bash
+Rscript R/00d_install_cdf.R
+Rscript R/02a_build_cdf.R
+for p in work/cdf/*; do R CMD INSTALL -l .Rlib "$p"; done
+export PAPER1_DATA=/path/to/MN/Datasets
+```
+
+- Cross-machine copy: include at least `R/`, `metadata/`, `output/`, `reference/`, `Manuscript/`, `Docs/` and the `.rds` files under `work/`, plus `MN/Datasets`. Install R 4.6.x and Bioconductor 3.23, restore packages and rebuild `.Rlib` as above. Regenerate `scrna/extracted/` with `Rscript R/07a_scrna_manifest.R`. Install TeX Live + Ghostscript for figures, then run all seven verifiers.
+
+### 6.4 Compute resources and key paths
+
+- Linux amd64, 20 threads, 61 GB RAM, 1.8 TB free; local workstation only, no HPC job files.
+- Project ~32 GB: `work/` 23 GB, `.Rlib/` 4.2 GB, `scrna/` 3.3 GB, `output/` ~650 MB; shared `Datasets` 18 GB; exfat.
+- `work/cel/` (16 GB) and `work/rma_cache/` (1.1 GB) may be deleted once `work/rma/` is final.
 
 | Path | Contents |
 |---|---|
-| `$DATA` = `MN/Datasets` | shared GEO collection: `<GSE>_RAW.tar` + `<GSE>/{raw,processed}/`, indexed by `manifest.tsv` |
-| `work/sets/` | the 7 cohort sets (`*_expr.rds`, `*_expr_symbol.rds`, `*_samples.csv`) |
-| `work/rma/`, `work/rnaseq/`, `work/combat/`, `work/msigdb/` | normalised cohorts, ComBat TI matrices, MSigDB v2025.1.Hs GMTs |
-| `work/scrna/{qc,atlas.rds,pseudobulk/}` | per-sample QC objects, 236k-cell atlas, 16 donor × gene matrices |
-| `work/wgcna/` | networks, eigengenes, traits, preservation objects (`modulePreservation` writes its cache into the cwd — run 08d from the project root) |
-| `work/bench/10b_harmonised.rds` | Track B matrices: `z_harmonised` (primary) and `z_transductive` (kept only to quantify the difference) |
-| `output/tables/` (+ `deg/`, `meta/`, `enrichment/`) | 225 CSVs — the numbers above live here |
-| `output/figures/`, `output/figures/supplementary/` | 12 plates (PDF + 300 dpi JPEG); LaTeX sources in `work/figtex/` |
-| `output/models_{gate,panel,trackb}/`, `output/{qc,deg,enrichment,wgcna,scrna,subtypes}/` | per-step figures (PDF + JPEG) |
-| `metadata/` | `trackB_panel_register.csv`, `trackB_exclusions.csv`, `GSE216841_pla2r.tsv`, `ensg2symbol.tsv` |
-| `Manuscript/` | manuscript, cover letter, IF plan, data requests, submission checklist, `references.tsv` (all `.md` + `.docx`) |
-| `Docs/` | `BAP_AUDIT_2026-11-18.md`, `Findings_Ledger.csv`, `CONSOLIDATED_RESULTS.md`, superseded 2026-10-18 handoff |
-| `R/_pre_audit_backup/` | pre-audit scripts (provenance) |
+| `$DATA` | Shared GEO collection: `<GSE>_RAW.tar`, `<GSE>/{raw,processed}/`, `manifest.tsv` |
+| `work/sets/` | Seven cohort sets: `*_expr.rds`, `*_expr_symbol.rds`, `*_samples.csv` |
+| `work/rma/`, `work/rnaseq/`, `work/combat/`, `work/msigdb/` | Normalised cohorts, ComBat TI matrices, MSigDB v2025.1.Hs GMTs |
+| `work/scrna/` | QC objects, 236k-cell atlas, donor × gene pseudobulk matrices |
+| `work/wgcna/` | Networks, eigengenes, traits, preservation objects; run `08d` from project root |
+| `work/bench/10b_harmonised.rds` | Track B `z_harmonised` primary and `z_transductive` comparison matrices |
+| `output/tables/` and subdirectories | 240 result CSVs, 121 at top level; current numbers live here |
+| `output/figures/`, `output/figures/supplementary/` | 13 plates, PDF + 300-dpi JPEG; LaTeX in `work/figtex/` |
+| `output/models_*`, `output/{qc,deg,enrichment,wgcna,scrna,subtypes}/` | Per-step PDF + JPEG figures |
+| `metadata/` | Track B register/exclusions, PLA2R table, Ensembl-symbol map |
+| `Manuscript/` | Manuscript, cover letter, IF plan, data requests, checklist, `references.tsv` |
+| `Docs/` | Consolidated results, BAP audit, findings ledger, MYOZ2 provenance, superseded handoff |
+| `R/_pre_audit_backup/` | Pre-audit scripts for provenance only |
 
-**Script map** (`*` = run in background, > 2 min)
+### 6.5 Execution map
 
 | Scripts | Role |
 |---|---|
-| `03d`, `04a`, `04b`, `04c*`, `04d*` | QC policy; ComBat; limma DEGs; random-effects meta + ERCB validation; ORA/GSEA |
-| `05a`, `05b`, `05c*` | separability gate (harmonised transfer); permutation/QC/reverse/per-diagnosis robustness; gate partition stability |
-| `06a` | exploratory subtypes (negative; kept as a negative result) |
-| `07a`, `07a0`, `07b*`, `07c*`, `07d*`, `07e`, `07f`, `07z` | scRNA manifest, metadata, per-sample QC (~25 min), atlas (~25 min), pseudobulk (~7 min), bulk↔scRNA bridge, NNLS deconvolution, package install |
-| `08a`, `08b`, `08c*`, `08d*`, `08e`, `08f*` | WGCNA networks, module–trait, stability (~25 min), preservation (~15 min/test), hubs/candidate space, module ORA (resumable, `--force`) |
-| `09a`–`09f` | panel selection, validation, robustness, mechanism, sensitivity (+harmonisation check), PLA2R strata |
-| `10b`, `10c`, `10d` | Track B: harmonised matrix cache, 7-rung attrition ladder, panel-size frontier |
-| `99_verify_*` (7 scripts) | 54 / 86 / 32 / 42 / 117 / 106 / 37 assertions |
-| `tools/make_figures.py`, `tools/make_environment_record.R`, `tools/rerun_*.sh` | plate compositor (~2–3 min), environment record, resume drivers |
-| `tools/moyz2_provenance.R` | P1b MYOZ2 provenance test (bulk correlation + snRNA detection); outside the Paper 1 pipeline, writes `09g_*` |
+| `03d`, `04a`, `04b`, `04c*`, `04d*` | QC policy; ComBat; limma; random-effects meta + ERCB; ORA/GSEA |
+| `05a`, `05b`, `05c*` | Separability gate, robustness, partition stability |
+| `06a` | Exploratory negative subtyping |
+| `07a`, `07a0`, `07b*`, `07c*`, `07d*`, `07e`, `07f`, `07z` | scRNA manifest, QC, atlas, pseudobulk, bridge, deconvolution, packages |
+| `08a`, `08b`, `08c*`, `08d*`, `08e`, `08f*` | WGCNA, traits, stability, preservation, hubs, enrichment |
+| `09a`–`09f` | Panel selection, validation, robustness, mechanism, sensitivity, PLA2R |
+| `10b`, `10c`, `10d` | Track B matrices, attrition ladder, panel-size frontier |
+| `99_verify_*` | 54 / 86 / 32 / 42 / 117 / 106 / 37 assertions |
+| `tools/make_cohort_design.py` | Data-derived main-Fig-1 panels from existing metadata/result tables |
+| `tools/make_figures.py` | Plate compositor; automatically calls the cohort-design builder |
+| `tools/moyz2_provenance.R` | Separate MYOZ2 provenance test, ~4 min cold, cached thereafter |
+| `tools/make_environment_record.R`, `tools/rerun_*.sh` | Environment record and resume drivers |
 
-**Cross-machine resume:** copy the project (at least `R/`, `metadata/`, `output/`, `reference/`, `Manuscript/`, `Docs/` and the `.rds` under `work/`) plus `MN/Datasets`; install R 4.6.x; rebuild `.Rlib` with `00d` → `02a` → `R CMD INSTALL -l .Rlib work/cdf/<pkg>` (×5, no network needed); run all seven verifiers; `scrna/extracted/` regenerates from `Rscript R/07a_scrna_manifest.R`; figure rebuild needs TeX Live + Ghostscript. **No API keys or credentials are used** (CIBERSORTx is an optional cross-check only and would need a licence token).
+`*` means run in background (>2 min), especially `04c`, `04d`, `07b`, `07c`, `07d`, `08c`, `08d`, `08f`, `05c` and `10d`.
 
----
+### 6.6 Rebuild and verification commands
 
-## 8. Startup instruction
+- Panel revisit: `09a → 09b → 09c → 09d → 09e → 09f`, then `python3 tools/make_figures.py`.
+- WGCNA revisit: `08a → 08b → 08c → 08d → 08e` (`08f --force`), or `bash tools/rerun_from_08d.sh`.
+- Track B: `10b → 10c → 10d → 99_verify_trackb.R`.
+- MYOZ2: `Rscript tools/moyz2_provenance.R` (`--refresh` rebuilds the cell cache).
+- Figure rebuild: `python3 tools/make_figures.py`; it invokes `make_cohort_design.py`, composites with `pdflatex`, embeds fonts with Ghostscript through `/tmp`, and writes PDF + JPEG. Assert one page per plate and run the 5-point glyph audit.
+- Submission copies: remove old `Manuscript/Figures/*.pdf` and `*.jpeg`, then copy `output/figures/Fig*` and `output/figures/supplementary/FigS*` into `Manuscript/Figures/` (26 files).
+- Manuscript rebuild:
 
-1. **Read `handoff.md` first**, then confirm the state by running the seven verifiers (expect **54 / 86 / 32 / 42 / 117 / 106 / 37**, all exit 0). Check for 0-byte outputs before trusting any resume (P-28), and re-derive any count you are about to quote (P-66).
-2. Do not quote pre-audit figures, do not add methods to Paper 1, do not hard-code a number a table already stores (P-68), and do not read `gsm` as a GEO accession for the RNA-seq cohorts.
-3. **B15 is resolved** (12-panel registry, 2026-11-18); the open decision is whether the 12-panel benchmark ships as is. The remaining user decision is **P1** (author list, funding, reviewers, declarations). Ask which to proceed with; everything else is either blocked externally (B2, B7) or wet-lab work (P0).
+```bash
+pandoc Manuscript/Paper1_manuscript.md \
+  --reference-doc=reference/tnr_fangsong_redcode.docx \
+  -o Manuscript/Paper1_manuscript.docx
+```
+
+- After every Pandoc rebuild, reapply the OfficeCLI finishing steps: normalise `VerbatimChar` (Consolas/FangSong, 11 pt, red) so `rFonts` precedes colour/size; add `TableNormal`; add a centred live PAGE footer; set `updateFields=true`; format paragraphs after the Figure legends heading (currently `/body/p[150]`–`[162]`) at 10 pt, 3 pt before/after, 1× spacing; save and close.
+- Final gates: `officecli validate` = no errors; `officecli view … issues --type structure` = 0; LibreOffice render = 18 pages with no blank/orphan page; plain-text check = 13 legends, all 44 references cited, all 65 panel citations sequential.
+- `handoff.docx` is stale: `handoff.md` is the only checkpoint source; do not read or regenerate the DOCX.
+
+## 7. Startup Instruction for the Next Session
+
+> **When starting a new session, the very first message must be: "Read handoff.md first."**
+
+1. Restate the current state from this document before making changes. If a newer project file postdates this checkpoint, first determine whether it represents unrecorded work.
+2. Confirm the frozen state with all seven verifiers, expecting **54 / 86 / 32 / 42 / 117 / 106 / 37**, all exit 0. Check for zero-byte outputs and re-derive any count before quoting it.
+3. Do not quote pre-audit results, do not add methods to Paper 1, do not hard-code values already stored in result tables, and do not treat `gsm` as a GEO accession for RNA-seq cohorts.
+4. B15 is resolved at 12 panels. The live decisions are whether Track B ships at 12 and the P1 submission metadata (authors, funding, reviewers and declarations). P0 IF work and P0b clinical-data requests are externally blocked. Ask which item the user wants to proceed with rather than opening new analyses automatically.
+5. For persistence, commit this `handoff.md` with the completed manuscript/figure changes or copy it to a backed-up location. Do not commit generated work without reviewing the diff first.

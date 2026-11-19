@@ -183,7 +183,8 @@ check(nrow(cp) == panel_size && all(cp$sign_concordant),
 
 # --- mechanism (09d) -------------------------------------------------------
 mech <- rd("09d_panel_expression_diagnostics.csv")
-check(nrow(mech) == panel_size * 4, "expression diagnostics cover 5 genes x 4 cohorts", nrow(mech))
+check(nrow(mech) == panel_size * 4,
+      sprintf("expression diagnostics cover %d genes x 4 cohorts", panel_size), nrow(mech))
 trpc6 <- unique(mech[mech$gene == "TRPC6", c("atlas_top_celltype", "atlas_max_cpm")])
 check(trpc6$atlas_top_celltype == "Podocyte", "TRPC6 is a podocyte gene in the atlas",
       trpc6$atlas_top_celltype)
@@ -195,7 +196,8 @@ check(any(grepl("low detection", mech$note)),
       "low-detection genes are flagged explicitly")
 
 loo <- rd("09d_leave_one_out.csv")
-check(nrow(loo) == panel_size * 2 + 1, "leave-one-out covers full, 5 drop-outs and 5 single genes",
+check(nrow(loo) == panel_size * 2 + 1,
+      sprintf("leave-one-out covers full, %d drop-outs and %d single genes", panel_size, panel_size),
       nrow(loo))
 drops <- loo[grepl("^without", loo$model), ]
 # Threshold moved 0.75 -> 0.70 with the corrected panel: the re-derived 4-gene panel has no ICAM1,

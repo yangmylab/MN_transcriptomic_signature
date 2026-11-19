@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Compose the manuscript figures as VECTOR PDFs from the saved single-panel vector PDFs.
+r"""Compose the manuscript figures as VECTOR PDFs from the saved single-panel vector PDFs.
 
 Each figure is a LaTeX grid of \includegraphics{panel.pdf} calls, so every source panel stays
 vector end-to-end (no rasterisation), then pdftoppm produces a JPEG preview at 300 dpi.
@@ -12,6 +12,8 @@ import shutil
 import subprocess
 import sys
 from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from make_cohort_design import build_design_panels
 
 PROJ = Path(__file__).resolve().parents[1]
 OUT = PROJ / "output" / "figures"
@@ -32,14 +34,14 @@ PANEL_WORD = {3: "three", 4: "four", 5: "five", 6: "six"}.get(N_PANEL, str(N_PAN
 # (panel pdf, sub-label, width fraction of the text block)
 FIGURES = {
     "Fig1_study_design_and_QC": {
-        "title": "Cohort harmonisation and expression quality control",
+        "title": "Cohort design and analytical independence",
         "cols": 2,
         "panels": [
-            (O / "qc/03c_disc_glom_array_pca.pdf", "A", 1.0),
-            (O / "qc/03c_val_glom_array_pca.pdf", "B", 1.0),
-            (O / "qc/03c_cross_glom_rnaseq_pca.pdf", "C", 1.0),
+            (O / "qc/Fig1_study_flow.pdf", "A", 1.0),
+            (O / "qc/Fig1_patient_deduplication.pdf", "B", 1.0),
+            (O / "qc/Fig1_cohort_allocation.pdf", "C", 1.0),
             (O / "qc/04a_disc_ti_array_pca_before_after.pdf", "D", 1.0),
-            (O / "qc/03c_pla2r_lcm_pca.pdf", "E", 1.0),
+            (O / "qc/Fig1_combat_quantitative.pdf", "E", 1.0),
         ],
     },
     "Fig2_discovery_and_meta": {
@@ -47,11 +49,11 @@ FIGURES = {
         "cols": 2,
         "panels": [
             (O / "deg/04c_Glom_MN_vs_Control_volcano.pdf", "A", 1.0),
-            (O / "deg/04c_Glom_metaDEG_heatmap.pdf", "B", 1.0),
-            (O / "deg/04c_Glom_MN_vs_Control_forest_CCNL1.pdf", "C", 1.0),
-            (O / "deg/04c_Glom_MN_vs_Control_forest_HBA2.pdf", "D", 1.0),
-            (O / "deg/04c_Glom_MN_vs_FSGS_volcano.pdf", "E", 1.0),
-            (O / "deg/04c_Glom_MN_vs_nonMN_volcano.pdf", "F", 1.0),
+            (O / "deg/04c_Glom_MN_vs_Control_forest_CCNL1.pdf", "B", 1.0),
+            (O / "deg/04c_Glom_MN_vs_Control_forest_HBA2.pdf", "C", 1.0),
+            (O / "deg/04c_Glom_MN_vs_FSGS_volcano.pdf", "D", 1.0),
+            (O / "deg/04c_Glom_MN_vs_nonMN_volcano.pdf", "E", 1.0),
+            (O / "deg/04c_Glom_metaDEG_heatmap.pdf", "F", 1.0),
         ],
     },
     "Fig3_separability_gate": {
@@ -99,7 +101,17 @@ FIGURES = {
         ],
     },
     # ---------------- supplementary ----------------
-    "FigS1_cohort_and_singlecell_qc": {
+    "FigS1_bulk_cohort_qc": {
+        "title": "Bulk cohort expression quality control",
+        "cols": 2,
+        "panels": [
+            (O / "qc/03c_disc_glom_array_pca.pdf", "A", 1.0),
+            (O / "qc/03c_val_glom_array_pca.pdf", "B", 1.0),
+            (O / "qc/03c_cross_glom_rnaseq_pca.pdf", "C", 1.0),
+            (O / "qc/03c_pla2r_lcm_pca.pdf", "D", 1.0),
+        ],
+    },
+    "FigS2_cohort_and_singlecell_qc": {
         "title": "Cohort QC, gate stability and single-cell annotation",
         "cols": 2,
         "panels": [
@@ -110,7 +122,7 @@ FIGURES = {
             (O / "scrna/07b_sample_qc.pdf", "E", 1.0),
         ],
     },
-    "FigS2_WGCNA_stability_and_hubs": {
+    "FigS3_WGCNA_stability_and_hubs": {
         "title": "Module reproducibility, hub genes and annotation detail",
         "cols": 2,
         "panels": [
@@ -121,18 +133,7 @@ FIGURES = {
             (O / "wgcna/08f_glom_module_dotplot.pdf", "E", 1.0),
         ],
     },
-    "FigS4_panel_robustness": {
-        "title": "Panel robustness, calibration and transfer",
-        "cols": 2,
-        "panels": [
-            (O / "models_panel/09c_robustness_roc.pdf", "A", 1.0),
-            (O / "models_panel/09b_calibration.pdf", "B", 1.0),
-            (O / "models_panel/09c_recalibration.pdf", "C", 1.0),
-            (O / "models_panel/09b_dca.pdf", "D", 1.0),
-            (O / "models_panel/09d_leave_one_out.pdf", "E", 1.0),
-        ],
-    },
-    "FigS3_functional_profiling": {
+    "FigS4_functional_profiling": {
         "title": "Functional profiling of the glomerular MN signature",
         "cols": 2,
         "panels": [
@@ -143,7 +144,18 @@ FIGURES = {
             (O / "enrichment/04d_Glom_MN_vs_nonMN_GO_BP_dotplot.pdf", "E", 1.0),
         ],
     },
-    "FigS5_localisation_and_pla2r": {
+    "FigS5_panel_robustness": {
+        "title": "Panel robustness, calibration and transfer",
+        "cols": 2,
+        "panels": [
+            (O / "models_panel/09c_robustness_roc.pdf", "A", 1.0),
+            (O / "models_panel/09b_calibration.pdf", "B", 1.0),
+            (O / "models_panel/09c_recalibration.pdf", "C", 1.0),
+            (O / "models_panel/09b_dca.pdf", "D", 1.0),
+            (O / "models_panel/09d_leave_one_out.pdf", "E", 1.0),
+        ],
+    },
+    "FigS6_localisation_and_pla2r": {
         "title": "Where the panel genes sit, panel sensitivity and PLA2R stratum",
         "cols": 2,
         "panels": [
@@ -154,7 +166,7 @@ FIGURES = {
             (O / "models_panel/09f_pla2r_strata.pdf", "E", 1.0),
         ],
     },
-    "FigS6_subtypes_negative": {
+    "FigS7_subtypes_negative": {
         "title": "Exploratory molecular subtyping is not reproducible",
         "cols": 2,
         "panels": [
@@ -327,6 +339,8 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--only", default=None)
     args = ap.parse_args()
+    if args.only is None or "fig1" in args.only.lower():
+        build_design_panels()
 
     ok = 0
     total = 0

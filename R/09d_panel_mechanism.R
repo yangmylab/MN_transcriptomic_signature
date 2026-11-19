@@ -1,5 +1,5 @@
 #!/usr/bin/env Rscript
-# Paper 1 - Phase E step 4: where do the five panel genes live, and does a module-level model explain
+# Paper 1 - Phase E step 4: where do the locked panel genes live, and does a module-level model explain
 # the panel's performance?
 #
 # Three questions the existing data can answer without new experiments:
@@ -33,7 +33,7 @@ set.seed(SEED)
 save_plot <- function(p, stem, width = 8, height = 5.5) {
   if (interactive()) print(p)
   ggsave(paste0(stem, ".pdf"), plot = p, device = "pdf", width = width, height = height)
-  ggsave(paste0(stem, ".jpeg"), plot = p, device = "jpeg", quality = 95, dpi = 300,
+  ggsave(paste0(stem, ".jpeg"), plot = p, device = grDevices::jpeg, quality = 95, dpi = 300,
          bg = "white", width = width, height = height)
 }
 
@@ -104,7 +104,7 @@ if (nrow(pb)) {
               scale_fill_gradient2(low = "steelblue", mid = "white", high = "firebrick",
                                    midpoint = 0, limits = c(-3, 3), oob = scales::squish) +
               labs(title = "Panel genes in MN vs control pseudobulk, per cell type",
-                   subtitle = "limma-voom on donor-level pseudobulk; **no** comparison survives BH (n = 15 vs 10 donors)",
+                   subtitle = "limma-voom on donor-level pseudobulk; no comparison survives BH (n = 15 vs 10 donors)",
                    x = NULL, y = NULL, fill = "log2FC") +
               theme_bw(base_size = 9) +
               theme(panel.grid = element_blank(), axis.text.x = element_text(angle = 45, hjust = 1),

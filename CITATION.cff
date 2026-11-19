@@ -1,0 +1,34 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite both the article and this archived release."
+title: "MN transcriptomic signature: analysis code and result tables"
+abstract: >-
+  Analysis code, harmonised metadata and result tables for a compartment-resolved glomerular
+  transcriptomic signature and a four-gene classifier for membranous nephropathy. The pipeline
+  covers patient-level de-duplication of 13 public GEO accessions, differential expression and
+  random-effects meta-analysis, a separability gate, WGCNA, single-cell deconvolution, panel
+  selection and validation, and a leakage-audited benchmark of published panels.
+authors:
+  - family-names: Yang
+    given-names: Mingyue
+    affiliation: "College of Marine and Biotechnology, Guangxi Minzu University, Nanning, China"
+  - family-names: Meng
+    given-names: Lingzhang
+    affiliation: "Research Center for Medical Big Data and Artificial Intelligence, The People's Hospital of Guangxi Zhuang Autonomous Region, Nanning, China"
+  - family-names: Wang
+    given-names: Yibing
+    affiliation: "College of Marine and Biotechnology, Guangxi Minzu University, Nanning, China"
+  - family-names: Ye
+    given-names: Kun
+    affiliation: "Guangxi Research Center for Chronic Kidney Diseases, The People's Hospital of Guangxi Zhuang Autonomous Region, Nanning, China"
+version: 1.0.0
+date-released: "2026-11-19"
+license: MIT
+repository-code: "https://github.com/yangmylab/MN_transcriptomic_signature"
+keywords:
+  - membranous nephropathy
+  - transcriptomics
+  - biomarker panel
+  - WGCNA
+  - machine learning
+  - external validation
+  - single-cell deconvolution

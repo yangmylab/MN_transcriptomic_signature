@@ -1,0 +1,34 @@
+{
+  "title": "MN transcriptomic signature: analysis code and result tables",
+  "description": "<p>Analysis code, harmonised metadata and result tables for a compartment-resolved glomerular transcriptomic signature and a four-gene classifier for membranous nephropathy (MN). The pipeline de-duplicates 13 public GEO accessions at patient level into seven non-redundant cohort sets, then performs differential expression and random-effects meta-analysis, a separability gate, WGCNA, single-cell deconvolution, panel selection and external validation, and a leakage-audited benchmark of published MN panels.</p><p>Research use only. The four-gene panel is a discrimination instrument, not a validated diagnostic or prognostic test, and requires per-platform recalibration.</p>",
+  "upload_type": "software",
+  "access_right": "open",
+  "license": "MIT",
+  "creators": [
+    {
+      "name": "Yang, Mingyue",
+      "affiliation": "College of Marine and Biotechnology, Guangxi Minzu University, Nanning, China"
+    },
+    {
+      "name": "Meng, Lingzhang",
+      "affiliation": "Research Center for Medical Big Data and Artificial Intelligence, The People's Hospital of Guangxi Zhuang Autonomous Region, Nanning, China"
+    },
+    {
+      "name": "Wang, Yibing",
+      "affiliation": "College of Marine and Biotechnology, Guangxi Minzu University, Nanning, China"
+    },
+    {
+      "name": "Ye, Kun",
+      "affiliation": "Guangxi Research Center for Chronic Kidney Diseases, The People's Hospital of Guangxi Zhuang Autonomous Region, Nanning, China"
+    }
+  ],
+  "keywords": [
+    "membranous nephropathy",
+    "transcriptomics",
+    "biomarker panel",
+    "WGCNA",
+    "machine learning",
+    "external validation",
+    "single-cell deconvolution"
+  ]
+}

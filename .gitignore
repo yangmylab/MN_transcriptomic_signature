@@ -53,3 +53,7 @@ Rplots.pdf
 work/figtex/
 *.aux
 *.log
+
+# --- python bytecode ---
+__pycache__/
+*.pyc
